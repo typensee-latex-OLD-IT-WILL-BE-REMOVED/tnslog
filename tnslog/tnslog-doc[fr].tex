@@ -159,7 +159,7 @@
 \makeatother % Technical doc - END
 
 
-\usepackage{ tnslog }
+\usepackage{tnslog}
 
 
 \begin{document}
@@ -167,13 +167,13 @@
 \renewcommand\labelitemi{\raisebox{0.125em}{\tiny\textbullet}}
 \renewcommand{\labelitemii}{---}
 
-\title{   %
-	Le package \texttt{ tnslog }\\%
-	{\footnotesize Code source disponible sur \url{ https://github.com/typensee-latex/tnstools.git }.}\\%
+\title{  %
+	Le package \texttt{tnslog}\\%
+	{\footnotesize Code source disponible sur \url{https://github.com/typensee-latex/tnslog.git}.}\\%
 {\footnotesize Version \texttt{0.0.0-beta} développée et testée sur \macosxname{}.}%
 }
 \author{Christophe BAL}
-\date{2020-07-10}{{{{{{{{
+\date{2020-07-10}
 
 \maketitle
 
@@ -1160,23 +1160,19 @@ L'environnement étoilé \env{demoexplain*} est différent de l'environnement \e
 	C'est pour cela qu'est proposé une version étoilée de l'environnement et non l'utilisation d'une option de l'environnement non étoilé. 
 }.
 Par contre, la syntaxe est très similaire.
-Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retour à la ligne dans une cellule.
+Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retour à la ligne dans une cellule et aussi la nécessité d'écrire les accolades de la macro sans argument \macro{demostep} lorsque la 1\iere{} case est vide \emph{(ceci est inutile lorsque l'argument optionnel est renseigné comme nous allons le vérifier dans l'exemple juste après)}.
 
 \begin{latexex-flat}
 \begin{demoexplain*}
     \demostep
-        $ABC$ est un triangle
-        \newline équilatéral 
-      & Définition d'un triangle
-        \newline équilatéral. 
+        $ABC$ est un triangle \newline équilatéral 
+      & Définition d'un triangle \newline équilatéral. 
       & $AB = BC = AC$
-    \demostep
-        Voir l'énoncé.
-      & 
+    \demostep{} % --> Ne pas oublier ici !
+      & Voir l'énoncé.
       & $AB = 10 \, cm$
     \demostep
-        Voir les conséquences
-        \newline \explref*{1} et \explref*{2} .
+        Voir les conséquences \newline \explref*{1} et \explref*{2} .
       & Simple calcul.
       & $ABC$ a pour périmètre $30 \, cm$.
 \end{demoexplain*}
@@ -1194,18 +1190,15 @@ Par contre \env{demoexplain*} ne propose que \verb+start+ comme clé optionnelle
 \begin{latexex-flat}
 \begin{demoexplain*}[start = last]
     \demostep[demo-first-geo-fact]
-        $ABC$ est un triangle
-        \newline équilatéral 
-      & Définition d'un triangle
-        \newline équilatéral. 
+        $ABC$ est un triangle \newline équilatéral 
+      & Définition d'un triangle \newline équilatéral. 
       & $AB = BC = AC$
     \demostep[known-data]
-        Voir l'énoncé.
-      & 
+      & Voir l'énoncé.
       & $AB = 10 \, cm$
     \demostep
-        Voir les conséquences
-        \newline \explref{demo-first-geo-fact} et \explref{known-data} .
+        Voir les conséquences \newline
+        \explref{demo-first-geo-fact} et \explref{known-data} .
       & Simple calcul.
       & $ABC$ a pour périmètre $30 \, cm$.
 \end{demoexplain*}
