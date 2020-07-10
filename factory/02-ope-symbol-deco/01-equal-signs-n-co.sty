@@ -1,0 +1,143 @@
+% == PACKAGES USED == %
+
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+
+\RequirePackage{tnscom}
+
+
+% == DEFINITIONS == %
+
+% Settable texts
+\@ifpackagewith{babel}{french}{
+% == Decorations - FRENCH - START == %
+    \newcommand\textopappli{appli}
+    \newcommand\textopchoice{choix}
+    \newcommand\textopcond{cond}
+    \newcommand\textopcons{cons}
+    \newcommand\textopdef{déf}
+    \newcommand\textopplot{graph}
+    \newcommand\textophyp{hyp}
+    \newcommand\textopid{id}
+    \newcommand\textoptest{?}
+% == Decorations - FRENCH - END == %
+}{
+% == Decorations - ENGLISH - START == %
+    \newcommand\textopappli{appli}
+    \newcommand\textopchoice{choice}
+    \newcommand\textopcond{cond}
+    \newcommand\textopcons{cons}
+    \newcommand\textopdef{def}
+    \newcommand\textopplot{plot}
+    \newcommand\textophyp{hyp}
+    \newcommand\textopid{id}
+    \newcommand\textoptest{?}
+% == Decorations - ENGLISH - END == %
+}
+
+% Sources
+%    * https://tex.stackexchange.com/a/506745/6880
+%    * https://tex.stackexchange.com/a/510011/6880
+
+\newcommand{\my@hat@eq}[2]{%
+  \begingroup
+  \sbox\z@{$\m@th#1=$}%
+  \ooalign{%
+    \hidewidth\raisebox{-0.3\ht\z@}{$\m@th#1\widehat{}$}\hidewidth\cr
+    \box\z@\cr
+  }%
+  \endgroup
+}
+
+% == Decorated versions - START == %
+
+\newcommand\eqdef{\@ifstar{\@eqdef@star}{\@eqdef@no@star}}
+\newcommand\@eqdef@no@star{\tns@over@math@symbol{\textopdef}{=}}
+\newcommand\@eqdef@star{\coloneqq}
+
+\newcommand\eqid{\@ifstar{\@eqid@star}{\@eqid@no@star}}
+\newcommand\@eqid@no@star{\tns@over@math@symbol{\textopid}{=}}
+\newcommand\@eqid@star{\rightleftharpoons}
+
+\newcommand\eqplot{\tns@over@math@symbol{\textopplot}{=}}
+\newcommand\eqappli{\tns@over@math@symbol{\textopappli}{=}}
+\newcommand\eqchoice{\tns@over@math@symbol{\textopchoice}{=}}
+\newcommand\eqcond{\tns@over@math@symbol{\textopcond}{=}}
+\newcommand\eqcons{\tns@over@math@symbol{\textopcons}{=}}
+\newcommand\eqhyp{\tns@over@math@symbol{\textophyp}{=}}
+\newcommand\eqtest{\tns@over@math@symbol{\textoptest}{=}}
+
+\newcommand\neqid{\tns@over@math@symbol{\textopid}{\neq}}
+\newcommand\neqplot{\tns@over@math@symbol{\textopplot}{\neq}}
+\newcommand\neqappli{\tns@over@math@symbol{\textopappli}{\neq}}
+\newcommand\neqchoice{\tns@over@math@symbol{\textopchoice}{\neq}}
+\newcommand\neqcond{\tns@over@math@symbol{\textopcond}{\neq}}
+\newcommand\neqcons{\tns@over@math@symbol{\textopcons}{\neq}}
+\newcommand\neqhyp{\tns@over@math@symbol{\textophyp}{\neq}}
+\newcommand\neqtest{\tns@over@math@symbol{\textoptest}{\neq}}
+
+\newcommand\lessplot{\tns@over@math@symbol{\textopplot}{<}}
+\newcommand\lessappli{\tns@over@math@symbol{\textopappli}{<}}
+\newcommand\lesschoice{\tns@over@math@symbol{\textopchoice}{<}}
+\newcommand\lesscond{\tns@over@math@symbol{\textopcond}{<}}
+\newcommand\lesscons{\tns@over@math@symbol{\textopcons}{<}}
+\newcommand\lesshyp{\tns@over@math@symbol{\textophyp}{<}}
+\newcommand\lesstest{\tns@over@math@symbol{\textoptest}{<}}
+
+\newcommand\nlessplot{\tns@over@math@symbol{\textopplot}{\nless}}
+\newcommand\nlessappli{\tns@over@math@symbol{\textopappli}{\nless}}
+\newcommand\nlesschoice{\tns@over@math@symbol{\textopchoice}{\nless}}
+\newcommand\nlesscond{\tns@over@math@symbol{\textopcond}{\nless}}
+\newcommand\nlesscons{\tns@over@math@symbol{\textopcons}{\nless}}
+\newcommand\nlesshyp{\tns@over@math@symbol{\textophyp}{\nless}}
+\newcommand\nlesstest{\tns@over@math@symbol{\textoptest}{\nless}}
+
+\newcommand\leqplot{\tns@over@math@symbol{\textopplot}{\leq}}
+\newcommand\leqappli{\tns@over@math@symbol{\textopappli}{\leq}}
+\newcommand\leqchoice{\tns@over@math@symbol{\textopchoice}{\leq}}
+\newcommand\leqcond{\tns@over@math@symbol{\textopcond}{\leq}}
+\newcommand\leqcons{\tns@over@math@symbol{\textopcons}{\leq}}
+\newcommand\leqhyp{\tns@over@math@symbol{\textophyp}{\leq}}
+\newcommand\leqtest{\tns@over@math@symbol{\textoptest}{\leq}}
+
+\newcommand\nleqplot{\tns@over@math@symbol{\textopplot}{\nleq}}
+\newcommand\nleqappli{\tns@over@math@symbol{\textopappli}{\nleq}}
+\newcommand\nleqchoice{\tns@over@math@symbol{\textopchoice}{\nleq}}
+\newcommand\nleqcond{\tns@over@math@symbol{\textopcond}{\nleq}}
+\newcommand\nleqcons{\tns@over@math@symbol{\textopcons}{\nleq}}
+\newcommand\nleqhyp{\tns@over@math@symbol{\textophyp}{\nleq}}
+\newcommand\nleqtest{\tns@over@math@symbol{\textoptest}{\nleq}}
+
+\newcommand\gtrplot{\tns@over@math@symbol{\textopplot}{>}}
+\newcommand\gtrappli{\tns@over@math@symbol{\textopappli}{>}}
+\newcommand\gtrchoice{\tns@over@math@symbol{\textopchoice}{>}}
+\newcommand\gtrcond{\tns@over@math@symbol{\textopcond}{>}}
+\newcommand\gtrcons{\tns@over@math@symbol{\textopcons}{>}}
+\newcommand\gtrhyp{\tns@over@math@symbol{\textophyp}{>}}
+\newcommand\gtrtest{\tns@over@math@symbol{\textoptest}{>}}
+
+\newcommand\ngtrplot{\tns@over@math@symbol{\textopplot}{\ngtr}}
+\newcommand\ngtrappli{\tns@over@math@symbol{\textopappli}{\ngtr}}
+\newcommand\ngtrchoice{\tns@over@math@symbol{\textopchoice}{\ngtr}}
+\newcommand\ngtrcond{\tns@over@math@symbol{\textopcond}{\ngtr}}
+\newcommand\ngtrcons{\tns@over@math@symbol{\textopcons}{\ngtr}}
+\newcommand\ngtrhyp{\tns@over@math@symbol{\textophyp}{\ngtr}}
+\newcommand\ngtrtest{\tns@over@math@symbol{\textoptest}{\ngtr}}
+
+\newcommand\geqplot{\tns@over@math@symbol{\textopplot}{\geq}}
+\newcommand\geqappli{\tns@over@math@symbol{\textopappli}{\geq}}
+\newcommand\geqchoice{\tns@over@math@symbol{\textopchoice}{\geq}}
+\newcommand\geqcond{\tns@over@math@symbol{\textopcond}{\geq}}
+\newcommand\geqcons{\tns@over@math@symbol{\textopcons}{\geq}}
+\newcommand\geqhyp{\tns@over@math@symbol{\textophyp}{\geq}}
+\newcommand\geqtest{\tns@over@math@symbol{\textoptest}{\geq}}
+
+\newcommand\ngeqplot{\tns@over@math@symbol{\textopplot}{\ngeq}}
+\newcommand\ngeqappli{\tns@over@math@symbol{\textopappli}{\ngeq}}
+\newcommand\ngeqchoice{\tns@over@math@symbol{\textopchoice}{\ngeq}}
+\newcommand\ngeqcond{\tns@over@math@symbol{\textopcond}{\ngeq}}
+\newcommand\ngeqcons{\tns@over@math@symbol{\textopcons}{\ngeq}}
+\newcommand\ngeqhyp{\tns@over@math@symbol{\textophyp}{\ngeq}}
+\newcommand\ngeqtest{\tns@over@math@symbol{\textoptest}{\ngeq}}
+
+% == Decorated versions - END == %

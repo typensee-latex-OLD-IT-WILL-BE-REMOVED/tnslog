@@ -1,0 +1,156 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+	\usepackage{01-equal-signs-n-co}
+
+    \usepackage{02-operators}
+\makeatother
+
+
+\begin{document}
+
+\section{Équivalences et implications}
+
+\subsection{Des symboles supplémentaires}
+
+\newparaexample{Implication réciproque}
+
+En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{liesimp}, où l'on a inversé les groupes syllabiques de \macro{implies}, un opérateur pour pour obtenir $\liesimp$
+\footnote{
+	Penser aussi aux preuves d'équivalence par double implication.
+},
+ainsi que des versions négatives. Voici un exemple d'utilisation.
+
+\begin{latexex}
+$(A \implies B)
+ \iff (B \liesimp A)$
+
+$(A \implies B)
+ \niff (A \nimplies B)$
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Des opérateurs décorés}
+
+Tout comme pour les comparaisons, il existe des versions décorées de type test, hypothèse, condition \dots{} 
+Elles sont toutes présentes dans l'exemple suivant.
+
+\begin{latexex}
+$A \iffappli B \niffchoice C$
+
+$A \impliescond B \nimpliescons C$
+
+$A \liesimphyp B \nliesimptest C$
+\end{latexex}
+
+
+\subsection{Une table récapitulative}
+
+La table \ref{table:decorations-operators} \vpageref{table:decorations-operators} montre toutes les associations autorisées entre opérateurs logiques et décorations.
+
+
+% ---------------------- %
+
+
+\subsection{Fiches techniques}
+
+\paragraph{Opérateurs décorés -- Pour la logique}
+
+% == Decorated versions - START == %
+
+\foreach \k in {iff, iffappli, iffchoice, iffcond, iffcons, iffhyp, ifftest}{
+	\IDmacro*{\k}{0}
+
+}
+    
+\separation
+
+\foreach \k in {niff, niffappli, niffchoice, niffcond, niffcons, niffhyp, nifftest}{
+	\IDmacro*{\k}{0}
+
+}
+    
+\separation
+
+\foreach \k in {implies, impliesappli, implieschoice, impliescond, impliescons, implieshyp, impliestest}{
+	\IDmacro*{\k}{0}
+
+}
+    
+\separation
+
+\foreach \k in {nimplies, nimpliesappli, nimplieschoice, nimpliescond, nimpliescons, nimplieshyp, nimpliestest}{
+	\IDmacro*{\k}{0}
+
+}
+    
+\separation
+
+\foreach \k in {liesimp, liesimpappli, liesimpchoice, liesimpcond, liesimpcons, liesimphyp, liesimptest}{
+	\IDmacro*{\k}{0}
+
+}
+    
+\separation
+
+\foreach \k in {nliesimp, nliesimpappli, nliesimpchoice, nliesimpcond, nliesimpcons, nliesimphyp, nliesimptest}{
+	\IDmacro*{\k}{0}
+
+}
+    
+% == Decorated versions - END == %
+
+
+% ---------------------- %
+
+
+\subsection{Équivalences et implications verticales}
+
+\paragraph{À quoi cela sert-il ?}
+
+Les sections \ref{explain-proof-for-youngs} et \ref{explain-proof} présentent deux environnements pour détailler les étapes d'un raisonnement.
+Avec ces outils il devient utile d'avoir des versions verticales non décorées des symboles d'équivalence et d'implication. Voici comment les obtenir \emph{(tous les cas possibles ont été indiqués)}.
+Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
+
+\begin{latexex}
+\begin{tabular}{cccccc}
+    $A$          & $B$
+  & $C$          & $D$
+  & $E$          & $F$
+  \\
+    $\viff$      & $\vimplies$   
+  & $\vliesimp$  & $\nviff$
+  & $\nvimplies$ & $\nvliesimp$
+  \\
+    $A$          & $B$
+  & $C$          & $D$
+  & $E$          & $F$
+\end{tabular}
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Fiches techniques}
+
+\paragraph{Opérateurs de logique \og verticaux \fg}
+
+% == Vertical versions - START == %
+
+\foreach \k in {viff, vimplies, vliesimp}{
+
+	\IDmacro*{\k}{0}
+
+	\IDmacro*{n\k}{0}
+
+    \extraspace
+}
+
+% == Vertical versions - END == %
+
+\end{document}

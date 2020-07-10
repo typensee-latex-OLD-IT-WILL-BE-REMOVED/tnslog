@@ -1,0 +1,41 @@
+decorations::
+    def
+    id
+    plot
+
+    appli
+    choice
+    cond
+    cons
+    hyp
+    test
+
+
+todecorate::
+    eq                        = :all:
+    neq                       = :not: def
+    less , nless , leq , nleq = :not: def , id
+    gtr  , ngtr  , geq , ngeq = :not: def , id
+
+
+stars::
+    eqdef* = \coloneqq
+
+    eqid* = \rightleftharpoons
+
+
+latex::
+    eq  = =
+    neq = \neq
+
+    less  = <
+    nless = \nless
+
+    gtr  = >
+    ngtr = \ngtr
+
+    leq  = \leq
+    nleq = \nleq
+
+    geq  = \geq
+    ngeq = \ngeq

@@ -1,0 +1,322 @@
+% == PACKAGES USED == %
+
+
+\RequirePackage{amsmath}
+\RequirePackage{witharrows}
+
+\RequirePackage{etoolbox}
+\RequirePackage{simplekv}
+
+
+% == DEFINITIONS == %
+
+% Space
+
+\newcommand\expltxtspacein{2em}
+
+
+% Common tools
+
+\newcommand\explcom[1]{%
+    \text{\color{purple}[\kern.225em{\footnotesize \itshape #1}\kern.3em]}%
+}
+
+
+\newcommand\explnext{\@ifstar{\@explnext@star}{\@explnext@no@star}}
+\newcommand\@explnext@no@star{}
+\newcommand\@explnext@star{}
+
+\newcommand\@explain@ope@{=}
+
+
+\newcommand\comthis{\@ifstar{\@comthis@star}{\@comthis@no@star}}
+\newcommand\@comthis@no@star{}
+
+\newcommand\@comthis@star[1]{%
+	\ifbool{@start@explain@arrow@}{%
+    	\PackageError{lymath}{comment can't be use to start explain[style = sar]}%
+                             {No comment for the 1st part of explain[style = sar]}
+    }{%
+    	\kern\expltxtspacein\explcom{#1}%
+	}%
+}
+
+\newcommand\@comthis@aligned[1]{%
+	\global\booltrue{@com@this@no@star@used@}%
+    &%
+    \@comthis@star{#1}%
+}
+
+
+\newcommand\@explnext@extra@column{}
+
+
+% Wrapper env with key-val options 
+
+\setKVdefault[@calc@explain@keys]{%
+    ope   = {=},
+    style = u,
+    com   = nal
+}
+
+\newenvironment{explain}[1][]{%
+	\useKVdefault[@calc@explain@keys]%
+	\setKV[@calc@explain@keys]{#1}%
+	\def\style{\useKV[@calc@explain@keys]{style}}%
+% Comments
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		\renewcommand\@comthis@no@star\@comthis@aligned%
+		\renewcommand\@explnext@extra@column{&}
+	}{%
+		\renewcommand\@comthis@no@star\@comthis@star%
+		\renewcommand\@explnext@extra@column{}
+	}%
+	\IfEqCase{\style}{%
+% University
+		{u}{%
+			\begin{@explain@university}%
+		}%
+% Arrows (long)
+		{ar}{%
+			\begin{@explain@arrow}%
+		}%
+% Arrows (short)
+		{sar}{%
+			\begin{@explain@short@arrow}%
+		}%
+	}[%
+        \PackageError{lymath}{unknown style}%
+                             {You can use u (default), ar or sar.}%
+	]%
+}{%
+	\IfEqCase{\style}{%
+% University
+		{u}{%
+			\end{@explain@university}%
+		}%
+% Arrows (long)
+		{ar}{%
+			\end{@explain@arrow}%
+		}%
+% Arrows (short)
+		{sar}{%
+			\end{@explain@short@arrow}%
+		}%
+	}%
+}
+    
+    
+% University version
+
+% For the good extra lengths, see :
+%	* https://tex.stackexchange.com/a/550837/6880
+
+\newcommand\dimmax[2]{%
+  \ifdim#1>#2 #1\else #2\fi
+}
+
+\newlength{\@upper@text@size}
+\newlength{\@lower@text@size}
+
+\newcommand\samesizeas[2]{%
+	\settowidth\@upper@text@size{#1}%
+ 	\settowidth\@lower@text@size{#2}%
+  	\makebox[\dimmax{\@upper@text@size}{\@lower@text@size}][c]{#1}%
+}
+
+
+
+\newcommand\expltxt[1]{%
+    \text{\color{blue}\footnotesize \{\,{\itshape #1}\,\} }%
+}
+
+\newcommand\expltxtup[1]{%
+    $\uparrow$ #1 $\uparrow$%
+}
+
+\newcommand\expltxtdown[1]{%
+    $\downarrow$ #1 $\downarrow$%
+}
+
+\newcommand\expltxtupdown[2]{{%
+	\displaystyle\footnotesize\color{blue}%
+	\left\{\,%
+		\genfrac{}{}{0pt}{}{%
+			\text{\itshape\expltxtdown{\samesizeas{#1}{#2}}}%
+		}{%
+			\text{\itshape\expltxtup{\samesizeas{#2}{#1}}}%
+		}%
+	\,\right\}%
+}}
+
+
+
+\newcommand\@explnext@university@no@star[2][\@explain@ope@]{
+    \\&
+    {#1}
+    \if\relax\detokenize{#2}\relax\else
+        {} \kern\expltxtspacein \expltxt{#2}
+    \fi
+    \\&
+}
+
+\newcommand\@explnext@university@separation{
+    \\&
+}
+
+
+
+\newcommand\@explnext@university@star[3][\@explain@ope@]{
+    \if\relax\detokenize{#2}\relax%
+        \if\relax\detokenize{#3}\relax%
+            \PackageError{lymath}{two empty arguments}%
+                                 {at least one none empty text is needed}
+        \fi%
+    \fi%
+    %
+    \@explnext@university@separation{}%
+    \if\relax\detokenize{#2}\relax%
+% Up empty
+%     + Down none empty
+		{#1}\kern\expltxtspacein%
+		\expltxt{\expltxtup{\samesizeas{#3}{#2}}}%
+    \else%
+% Up none empty
+%     + Down empty
+    	\if\relax\detokenize{#3}\relax%
+			{#1}\kern\expltxtspacein{}%
+			\expltxt{\expltxtdown{\samesizeas{#2}{#3}}}%
+%     + Down none empty
+		\else%
+			{#1}\kern\expltxtspacein{}%
+			\expltxtupdown{#2}{#3}%
+		\fi%
+	\fi%
+    \@explnext@extra@column{}
+    \@explnext@university@separation{}
+}
+
+\newenvironment{@explain@university}{
+    \setlength{\abovedisplayskip}{0pt}%
+    \setlength{\belowdisplayskip}{0pt}%
+    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+    \renewcommand\@explnext@no@star\@explnext@university@no@star%
+    \renewcommand\@explnext@star\@explnext@university@star%
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		$\WithArrows[format = rll]
+	}{%
+		$\WithArrows[format = rl]
+	}
+            &
+}{%
+	\endWithArrows$
+}
+
+
+% Middle school version
+
+\newcommand\@explnext@middle@school@no@star[2][\@explain@ope@]{%
+	\ifbool{@com@this@no@star@used@}{}{%
+    	\@explnext@extra@column{}%
+    }%
+    \global\boolfalse{@com@this@no@star@used@}%
+    %
+    %
+    \ifbool{@inside@explain@short@arrow@}{%
+        \ifbool{@start@explain@arrow@}{%
+            \if\relax\detokenize{#2}\relax\else
+                \PackageError{lymath}{illegal argument to start explain[style = sar]}%
+                                     {no argument for the first use of explnext in [style = sar]}
+            \fi
+            \global\boolfalse{@start@explain@arrow@}%
+        }{
+        	\if\relax\detokenize{#2}\relax\else
+        	    \Arrow[tikz = <->]{#2}
+        	\fi
+    		\\
+        }
+    }{
+         \if\relax\detokenize{#2}\relax\else
+            \Arrow[tikz = <->]{#2}
+        \fi
+    	\\
+    }%
+    &#1%
+}
+
+% Source
+% https://tex.stackexchange.com/a/550754/6880
+
+\NewDocumentCommand \@double@arrow@{O {} m m}{
+    \Arrow[   tikz = -> , #1]{#2}%
+    \Arrow[o, tikz = <- , #1]{#3}
+}
+ 
+
+\newcommand\@explnext@middle@school@star[3][\@explain@ope@]{
+    \ifbool{@com@this@no@star@used@}{}{%
+    	\@explnext@extra@column{}%
+    }%
+    \global\boolfalse{@com@this@no@star@used@}%
+    %
+    \if\relax\detokenize{#2}\relax%
+        \if\relax\detokenize{#3}\relax%
+            \PackageError{lymath}{two empty arguments}%
+                                 {at least one none empty text is needed}
+        \else%
+            \Arrow[tikz = <-]{#3}%
+        \fi%
+    \else%
+        \if\relax\detokenize{#3}\relax%
+            \Arrow[tikz = ->]{#2}%
+        \else%
+            \@double@arrow@{#2}{#3}
+        \fi%
+    \fi%
+    \\
+    &#1%
+}
+
+\newbool{@com@this@no@star@used@} 
+
+\newbool{@start@explain@arrow@} 
+\newbool{@inside@explain@short@arrow@} 
+
+\newenvironment{@explain@arrow}{
+    \renewcommand\@explnext@no@star\@explnext@middle@school@no@star%
+    \renewcommand\@explnext@star\@explnext@middle@school@star%
+    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+    %
+    \boolfalse{@inside@explain@short@arrow@}%
+    \boolfalse{@start@explain@arrow@}%
+    \boolfalse{@com@this@no@star@used@}%
+    %
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		$\WithArrows[tikz = blue, groups, format = rll]
+	}{%
+		$\WithArrows[tikz = blue, groups, format = rl]
+	}
+        	&\phantom{{}\@explain@ope@{}}
+}{%
+    \endWithArrows$
+}
+
+\newenvironment{@explain@short@arrow}{
+    \renewcommand\@explnext@no@star\@explnext@middle@school@no@star%
+    \renewcommand\@explnext@star\@explnext@middle@school@star%
+    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+    %
+    \booltrue{@inside@explain@short@arrow@}%
+    \booltrue{@start@explain@arrow@}%
+    \boolfalse{@com@this@no@star@used@}%
+    %
+    %
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		$\WithArrows[tikz = blue, groups, format = rll]%
+	}{%
+		$\WithArrows[tikz = blue, groups, format = rl]%
+	}%
+}{%
+    \endWithArrows$
+}
+

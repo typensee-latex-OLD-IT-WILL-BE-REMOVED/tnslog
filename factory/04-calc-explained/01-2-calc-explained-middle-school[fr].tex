@@ -1,0 +1,124 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+
+    \usepackage{01-calc-explained}
+\makeatother
+
+
+\begin{document}
+
+%\section{Détailler un raisonnement simple}
+
+\subsection{Version pour les collégiens} \label{explain-proof-for-youngs}
+
+L'environnement \env{explain} avec l'option \verb+style = ar+
+\footnote{
+    Cet environnement utilise aussi le package \texttt{witharrows}.
+}
+utilise des flèches pour indiquer les explications
+\emph{(\prefix{ar} est pour \whyprefix{ar}{row} soit \inenglish{flèche})}.
+Dans ce cas d'utilisation, la macro \macro{explnext*} permet d'avoir une flèche unidirectionnelle, vers le haut ou le bas au choix, ou bien d'écrire deux indications dont l'une est montante et l'autre descendante.
+
+\medskip
+
+Il existe aussi l'option \verb+style = sar+ lorsque la toute 1\iere{} étape n'est pas expliquée
+\emph{(\prefix{s} est pour \whyprefix{s}{hort} soit \inenglish{court})}.
+Attention car forcément ceci nécessite au tout début de l'environnement l'usage de la macro \macro{explnext} sans aucun contenu !
+
+
+% ---------------------- %
+
+
+\newparaexample{Des flèches à double sens}
+
+\begin{latexex}
+\begin{explain}[style = ar]
+    (a + b)^2
+        \explnext{Identité remarquable}
+    a^2 + 2 a b + b^2
+        \explnext{}
+    a^2 + b^2 + 2 a b
+\end{explain}
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Des flèches unidirectionnelles}
+
+Ce qui suit est juste là comme démo. car les explications y sont un peu farfelues.
+
+\begin{latexex-flat}
+\begin{explain}[style = ar]
+    (a + b)^2
+        \explnext*{Via $P^2 = P \cdot P$.}
+                  {Via $P \cdot P = P^2$.}
+    (a + b) (a + b)
+        \explnext*{Double développement.}%
+                  {Double factorisation (pas simple).}
+    a^2 + a b + b a + b^2
+        \explnext*{Commutativité du produit.}%
+                  {}
+    a^2 + 2 a b + b^2
+        \explnext*{}%
+                  {Commutativité de l'addition.}
+    a^2 + b^2 + 2 a b
+\end{explain}
+\end{latexex-flat}
+
+
+% ---------------------- %
+
+
+\newparaexample{Ne pas expliquer le tout début}
+
+L'environnement étoilé \env{explain} avec l'option \verb+style = sar+ débute différemment la mise en forme.
+Bien entendu ici le tout premier \explnext{} doit avoir un argument vide !
+
+\begin{latexex-flat}
+\begin{explain}[style = sar]
+    (a + b) (a + b)
+        \explnext{}
+    (a + b)^2
+        \explnext{Identité remarquable.}
+    a^2 + b^2 + 2 a b
+\end{explain}
+\end{latexex-flat}
+
+
+% ---------------------- %
+
+
+\newparaexample{Choisir son symbole}
+
+Voici comment faire où l'implication finale est juste là pour la démonstration \emph{(on notera une petite bidouille un peu sale à faire pour avoir un alignement à peu près correct)}.
+
+\begin{latexex}
+\begin{explain}[style = ar, ope = \iff]
+    a^2 + 2 a b + b^2 = 0
+        \explnext{}
+    (a + b)^2 = 0
+        \explnext[\:\implies]%
+                 {$P^2 = 0$ ssi $P = 0$.}
+    a + b = 0
+\end{explain}
+\end{latexex}
+
+
+Avec la version courte, on obtient ce qui suit.
+
+\begin{latexex-flat}
+\begin{explain}[style = sar, ope = \iff]
+    a^2 + 2 a b + b^2 = 0
+        \explnext{}
+    (a + b)^2 = 0
+        \explnext[\:\implies]%
+                 {$P^2 = 0$ ssi $P = 0$.}
+    a + b = 0
+\end{explain}
+\end{latexex-flat}
+
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+
+    \usepackage{01-demo-explained}
+\makeatother
+
+
+\newcommand\anglein[1]{#1}
+
+\begin{document}
+
+%\section{Détailler un raisonnement}
+
+\subsection{Fiches techniques}
+
+\paragraph{Détailler un \og vrai \fg{} raisonnement via un tableau}
+
+\IDenv{demoexplain}{4}
+
+\IDkey{start} le début de la numérotation des identifiants des justifications.
+              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demoexplain} ou \env{demoexplain*} utilisé.
+
+\IDkey{hyps} les hypothèses, au format texte, vérifiées au départ.
+             Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
+
+\IDkey{hyp} une unique hypothèse, au format texte, vérifiée au départ.
+            Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyps+.
+
+\IDkey{ccl} la conclusion, au format texte, du raisonnement détaillé.
+            Cet argument peut être vide.
+
+
+\separation
+
+
+\IDenv{demoexplain*}{1}
+
+\IDkey{start} le début de la numérotation des identifiants des justifications.
+              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demoexplain} ou \env{demoexplain*} utilisé.
+
+
+\separation
+
+
+\IDmacro{demostep}{1}{0}
+
+\IDoption{} un texte qui sera utilisé comme label global référençant le numéro d'une justification.
+
+
+\separation
+
+
+\IDmacro*{explref}{1}  où \quad \mwhyprefix{expl}{ain}
+                             et \mwhyprefix{ref}{erence}
+
+\IDarg{} un numéro de $1$ ou $2$ chiffres qui sera encadré comme le sont les numérotations des indications.
+
+
+\separation
+
+
+\IDmacro*{explref*}{1}  où \quad \mwhyprefix{expl}{ain}
+                              et \mwhyprefix{ref}{erence}
+
+\IDarg{} un texte correspondant à un label global référençant le numéro d'une justification.
+
+
+\paragraph{Détailler un \og vrai \fg{} raisonnement via un tableau - Textes utilisés}
+
+\IDmacro*{textdemoID}{0}     où \quad \mwhyprefix{ID}{entifier}
+
+\IDmacro*{textdemoKNOWN}{0}
+
+\IDmacro*{textdemoPROP}{0}   où \quad \mwhyprefix{PROP}{osition}
+
+\IDmacro*{textdemoCONS}{0}   où \quad \mwhyprefix{CONS}{equence}
+
+\extraspace
+
+\IDmacro*{textdemoHYPS}{0}   où \quad \prefix{HYPS = HYP-othesis (S-everal ones)} 
+
+\IDmacro*{textdemoHYP}{0}    où \quad \prefix{HYP = HYP-othesis (just one)}
+
+\IDmacro*{textdemoCCL}{0}    où \quad \prefix{CCL = C-on-CL-usion}
+
+\extraspace
+
+\IDmacro*{textdemoNEXTPAGE}{0}
+
+
+\end{document}

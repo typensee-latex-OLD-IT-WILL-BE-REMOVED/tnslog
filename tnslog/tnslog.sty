@@ -1,0 +1,773 @@
+% ---------------------- %
+% -- IMPORTS REQUIRED -- %
+% ---------------------- %
+
+% A
+\RequirePackage{amssymb}
+% C
+\RequirePackage{centernot}
+% E
+\RequirePackage{etoolbox}
+% L
+\RequirePackage{longtable}
+% M
+\RequirePackage{mathtools}
+% S
+\RequirePackage{simplekv}
+% T
+\RequirePackage{tnscom}
+% W
+\RequirePackage{witharrows}
+
+
+% --------------------- %
+% -- SPACE LOGIC NEG -- %
+% --------------------- %
+
+% Logic negation roots
+
+\let\stdneg\neg
+\renewcommand\neg{%
+    \stdneg\,%
+}
+
+
+% ---------------------- %
+% -- EQUAL SIGNS N CO -- %
+% ---------------------- %
+
+% Settable texts
+\@ifpackagewith{babel}{french}{
+% == Decorations - FRENCH - START == %
+    \newcommand\textopappli{appli}
+    \newcommand\textopchoice{choix}
+    \newcommand\textopcond{cond}
+    \newcommand\textopcons{cons}
+    \newcommand\textopdef{déf}
+    \newcommand\textopplot{graph}
+    \newcommand\textophyp{hyp}
+    \newcommand\textopid{id}
+    \newcommand\textoptest{?}
+% == Decorations - FRENCH - END == %
+}{
+% == Decorations - ENGLISH - START == %
+    \newcommand\textopappli{appli}
+    \newcommand\textopchoice{choice}
+    \newcommand\textopcond{cond}
+    \newcommand\textopcons{cons}
+    \newcommand\textopdef{def}
+    \newcommand\textopplot{plot}
+    \newcommand\textophyp{hyp}
+    \newcommand\textopid{id}
+    \newcommand\textoptest{?}
+% == Decorations - ENGLISH - END == %
+}
+
+% Sources
+%    * https://tex.stackexchange.com/a/506745/6880
+%    * https://tex.stackexchange.com/a/510011/6880
+
+\newcommand{\my@hat@eq}[2]{%
+  \begingroup
+  \sbox\z@{$\m@th#1=$}%
+  \ooalign{%
+    \hidewidth\raisebox{-0.3\ht\z@}{$\m@th#1\widehat{}$}\hidewidth\cr
+    \box\z@\cr
+  }%
+  \endgroup
+}
+
+% == Decorated versions - START == %
+
+\newcommand\eqdef{\@ifstar{\@eqdef@star}{\@eqdef@no@star}}
+\newcommand\@eqdef@no@star{\tns@over@math@symbol{\textopdef}{=}}
+\newcommand\@eqdef@star{\coloneqq}
+
+\newcommand\eqid{\@ifstar{\@eqid@star}{\@eqid@no@star}}
+\newcommand\@eqid@no@star{\tns@over@math@symbol{\textopid}{=}}
+\newcommand\@eqid@star{\rightleftharpoons}
+
+\newcommand\eqplot{\tns@over@math@symbol{\textopplot}{=}}
+\newcommand\eqappli{\tns@over@math@symbol{\textopappli}{=}}
+\newcommand\eqchoice{\tns@over@math@symbol{\textopchoice}{=}}
+\newcommand\eqcond{\tns@over@math@symbol{\textopcond}{=}}
+\newcommand\eqcons{\tns@over@math@symbol{\textopcons}{=}}
+\newcommand\eqhyp{\tns@over@math@symbol{\textophyp}{=}}
+\newcommand\eqtest{\tns@over@math@symbol{\textoptest}{=}}
+
+\newcommand\neqid{\tns@over@math@symbol{\textopid}{\neq}}
+\newcommand\neqplot{\tns@over@math@symbol{\textopplot}{\neq}}
+\newcommand\neqappli{\tns@over@math@symbol{\textopappli}{\neq}}
+\newcommand\neqchoice{\tns@over@math@symbol{\textopchoice}{\neq}}
+\newcommand\neqcond{\tns@over@math@symbol{\textopcond}{\neq}}
+\newcommand\neqcons{\tns@over@math@symbol{\textopcons}{\neq}}
+\newcommand\neqhyp{\tns@over@math@symbol{\textophyp}{\neq}}
+\newcommand\neqtest{\tns@over@math@symbol{\textoptest}{\neq}}
+
+\newcommand\lessplot{\tns@over@math@symbol{\textopplot}{<}}
+\newcommand\lessappli{\tns@over@math@symbol{\textopappli}{<}}
+\newcommand\lesschoice{\tns@over@math@symbol{\textopchoice}{<}}
+\newcommand\lesscond{\tns@over@math@symbol{\textopcond}{<}}
+\newcommand\lesscons{\tns@over@math@symbol{\textopcons}{<}}
+\newcommand\lesshyp{\tns@over@math@symbol{\textophyp}{<}}
+\newcommand\lesstest{\tns@over@math@symbol{\textoptest}{<}}
+
+\newcommand\nlessplot{\tns@over@math@symbol{\textopplot}{\nless}}
+\newcommand\nlessappli{\tns@over@math@symbol{\textopappli}{\nless}}
+\newcommand\nlesschoice{\tns@over@math@symbol{\textopchoice}{\nless}}
+\newcommand\nlesscond{\tns@over@math@symbol{\textopcond}{\nless}}
+\newcommand\nlesscons{\tns@over@math@symbol{\textopcons}{\nless}}
+\newcommand\nlesshyp{\tns@over@math@symbol{\textophyp}{\nless}}
+\newcommand\nlesstest{\tns@over@math@symbol{\textoptest}{\nless}}
+
+\newcommand\leqplot{\tns@over@math@symbol{\textopplot}{\leq}}
+\newcommand\leqappli{\tns@over@math@symbol{\textopappli}{\leq}}
+\newcommand\leqchoice{\tns@over@math@symbol{\textopchoice}{\leq}}
+\newcommand\leqcond{\tns@over@math@symbol{\textopcond}{\leq}}
+\newcommand\leqcons{\tns@over@math@symbol{\textopcons}{\leq}}
+\newcommand\leqhyp{\tns@over@math@symbol{\textophyp}{\leq}}
+\newcommand\leqtest{\tns@over@math@symbol{\textoptest}{\leq}}
+
+\newcommand\nleqplot{\tns@over@math@symbol{\textopplot}{\nleq}}
+\newcommand\nleqappli{\tns@over@math@symbol{\textopappli}{\nleq}}
+\newcommand\nleqchoice{\tns@over@math@symbol{\textopchoice}{\nleq}}
+\newcommand\nleqcond{\tns@over@math@symbol{\textopcond}{\nleq}}
+\newcommand\nleqcons{\tns@over@math@symbol{\textopcons}{\nleq}}
+\newcommand\nleqhyp{\tns@over@math@symbol{\textophyp}{\nleq}}
+\newcommand\nleqtest{\tns@over@math@symbol{\textoptest}{\nleq}}
+
+\newcommand\gtrplot{\tns@over@math@symbol{\textopplot}{>}}
+\newcommand\gtrappli{\tns@over@math@symbol{\textopappli}{>}}
+\newcommand\gtrchoice{\tns@over@math@symbol{\textopchoice}{>}}
+\newcommand\gtrcond{\tns@over@math@symbol{\textopcond}{>}}
+\newcommand\gtrcons{\tns@over@math@symbol{\textopcons}{>}}
+\newcommand\gtrhyp{\tns@over@math@symbol{\textophyp}{>}}
+\newcommand\gtrtest{\tns@over@math@symbol{\textoptest}{>}}
+
+\newcommand\ngtrplot{\tns@over@math@symbol{\textopplot}{\ngtr}}
+\newcommand\ngtrappli{\tns@over@math@symbol{\textopappli}{\ngtr}}
+\newcommand\ngtrchoice{\tns@over@math@symbol{\textopchoice}{\ngtr}}
+\newcommand\ngtrcond{\tns@over@math@symbol{\textopcond}{\ngtr}}
+\newcommand\ngtrcons{\tns@over@math@symbol{\textopcons}{\ngtr}}
+\newcommand\ngtrhyp{\tns@over@math@symbol{\textophyp}{\ngtr}}
+\newcommand\ngtrtest{\tns@over@math@symbol{\textoptest}{\ngtr}}
+
+\newcommand\geqplot{\tns@over@math@symbol{\textopplot}{\geq}}
+\newcommand\geqappli{\tns@over@math@symbol{\textopappli}{\geq}}
+\newcommand\geqchoice{\tns@over@math@symbol{\textopchoice}{\geq}}
+\newcommand\geqcond{\tns@over@math@symbol{\textopcond}{\geq}}
+\newcommand\geqcons{\tns@over@math@symbol{\textopcons}{\geq}}
+\newcommand\geqhyp{\tns@over@math@symbol{\textophyp}{\geq}}
+\newcommand\geqtest{\tns@over@math@symbol{\textoptest}{\geq}}
+
+\newcommand\ngeqplot{\tns@over@math@symbol{\textopplot}{\ngeq}}
+\newcommand\ngeqappli{\tns@over@math@symbol{\textopappli}{\ngeq}}
+\newcommand\ngeqchoice{\tns@over@math@symbol{\textopchoice}{\ngeq}}
+\newcommand\ngeqcond{\tns@over@math@symbol{\textopcond}{\ngeq}}
+\newcommand\ngeqcons{\tns@over@math@symbol{\textopcons}{\ngeq}}
+\newcommand\ngeqhyp{\tns@over@math@symbol{\textophyp}{\ngeq}}
+\newcommand\ngeqtest{\tns@over@math@symbol{\textoptest}{\ngeq}}
+
+% == Decorated versions - END == %
+
+
+% --------------- %
+% -- OPERATORS -- %
+% --------------- %
+
+% Vertical versions 
+
+\newcommand\vliesimp{\mathrel{\Uparrow}}
+\newcommand\vimplies{\mathrel{\Downarrow}}
+\newcommand\viff{\mathrel{\Updownarrow}}
+
+\newcommand\nvliesimp{\centernot\vliesimp}
+\newcommand\nvimplies{\centernot\vimplies}
+\newcommand\nviff{\centernot\viff}
+
+
+% Horizontal versions
+
+
+
+% == Decorated versions - START == %
+
+\newcommand\niff{\centernot\iff}
+\newcommand\nimplies{\centernot\implies}
+\newcommand\liesimp{\mathrel{\Longleftarrow}}
+\newcommand\nliesimp{\centernot\liesimp}
+
+\newcommand\iffappli{\tns@over@math@symbol{\textopappli}{\iff}}
+\newcommand\iffchoice{\tns@over@math@symbol{\textopchoice}{\iff}}
+\newcommand\iffcond{\tns@over@math@symbol{\textopcond}{\iff}}
+\newcommand\iffcons{\tns@over@math@symbol{\textopcons}{\iff}}
+\newcommand\iffhyp{\tns@over@math@symbol{\textophyp}{\iff}}
+\newcommand\ifftest{\tns@over@math@symbol{\textoptest}{\iff}}
+
+\newcommand\niffappli{\tns@over@math@symbol{\textopappli}{\niff}}
+\newcommand\niffchoice{\tns@over@math@symbol{\textopchoice}{\niff}}
+\newcommand\niffcond{\tns@over@math@symbol{\textopcond}{\niff}}
+\newcommand\niffcons{\tns@over@math@symbol{\textopcons}{\niff}}
+\newcommand\niffhyp{\tns@over@math@symbol{\textophyp}{\niff}}
+\newcommand\nifftest{\tns@over@math@symbol{\textoptest}{\niff}}
+
+\newcommand\impliesappli{\tns@over@math@symbol{\textopappli}{\implies}}
+\newcommand\implieschoice{\tns@over@math@symbol{\textopchoice}{\implies}}
+\newcommand\impliescond{\tns@over@math@symbol{\textopcond}{\implies}}
+\newcommand\impliescons{\tns@over@math@symbol{\textopcons}{\implies}}
+\newcommand\implieshyp{\tns@over@math@symbol{\textophyp}{\implies}}
+\newcommand\impliestest{\tns@over@math@symbol{\textoptest}{\implies}}
+
+\newcommand\nimpliesappli{\tns@over@math@symbol{\textopappli}{\nimplies}}
+\newcommand\nimplieschoice{\tns@over@math@symbol{\textopchoice}{\nimplies}}
+\newcommand\nimpliescond{\tns@over@math@symbol{\textopcond}{\nimplies}}
+\newcommand\nimpliescons{\tns@over@math@symbol{\textopcons}{\nimplies}}
+\newcommand\nimplieshyp{\tns@over@math@symbol{\textophyp}{\nimplies}}
+\newcommand\nimpliestest{\tns@over@math@symbol{\textoptest}{\nimplies}}
+
+\newcommand\liesimpappli{\tns@over@math@symbol{\textopappli}{\liesimp}}
+\newcommand\liesimpchoice{\tns@over@math@symbol{\textopchoice}{\liesimp}}
+\newcommand\liesimpcond{\tns@over@math@symbol{\textopcond}{\liesimp}}
+\newcommand\liesimpcons{\tns@over@math@symbol{\textopcons}{\liesimp}}
+\newcommand\liesimphyp{\tns@over@math@symbol{\textophyp}{\liesimp}}
+\newcommand\liesimptest{\tns@over@math@symbol{\textoptest}{\liesimp}}
+
+\newcommand\nliesimpappli{\tns@over@math@symbol{\textopappli}{\nliesimp}}
+\newcommand\nliesimpchoice{\tns@over@math@symbol{\textopchoice}{\nliesimp}}
+\newcommand\nliesimpcond{\tns@over@math@symbol{\textopcond}{\nliesimp}}
+\newcommand\nliesimpcons{\tns@over@math@symbol{\textopcons}{\nliesimp}}
+\newcommand\nliesimphyp{\tns@over@math@symbol{\textophyp}{\nliesimp}}
+\newcommand\nliesimptest{\tns@over@math@symbol{\textoptest}{\nliesimp}}
+
+% == Decorated versions - END == %
+
+
+% ----------------- %
+% -- QUANTIFIERS -- %
+% ----------------- %
+
+\newcommand\existsone{\exists\kern0.1em !}
+\newcommand\nexistsone{\nexists\kern0.1em !}
+
+\newcommand\existmulti[1]{\exists_{\kern0.1em #1}}
+\newcommand\nexistmulti[1]{\nexists_{\kern0.1em #1}}
+
+
+% -------------------- %
+% -- CALC EXPLAINED -- %
+% -------------------- %
+
+% Space
+
+\newcommand\expltxtspacein{2em}
+
+
+% Common tools
+
+\newcommand\explcom[1]{%
+    \text{\color{purple}[\kern.225em{\footnotesize \itshape #1}\kern.3em]}%
+}
+
+
+\newcommand\explnext{\@ifstar{\@explnext@star}{\@explnext@no@star}}
+\newcommand\@explnext@no@star{}
+\newcommand\@explnext@star{}
+
+\newcommand\@explain@ope@{=}
+
+
+\newcommand\comthis{\@ifstar{\@comthis@star}{\@comthis@no@star}}
+\newcommand\@comthis@no@star{}
+
+\newcommand\@comthis@star[1]{%
+	\ifbool{@start@explain@arrow@}{%
+    	\PackageError{lymath}{comment can't be use to start explain[style = sar]}%
+                             {No comment for the 1st part of explain[style = sar]}
+    }{%
+    	\kern\expltxtspacein\explcom{#1}%
+	}%
+}
+
+\newcommand\@comthis@aligned[1]{%
+	\global\booltrue{@com@this@no@star@used@}%
+    &%
+    \@comthis@star{#1}%
+}
+
+
+\newcommand\@explnext@extra@column{}
+
+
+% Wrapper env with key-val options 
+
+\setKVdefault[@calc@explain@keys]{%
+    ope   = {=},
+    style = u,
+    com   = nal
+}
+
+\newenvironment{explain}[1][]{%
+	\useKVdefault[@calc@explain@keys]%
+	\setKV[@calc@explain@keys]{#1}%
+	\def\style{\useKV[@calc@explain@keys]{style}}%
+% Comments
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		\renewcommand\@comthis@no@star\@comthis@aligned%
+		\renewcommand\@explnext@extra@column{&}
+	}{%
+		\renewcommand\@comthis@no@star\@comthis@star%
+		\renewcommand\@explnext@extra@column{}
+	}%
+	\IfEqCase{\style}{%
+% University
+		{u}{%
+			\begin{@explain@university}%
+		}%
+% Arrows (long)
+		{ar}{%
+			\begin{@explain@arrow}%
+		}%
+% Arrows (short)
+		{sar}{%
+			\begin{@explain@short@arrow}%
+		}%
+	}[%
+        \PackageError{lymath}{unknown style}%
+                             {You can use u (default), ar or sar.}%
+	]%
+}{%
+	\IfEqCase{\style}{%
+% University
+		{u}{%
+			\end{@explain@university}%
+		}%
+% Arrows (long)
+		{ar}{%
+			\end{@explain@arrow}%
+		}%
+% Arrows (short)
+		{sar}{%
+			\end{@explain@short@arrow}%
+		}%
+	}%
+}
+    
+    
+% University version
+
+% For the good extra lengths, see :
+%	* https://tex.stackexchange.com/a/550837/6880
+
+\newcommand\dimmax[2]{%
+  \ifdim#1>#2 #1\else #2\fi
+}
+
+\newlength{\@upper@text@size}
+\newlength{\@lower@text@size}
+
+\newcommand\samesizeas[2]{%
+	\settowidth\@upper@text@size{#1}%
+ 	\settowidth\@lower@text@size{#2}%
+  	\makebox[\dimmax{\@upper@text@size}{\@lower@text@size}][c]{#1}%
+}
+
+
+
+\newcommand\expltxt[1]{%
+    \text{\color{blue}\footnotesize \{\,{\itshape #1}\,\} }%
+}
+
+\newcommand\expltxtup[1]{%
+    $\uparrow$ #1 $\uparrow$%
+}
+
+\newcommand\expltxtdown[1]{%
+    $\downarrow$ #1 $\downarrow$%
+}
+
+\newcommand\expltxtupdown[2]{{%
+	\displaystyle\footnotesize\color{blue}%
+	\left\{\,%
+		\genfrac{}{}{0pt}{}{%
+			\text{\itshape\expltxtdown{\samesizeas{#1}{#2}}}%
+		}{%
+			\text{\itshape\expltxtup{\samesizeas{#2}{#1}}}%
+		}%
+	\,\right\}%
+}}
+
+
+
+\newcommand\@explnext@university@no@star[2][\@explain@ope@]{
+    \\&
+    {#1}
+    \if\relax\detokenize{#2}\relax\else
+        {} \kern\expltxtspacein \expltxt{#2}
+    \fi
+    \\&
+}
+
+\newcommand\@explnext@university@separation{
+    \\&
+}
+
+
+
+\newcommand\@explnext@university@star[3][\@explain@ope@]{
+    \if\relax\detokenize{#2}\relax%
+        \if\relax\detokenize{#3}\relax%
+            \PackageError{lymath}{two empty arguments}%
+                                 {at least one none empty text is needed}
+        \fi%
+    \fi%
+    %
+    \@explnext@university@separation{}%
+    \if\relax\detokenize{#2}\relax%
+% Up empty
+%     + Down none empty
+		{#1}\kern\expltxtspacein%
+		\expltxt{\expltxtup{\samesizeas{#3}{#2}}}%
+    \else%
+% Up none empty
+%     + Down empty
+    	\if\relax\detokenize{#3}\relax%
+			{#1}\kern\expltxtspacein{}%
+			\expltxt{\expltxtdown{\samesizeas{#2}{#3}}}%
+%     + Down none empty
+		\else%
+			{#1}\kern\expltxtspacein{}%
+			\expltxtupdown{#2}{#3}%
+		\fi%
+	\fi%
+    \@explnext@extra@column{}
+    \@explnext@university@separation{}
+}
+
+\newenvironment{@explain@university}{
+    \setlength{\abovedisplayskip}{0pt}%
+    \setlength{\belowdisplayskip}{0pt}%
+    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+    \renewcommand\@explnext@no@star\@explnext@university@no@star%
+    \renewcommand\@explnext@star\@explnext@university@star%
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		$\WithArrows[format = rll]
+	}{%
+		$\WithArrows[format = rl]
+	}
+            &
+}{%
+	\endWithArrows$
+}
+
+
+% Middle school version
+
+\newcommand\@explnext@middle@school@no@star[2][\@explain@ope@]{%
+	\ifbool{@com@this@no@star@used@}{}{%
+    	\@explnext@extra@column{}%
+    }%
+    \global\boolfalse{@com@this@no@star@used@}%
+    %
+    %
+    \ifbool{@inside@explain@short@arrow@}{%
+        \ifbool{@start@explain@arrow@}{%
+            \if\relax\detokenize{#2}\relax\else
+                \PackageError{lymath}{illegal argument to start explain[style = sar]}%
+                                     {no argument for the first use of explnext in [style = sar]}
+            \fi
+            \global\boolfalse{@start@explain@arrow@}%
+        }{
+        	\if\relax\detokenize{#2}\relax\else
+        	    \Arrow[tikz = <->]{#2}
+        	\fi
+    		\\
+        }
+    }{
+         \if\relax\detokenize{#2}\relax\else
+            \Arrow[tikz = <->]{#2}
+        \fi
+    	\\
+    }%
+    &#1%
+}
+
+% Source
+% https://tex.stackexchange.com/a/550754/6880
+
+\NewDocumentCommand \@double@arrow@{O {} m m}{
+    \Arrow[   tikz = -> , #1]{#2}%
+    \Arrow[o, tikz = <- , #1]{#3}
+}
+ 
+
+\newcommand\@explnext@middle@school@star[3][\@explain@ope@]{
+    \ifbool{@com@this@no@star@used@}{}{%
+    	\@explnext@extra@column{}%
+    }%
+    \global\boolfalse{@com@this@no@star@used@}%
+    %
+    \if\relax\detokenize{#2}\relax%
+        \if\relax\detokenize{#3}\relax%
+            \PackageError{lymath}{two empty arguments}%
+                                 {at least one none empty text is needed}
+        \else%
+            \Arrow[tikz = <-]{#3}%
+        \fi%
+    \else%
+        \if\relax\detokenize{#3}\relax%
+            \Arrow[tikz = ->]{#2}%
+        \else%
+            \@double@arrow@{#2}{#3}
+        \fi%
+    \fi%
+    \\
+    &#1%
+}
+
+\newbool{@com@this@no@star@used@} 
+
+\newbool{@start@explain@arrow@} 
+\newbool{@inside@explain@short@arrow@} 
+
+\newenvironment{@explain@arrow}{
+    \renewcommand\@explnext@no@star\@explnext@middle@school@no@star%
+    \renewcommand\@explnext@star\@explnext@middle@school@star%
+    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+    %
+    \boolfalse{@inside@explain@short@arrow@}%
+    \boolfalse{@start@explain@arrow@}%
+    \boolfalse{@com@this@no@star@used@}%
+    %
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		$\WithArrows[tikz = blue, groups, format = rll]
+	}{%
+		$\WithArrows[tikz = blue, groups, format = rl]
+	}
+        	&\phantom{{}\@explain@ope@{}}
+}{%
+    \endWithArrows$
+}
+
+\newenvironment{@explain@short@arrow}{
+    \renewcommand\@explnext@no@star\@explnext@middle@school@no@star%
+    \renewcommand\@explnext@star\@explnext@middle@school@star%
+    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+    %
+    \booltrue{@inside@explain@short@arrow@}%
+    \booltrue{@start@explain@arrow@}%
+    \boolfalse{@com@this@no@star@used@}%
+    %
+    %
+	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+		$\WithArrows[tikz = blue, groups, format = rll]%
+	}{%
+		$\WithArrows[tikz = blue, groups, format = rl]%
+	}%
+}{%
+    \endWithArrows$
+}
+
+
+% -------------------- %
+% -- DEMO EXPLAINED -- %
+% -------------------- %
+
+%    * Texts used
+
+\newcommand\textdemoID{Réf.}
+\newcommand\textdemoKNOWN{Je sais que...}
+\newcommand\textdemoPROP{Propriété ou fait utilisé}
+\newcommand\textdemoCONS{Conséquence}
+
+\newcommand\textdemoHYPS{Démonstration sous les hypothèses}
+\newcommand\textdemoHYP{Démonstration sous l'hypothèse}
+\newcommand\textdemoCCL{Conclusion}
+
+\newcommand\textdemoNEXTPAGE{Suite de la démo. page suivante...}
+
+
+%    * Common tools
+
+\newcommand\explref{\@ifstar{\@explref@star}{\@explref@no@star}}
+
+\newcommand\@explref@star[1]{%
+    \framebox[1.5em]{#1}%
+}
+
+\newcommand\@explref@no@star[1]{%
+    \@explref@star{\ref{#1}}%
+}
+
+\newcommand\demostep{}
+
+
+%    * University version 
+
+\newcounter{@demo@explain@id}
+
+
+\newcommand\@expl@id[1]{%
+    \framebox[1.5em]{\the@demo@explain@id}%
+    \if\relax\detokenize{#1}\relax\else%
+        \addtocounter{@demo@explain@id}{-1}%
+        \refstepcounter{@demo@explain@id}\label{#1}
+    \fi
+    \stepcounter{@demo@explain@id}%
+}
+
+
+\newbool{@start@demo@explain@} 
+
+
+\newcommand\@demostep@no@star[1][]{%
+    \ifbool{@start@demo@explain@}{%
+        \global\boolfalse{@start@demo@explain@}%
+    }{%
+        \\
+    }%
+    \@expl@id{#1}
+    &
+}
+
+
+\setKVdefault[@demo@explain@keys]{%
+    start = 1,
+    hyps  = {},
+    hyp   = {},
+    ccl   = {}
+}
+
+
+\newenvironment{demoexplain}[1][]{
+	\renewcommand\demostep\@demostep@no@star
+    \useKVdefault[@demo@explain@keys]
+    \setKV[@demo@explain@keys]{#1}
+    %
+    \ifthenelse{\equal{\useKV[@demo@explain@keys]{start}}{last}}{
+    % If no environment has been used before !
+        \ifnum\value{@demo@explain@id}<1
+            \setcounter{@demo@explain@id}{1}
+        \fi
+    }{%
+        \setcounter{@demo@explain@id}{\useKV[@demo@explain@keys]{start}}%
+    }%
+    \def\hyps{\useKV[@demo@explain@keys]{hyps}}
+    \def\hyp{\useKV[@demo@explain@keys]{hyp}}
+    \edef\ccl{\useKV[@demo@explain@keys]{ccl}}
+    %
+    \if\relax\hyps\relax\else%
+        \if\relax\hyp\relax\else%
+            \PackageError{lymath}{hyps and hyp are both used}%
+                                 {use either hyps or hyp, or none of them}
+        \fi
+    \fi
+    %
+    \if\relax\hyps\relax\else%
+        \underline{\textdemoHYPS\vphantom{p\textdemoCCL}} : \hyps
+		\vspace{-.25em}
+	\fi
+    \if\relax\hyp\relax\else%
+        \underline{\textdemoHYP\vphantom{p\textdemoCCL}} : \hyp
+		\vspace{-.25em}
+    \fi
+    \booltrue{@start@demo@explain@}
+    \begin{longtable}{lll}
+	    \multicolumn{3}{c}{}
+		\\[-.5em]
+	    \multicolumn{3}{c}{%
+	    	\textit{\@demo@extra{\textdemoNEXTPAGE}}%
+		}
+		\endfoot
+		\endlastfoot
+}{
+    \end{longtable}
+    \if\relax\ccl\relax\else%
+		\vspace{-.25em}
+        \underline{\textdemoCCL\vphantom{\textdemoHYPS}} : \ccl
+    \fi
+}
+
+
+%    * Middle school version
+
+\newbool{@start@demo@explain@star@}
+
+\newcounter{@demo@explain@star@id}
+
+
+\newcommand\@demo@extra[1]{%
+	{\footnotesize#1}%
+}
+
+
+\newcommand\@expl@star@id[1]{%
+    \the@demo@explain@star@id%
+    \if\relax\detokenize{#1}\relax\else%
+        \addtocounter{@demo@explain@star@id}{-1}%
+        \refstepcounter{@demo@explain@star@id}\label{#1}
+    \fi
+    \stepcounter{@demo@explain@star@id}%
+}
+
+
+\newcommand\@demostep@star[1][]{%
+	\ifbool{@start@demo@explain@star@}{%
+		\global\boolfalse{@start@demo@explain@star@}%
+	}{%
+	    \\
+	    \hline%
+	}%
+    \@expl@star@id{#1}%
+    &
+}
+
+
+\setKVdefault[@demo@explain@star@keys]{%
+    start = 1
+}
+
+
+\newenvironment{demoexplain*}[1][]{
+	\renewcommand\demostep\@demostep@star
+    \useKVdefault[@demo@explain@star@keys]
+    \setKV[@demo@explain@star@keys]{#1}
+    %
+    \ifthenelse{\equal{\useKV[@demo@explain@star@keys]{start}}{last}}{
+    % If no environment has been used before !
+        \ifnum\value{@demo@explain@star@id}<1
+            \setcounter{@demo@explain@star@id}{1}
+        \fi
+    }{%
+        \setcounter{@demo@explain@star@id}{\useKV[@demo@explain@star@keys]{start}}%
+    }%
+    \booltrue{@start@demo@explain@star@}
+    \small
+    \renewcommand{\arraystretch}{1.5}
+    \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}
+    	\textbf{\@demo@extra{\textdemoID}}
+			& \textbf{\@demo@extra{\textdemoKNOWN}}
+	        & \textbf{\@demo@extra{\textdemoPROP}}
+	        & \textbf{\@demo@extra{\textdemoCONS}}
+	    \\ \hline
+	    \endfirsthead
+	    %
+    	\textbf{\@demo@extra{\textdemoID}}
+			& \textbf{\@demo@extra{\textdemoKNOWN}}
+	        & \textbf{\@demo@extra{\textdemoPROP}}
+	        & \textbf{\@demo@extra{\textdemoCONS}}
+	    \\ \hline
+	    \endhead
+		%
+	    \multicolumn{3}{c}{}
+		\\[-1.25em]
+		\multicolumn{4}{c}{%
+			\textit{\@demo@extra{\textdemoNEXTPAGE}}%
+		}
+		\\
+		\endfoot
+
+		\endlastfoot
+}{
+    \end{longtable}
+    \renewcommand{\arraystretch}{1}
+}

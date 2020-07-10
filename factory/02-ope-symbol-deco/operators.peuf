@@ -1,0 +1,26 @@
+decorations::
+    appli
+    choice
+    cond
+    cons
+    hyp
+    test
+
+
+todecorate::
+    iff  = :all:
+    niff = :all:
+
+    implies  = :all:
+    nimplies = :all:
+
+    liesimp  = :all:
+    nliesimp = :all:
+
+
+latex::
+    liesimp = \mathrel{\Longleftarrow}
+
+    niff     = \centernot\iff
+    nimplies = \centernot\implies
+    nliesimp = \centernot\liesimp

@@ -1,0 +1,8 @@
+==========
+2020-07-10
+==========
+
+**First version version::``0.0.0-beta`` of ¨tnslog:** this package simplifies the ways to write more or less formal reasonings.
+
+warning::
+    This package uses the package `tnscom`.

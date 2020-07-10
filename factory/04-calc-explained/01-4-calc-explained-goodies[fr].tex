@@ -1,0 +1,88 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+
+    \usepackage{01-calc-explained}
+\makeatother
+
+
+
+\begin{document}
+
+%\section{Détailler un raisonnement simple}
+
+\subsection{Un mini hack très utile pour des \emph{\og étapes alignées \fg}}
+
+Vous pouvez écrire très facilement des calculs ou raisonnement simples alignés comme suit sans trop vous fatiguez.
+
+\begin{latexex}
+\begin{explain}[style = sar]
+    (a + b) (a + b)
+        \explnext{}
+    (a + b)^2
+        \explnext{}
+    a^2 + b^2 + 2 a b
+        \comthis{Pourquoi ?}
+        \explnext{}
+    a^2 + 2 a b + b^2
+\end{explain}
+\end{latexex}
+
+On a accès à une autre mise en forme \emph{(ceci peut rendre aussi service)}. 
+
+\begin{latexex}
+\begin{explain}[style = ar]
+    (a + b) (a + b)
+        \explnext{}
+    (a + b)^2
+        \explnext{Pourquoi ?}
+    a^2 + b^2 + 2 a b
+        \explnext{}
+    a^2 + 2 a b + b^2
+\end{explain}
+\end{latexex}
+
+Enfin dans le cadre de calculs à faire expliquer par des élèves, ce qui suit peut être utile.
+
+\begin{latexex}
+Donner les justifications J1, J2 et J3.
+
+\medskip
+\begin{explain}
+    (a + b) (a + b)
+        \explnext{J1}
+    (a + b)^2
+        \explnext{J2}
+    a^2 + b^2 + 2 a b
+        \explnext{J3}
+    a^2 + 2 a b + b^2
+\end{explain}
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Un conseil de mise en forme}
+
+Voici un style de codage que nous trouvons très facile à relire et maintenir.
+
+\begin{latexex}
+\begin{explain}[com = al]
+    (a + b) (a + b)
+    	\comthis{Forme facto.}
+    	\explnext{Via $x^2 = x \cdot x$.}
+    %
+    (a + b)^2
+    	\comthis*{Au passage...}
+    	\explnext*{Id.Rq - Dév.}%
+                  {Id.Rq - Facto.}
+    %
+    a^2 + 2 a b + b^2
+    	\comthis{Forme dév.}
+\end{explain}
+\end{latexex}
+
+
+\end{document}

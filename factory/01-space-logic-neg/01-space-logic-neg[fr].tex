@@ -1,0 +1,37 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+	\input{../config/header[fr].sty}
+
+	\usepackage{01-space-logic-neg}
+\makeatother
+
+
+\begin{document}
+
+%\section{Quelques modifications générales}
+
+\section{Espace après la négation logique}
+
+\macro{neg} a été redéfinie pour ajouter un peu d'espace après le symbole. Le comportement par défaut se retrouve en utilisant la macro \macro{stdneg}. Voici un exemple.
+
+
+\begin{latexex}
+$\neg A = \stdneg A$
+
+$\neg\neg A = \stdneg \stdneg A$
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Fiches techniques}
+
+\subsubsection{Espace après la négation logique}
+
+\IDmacro*{neg}{0}
+
+\IDmacro*{stdneg}{0}
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+    \input{../02-ope-symbol-deco/01-equal-signs-n-co.sty}
+
+    \usepackage{01-quantifiers}
+\makeatother
+
+
+\begin{document}
+
+\section{Des versions alternatives du quantificateur existentiel}
+
+\subsection{Quantifier l'existence}
+
+Voici deux versions, l'une classique, et l'autre beaucoup moins, permettant de préciser le quantificateur $\exists$.
+
+\begin{latexex}
+$\existsone x \in E$ pour
+\og il existe un seul $x$ \fg.
+
+$\existmulti{\leq 1} y \in F$ pour
+\og il existe au plus un $y$ \fg.
+
+$\existmulti{=1} \eqdef* \existsone$
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Versions négatives}
+
+\begin{latexex}
+$\nexistsone$ pour
+\og il n'existe pas un unique \fg.
+
+$\existmulti{\neq1} \eqdef* \nexistsone$
+
+$\nexistmulti{>4}$ pour
+\og il n'existe pas plus de quatre \fg.
+
+$\nexists$ vient de \verb+amssymb+.
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsubsection{Fiches techniques}
+
+\paragraph{Versions alternatives du quantificateur existentiel}
+
+\IDmacro*{existmulti}{1}
+
+\IDmacro*{nexistmulti}{1}
+
+\IDarg{1} une écriture mathématique servant à préciser la portée du quantificateur.
+
+
+\separation
+
+
+\IDmacro*{existsone}{0}
+
+\IDmacro*{nexistsone}{0}
+
+\end{document}

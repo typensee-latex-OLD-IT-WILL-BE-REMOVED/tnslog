@@ -1,0 +1,131 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+
+    \usepackage{01-demo-explained}
+\makeatother
+
+
+\begin{document}
+
+\section{Détailler un \og vrai \fg{} raisonnement}
+
+\subsection{Un tableau pour le post-bac}
+
+\newparaexample{Le minimum avec les réglages par défaut}
+
+Prenons un exemple utile à la logique formelle en informatique théorique mais qui a complètement sa place en mathématiques plus classiques \emph{(voir la section \ref{explain-hard-proof-for-youngs} pour un autre type de présentation plus adapté à un public de collège ou de lycée)}.
+Ci-dessous l'environnement \env{demoexplain} facilite la mise en page
+\footnote{
+	En coulisse est utilisé l'environnement \env{longtable} du package éponyme.
+}
+et la macro étoilée \macro{explref*} permet d'indiquer une référence interne au raisonnement
+\footnote{
+    Les indications peuvent être numérotes jusqu'à $99$ ce qui est bien au-delà des besoins pratiques.
+}.
+Dans cet exemple en deux morceaux, pour montrer au passage comment continuer la numérotation là où elle s'était arrêtée, on utilise \emph{\og m.p. \fg} comme abréviation de \emph{\og modus ponens \fg}.
+
+\begin{latexex}
+\begin{demoexplain}
+    \demostep
+        Hypothèse & $A$     
+    \demostep
+        Axiome 1  & $A \implies B$
+    \demostep
+        m.p. sur
+        \explref*{1} et \explref*{2}
+      & $B$
+    \demostep
+        \explref*{1} et \explref*{3}
+      & $A \wedge B$
+\end{demoexplain}
+\end{latexex}
+
+
+Il est possible de couper sa démonstration en morceaux en indiquant à l'environnement la valeur du 1\ier{} numéro de justification via la clé \verb+start+ : la valeur spéciale \verb+last+ indique de continuer la numérotation à la suite.
+
+\begin{latexex}
+\begin{demoexplain}[start = last]
+    \demostep
+        Axiome 3
+      & $(A \wedge B) \implies C$
+    \demostep
+        m.p. sur
+        \explref*{4} et \explref*{5}
+      & $C$
+\end{demoexplain}
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Référencer une indication}
+
+L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite facilitera le référencement d'une justification de façon pérenne via la macro non étoilée \macro{explref}.
+
+\begin{latexex}
+\begin{demoexplain}
+    \demostep[demo-my-hyp]
+        Hypothèse & $A$     
+    \demostep[demo-use-axiom-1]
+        Axiome 1  & $A \implies B$
+    \demostep
+        m.p. sur
+        \explref{demo-my-hyp}
+        et
+        \explref{demo-use-axiom-1}
+      & $B$
+\end{demoexplain}
+\end{latexex}
+
+
+\begin{remark}
+    Prendre bien garde au fait que ce mécanisme utilise les macros \macro{label} et \macro{ref} de \LaTeX.
+    On travaille donc avec des références globalement au document compilé.
+\end{remark}
+
+
+% ---------------------- %
+
+
+\newparaexample{Indiquer ce que l'on cherche à faire}
+
+Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour une seule hypothèse et \verb+ccl+ pour la conclusion permettent d'expliquer ce que l'on démontre et sous quel contexte.
+
+\begin{latexex}
+\begin{demoexplain}[hyp = $A$, ccl = $B$]
+    \demostep
+        Hypothèse & $A$     
+    \demostep
+        Axiome 1  & $A \implies B$
+    \demostep
+        m.p. sur
+        \explref*{1} et \explref*{2}
+      & $B$
+\end{demoexplain}
+\end{latexex}
+
+
+\begin{remark}
+    Aucune des clés \verb+hyps+, \verb+hyp+ et \verb+ccl+ n'est obligatoire.
+    Par contre il n'est pas possible d'utiliser à la fois les clés \verb+hyps+ et \verb+hyp+.
+\end{remark}
+
+
+% ---------------------- %
+
+
+\subsection{Un tableau sur plusieurs pages}
+
+Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans perte d'information
+\footnote{
+	Tout le travail est fait par l'environnement \env{longtable} du package éponyme.
+}.
+
+\begin{center}
+	\frame{\includegraphics[scale = .5]{demo-explained-univ-broken[fr].png}}
+\end{center}
+
+\end{document}

@@ -1,0 +1,250 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+	\input{../config/header[fr].sty}
+
+	\usepackage{01-equal-signs-n-co}
+\makeatother
+
+
+\begin{document}
+
+\section{Différents types de comparaisons \og standard \fg}
+
+D'un point de vue pédagogique, il peut être intéressant de disposer de différentes façon d'écrire une égalité, une non égalité ou une inégalité.
+Bien entendu on tord les règles de typographie avec ce type de pratique mais c'est pour le bien de la communauté éducative.
+
+
+\subsection{Définir quelque chose}
+
+L'exemple suivant montre deux façons de rédiger une égalité signifiant une définition \emph{(la section \ref{text-for-opes} explique comment est défini le texte \emph{\og \textopdef \fg})}.
+
+\begin{latexex}
+$f(x) \eqdef x^3 + 1$
+
+$f(x) \eqdef* x^3 + 1$
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Indiquer une identité}
+
+L'exemple suivant montre deux façons de rédiger des identités avec une notation symbolique non standard \emph{(la section \ref{text-for-opes} explique comment est défini le texte \emph{\og \textopid \fg})}.
+
+\begin{latexex}
+$(a + b)^2 \eqid a^2 + b^2 + 2 a b$
+
+$(a + b)^2 \eqid* a^2 + b^2 + 2 a b$
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Une égalité à vérifier ou non, une hypothèse, une condition}
+
+Se reporter à la section \ref{text-for-opes} pour savoir comment sont définis les textes \emph{\og \textopcons \fg} , \emph{\og \textopcond \fg} et \emph{\og \textophyp \fg}.
+
+\begin{latexex}
+$(a + b)^3 \eqtest a^3 + b^3 + 3 a b$
+
+$(a + b)^3 \neqid a^3 + b^3 + 3 a b$
+
+$x \neqhyp 0$  ou
+$x \neqcond 0$ ou
+$x \eqcons 0$
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Une égalité indiquant le choix d'une valeur ou l'application d'une relation}
+
+La section \ref{text-for-opes} permet de savoir comment les textes \emph{\og \textopchoice \fg} et \emph{\og \textopappli \fg} sont définis.
+
+\begin{latexex}
+$x \geqcond 4$ implique
+$x^2 \geqcons 16$.
+
+Donc $x \eqchoice 123$ donne
+$123^2 \geqappli 16$.
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Une égalité indiquant l'équation d'une courbe}
+
+La section \ref{text-for-opes} permet de savoir comment les texte \emph{\og \textopplot \fg} est défini \emph{(la macro \emph{\macro{setgeo}} est présentée dans la section \ref{set-geo})}.
+
+\begin{latexex}
+$M \in C: y \eqplot x^2 + 3$
+donne
+$y_M \eqappli x_M^2 + 3$.
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Différents types d'inéquations}
+
+Le principe reste le même pour les symboles d'équations excepté qu'il n'y a ici aucune écriture purement symbolique. Voici un code \og fourre-tout \fg{} montrant quelques exemples.
+
+\begin{latexex}
+$x \leqtest x^2$ ou $x \lesscons x^2$ ou
+$x \geqhyp 1$    ou $x \gtrcond 2$.
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Des formes négatives aussi pour les inéquations}
+
+Tous les opérateurs de comparaison ont une forme négative qui s'obtient en préfixant le nom de l'opérateur par \verb+n+.
+Voici quelques exemples d'utilisation.
+
+\begin{latexex}
+$x \nlesshyp 3$ ou
+$y \nleqtest 4$ ou
+$z \ngeqcons 5$
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\subsection{Une table récapitulative}
+
+La table \ref{table:decorations-operators} \vpageref{table:decorations-operators} fournit toutes les associations autorisées entre opérateurs de comparaison et décorations.
+
+
+% ---------------------- %
+
+
+\subsection{Textes utilisés} \label{text-for-opes}
+
+Voici les macros définissant les textes utilisés qui tiennent compte de l'utilisation ou non de l'option \verb+french+ de \verb+babel+. Nous ne donnons que les versions françaises.
+
+\vspace{-.5em}
+
+% == All texts - START == %
+
+\begin{multicols}{2}
+    \macro{textopappli} donne \emph{\og \textopappli \fg}
+
+    \macro{textopchoice} donne \emph{\og \textopchoice \fg}
+
+    \macro{textopcond} donne \emph{\og \textopcond \fg}
+
+    \macro{textopcons} donne \emph{\og \textopcons \fg}
+
+    \macro{textopdef} donne \emph{\og \textopdef \fg}
+
+    \macro{textophyp} donne \emph{\og \textophyp \fg}
+
+    \macro{textopid} donne \emph{\og \textopid \fg}
+
+    \macro{textopplot} donne \emph{\og \textopplot \fg}
+
+    \macro{textoptest} donne \emph{\og \textoptest \fg}
+\vfill\null\end{multicols}
+
+% == All texts - END == %
+
+
+% ---------------------- %
+
+
+\subsection{Fiches techniques}
+
+\paragraph{Opérateurs décorés -- Les textes}
+
+% == Technical infos - Texts - START == %
+
+\foreach \k in {textopappli, textopchoice, textopcond, textopcons, textopdef, textophyp, textopid, textopplot, textoptest}{
+
+	\IDmacro*{\k}{0}
+
+}
+
+% == Technical infos - Texts - END == %
+
+
+% ---------------------- %
+
+
+\paragraph{Opérateurs décorés -- Comparaisons algébriques}
+
+% == Technical infos - Operators - START == %
+
+\foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {ngtrplot, ngtrappli, ngtrchoice, ngtrcond, ngtrcons, ngtrhyp, ngtrtest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+\separation
+
+\foreach \k in {geqplot, geqappli, geqchoice, geqcond, geqcons, geqhyp, geqtest}{
+
+    \IDmacro*{\k}{0}
+}
+                
+% == Technical infos - Operators - END == %
+
+\end{document}
+

@@ -1,0 +1,145 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+
+    \usepackage{01-calc-explained}
+\makeatother
+
+
+\begin{document}
+
+%\section{Logique et fondements}
+
+%\subsection{Détailler un raisonnement simple}
+
+\subsubsection{Fiches techniques}
+
+\paragraph{Détailler un raisonnement simple} 
+
+\IDenv{explain}{1}
+
+\IDoption{} la valeur utilise une syntaxe de type clé-valeur. Voici les différentes clés disponibles.
+
+\begin{enumerate}
+	\item \verb+ope+ sert à définir l'opérateur utilisé dans tout l'environnement qui sera rédigé en mode mathématique. 
+	      La valeur par défaut est \verb+{=}+ \emph{(et non juste \texttt{=})}.
+
+	\item \verb+style+ sert à définir le style de mise en forme. Voici les différentes valeurs possibles.
+	      \begin{enumerate}
+	      		\item \prefix{u}, la valeur par défaut, est pour \whyprefix{u}{niversity}.
+
+	      		\item \prefix{ar} est pour \whyprefix{ar}{row}.
+
+	      		\item \prefix{sar} est pour \whyprefix{s}{hort} \whyprefix{ar}{row}.
+	      \end{enumerate}
+
+	\item \verb+com+ permet de demander l'alignement ou non des commentaires non étoilés entre eux.
+	      \begin{enumerate}
+	      		\item \prefix{nal}, la valeur par défaut, est pour \whyprefix{n}{ot} \whyprefix{al}{igned}.
+
+	      		\item \prefix{al} est pour \whyprefix{al}{igned}.
+
+	      \end{enumerate}
+\end{enumerate}
+
+
+\separation
+
+
+\emph{\textbf{ATTENTION !} La macro \macro{explnext} est à utiliser sans argument au tout début de l'environnement \env{aexplain*}.}
+
+\extraspace
+
+\extraspace
+
+\IDmacro{explnext}{1}{1} où \quad \mwhyprefix{expl}{ain}
+
+\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
+
+\IDarg{} le texte de l'explication qui peut être vide si aucune explication n'est à afficher.
+
+
+\separation
+
+
+\IDmacro{explnext*}{1}{2} où \quad \mwhyprefix{expl}{ain}
+
+\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
+
+\IDarg{1} le texte de l'explication pour la 1\iere{} ligne.
+          Ce texte peut être vide \emph{(voir l'environnement \env{aexplain} pour la raison de ceci)}.
+
+\IDarg{2} le texte de l'explication pour la 2\ieme{} ligne.
+          Ce texte peut être vide \emph{(voir l'environnement \env{aexplain} pour la raison de ceci)}.
+
+
+\separation
+
+
+\IDmacro*{comthis}{1} où \quad \mwhyprefix{com}{ment}
+
+\IDmacro*{comthis*}{1} où \quad \mwhyprefix{com}{ment}
+
+
+\IDarg{} le texte d'un court commentaire.
+
+
+% ---------------------- %
+
+
+\paragraph{Détailler un raisonnement simple -- Mise en forme du texte}
+
+Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
+
+
+\separation
+
+
+\IDmacro*{expltxtspacein}{0}
+
+
+\separation
+
+
+\IDmacro*{expltxt}{1} où \quad \mwhyprefix{expl}{ain}
+
+\IDarg{} le texte de l'explication que l'on veut mettre en forme.
+
+
+\separation
+
+
+\IDmacro*{expltxtdown}{1} où \quad \mwhyprefix{expl}{ain}
+
+\IDarg{} le texte de l'explication du haut vers le bas que l'on veut mettre en forme.
+
+
+\separation
+
+
+\IDmacro*{expltxtup}{1} où \quad \mwhyprefix{expl}{ain}
+
+\IDarg{} le texte de l'explication du bas vers le haut que l'on veut mettre en forme.
+
+
+\separation
+
+
+\IDmacro*{expltxtupdown}{2} où \quad \mwhyprefix{expl}{ain}
+
+\IDarg{1} le texte de l'explication du haut vers le bas que l'on veut mettre en forme.
+
+\IDarg{1} le texte de l'explication du bas vers le haut que l'on veut mettre en forme.
+
+
+\separation
+
+
+\IDmacro*{explcom}{1} où \quad \mwhyprefix{expl}{ain}
+                            et \mwhyprefix{com}{ment}
+
+\IDarg{} le texte d'un court commentaire.
+
+
+\end{document}

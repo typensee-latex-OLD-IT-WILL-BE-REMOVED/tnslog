@@ -1,0 +1,271 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+    \input{../02-ope-symbol-deco/02-operators.sty}
+    
+    \usepackage{01-calc-explained}
+\makeatother
+
+
+
+\begin{document}
+
+\section{Détailler un raisonnement simple}
+
+\subsection{Version pour le lycée et après} \label{explain-proof}
+
+\newparaexample{Avec les réglages par défaut}
+
+L'environnement \env{explain} permet de détailler les étapes principales d'un calcul ou d'un raisonnement simple en s'appuyant sur la macro \macro{explnext} dont le nom vient de \emph{\og \whyprefix{expl}{ain} \prefix{next} step \fg} soit \inenglish{expliquer la prochaine étape}
+\footnote{
+    Cet environnement utilise aussi le package \texttt{witharrows} qui est très sympathique pour expliquer des étapes de calcul.
+}.
+On dispose aussi de \macro{explnext*} pour des explications descendantes et/ou montantes 
+\footnote{
+    Les explications données ne doivent pas être trop longues car ce serait contre-productif.
+}.
+
+\medskip
+
+
+Ci-dessous se trouve un exemple, très farfelu vers la fin, où l'on utilise les réglages par défaut.
+Notons au passage que ce type de présentation n'est sûrement pas bien adaptée à un jeune public pour lequel une 2\ieme{} façon de détailler des calculs et/ou un raisonnement simple est proposée plus bas dans la section \ref{explain-proof-for-youngs}.
+
+\begin{latexex-flat}
+\begin{explain}
+    (a + b)^2
+        \explnext{On utilise $x^2 = x \cdot x$.}
+    (a + b) (a + b)
+        \explnext*{Double développement depuis la parenthèse gauche.}%
+                  {Double factorisation pas facile.}
+    a^2 + a b + b a + b^2
+        \explnext*{}%
+                  {Commutativité du produit.}
+    a^2 + 2 a b + b^2
+        \explnext*{Commutativité de l'addition.}%
+                  {}
+    a^2 + b^2 + 2 a b
+\end{explain}
+\end{latexex-flat}
+
+
+\begin{remark}
+    Il faut savoir que la mise en forme est celle d'une formule ce qui peut rendre service comme dans l'exemple suivant.
+
+\begin{latexex}
+Un calcul avec un placement pouvant être 
+utile :
+\begin{explain}
+    (a + b)^2
+        \explnext{Identité remarquable.}
+    a^2 + b^2 + 2 a b
+\end{explain}
+\end{latexex}
+
+Avec un retour à la ligne, il faudra donc si besoin gérer l'espacement vertical.
+
+\begin{latexex}
+Mon calcul pas trop proche.
+
+\medskip
+\begin{explain}
+    (a + b)^2
+        \explnext{Identité remarquable.}
+    a^2 + b^2 + 2 a b
+\end{explain}
+\end{latexex}
+\end{remark}
+
+
+\begin{remark}
+    Voici des petites choses à connaître sur les macros \macro{explnext} et \macro{explnext*}.
+    \begin{enumerate}
+        \item \macro{expltxt} est utilisée par \macro{explnext} pour mettre en forme le texte d'explication.
+
+        \item \macro{expltxtup} et \macro{expltxtdown} sont utilisées par \macro{explnext*} décorer les textes d'explication juste avant leur mise en forme finale via \macro{expltxtupdown}.
+
+        \item \macro{explnext} et \macro{explnext*} utilisent la macro constante \macro{expltxtspacein} pour l'espacement entre le symbole et la courte explication. Par défaut, cette macro vaut \verb+2em+.
+    \end{enumerate}
+ 
+\end{remark}
+
+
+% ---------------------- %
+
+
+\newparaexample{Utiliser un autre symbole globalement}
+
+L'environnement \env{explain} possède plusieurs options dont l'une est \verb+ope+ qui vaut \verb+{=}+ par défaut. Ceci permet de faire ce qui suit sans effort.
+
+\begin{latexex}
+\begin{explain}[ope = \viff]
+    x^2 + 10 x + 25 = 0
+        \explnext{Identité remarquable.}
+    (x + 5)^2 = 0
+        \explnext{$P^2 = 0$ si et 
+                  seulement si $P = 0$.}
+    x = -5
+\end{explain}
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Juste utiliser des symboles}
+
+Si l'argument obligatoire de la macro \macro{explnext} est vide alors seul le symbole est affiché \emph{(ne pas oublier les accolades vides)}. Voici un court exemple de ceci.
+
+\begin{latexex}
+\begin{explain}[ope = \viff]
+    a^2 = b^2
+        \explnext{}
+    a = \pm b
+\end{explain}
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Utiliser un autre symbole localement}
+
+La macro \macro{explnext} possède un argument optionnel qui utilise par défaut celui de l'environment. En utilisant cette option, on choisit alors localement le symbole à employer. Voici un exemple d'utilisation complètement farfelu bien que correct.
+
+\begin{latexex}
+\begin{explain}[ope = \viff]
+    0 \leq a < b
+        \explnext[\vimplies]%
+                 {Croissance de $x^2$ 
+                  sur $R_{+}$.}
+    a^2 < b^2
+        \explnext{}
+    a^2 - b^2 < 0
+        \explnext{Identité remarquable.}
+    (a - b)(a + b) < 0
+        \explnext[\vimplies]{}
+    a \neq b
+\end{explain}
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Choisir la mise en forme des explications}
+
+Pour la mise en forme des explications à double sens, la macro \macro{explnext} fait appel à la macro \macro{expltxt}.
+Par défaut, le package utilise la définition suivante.
+
+\begin{latexex-alone}
+\newcommand\expltxt[1]{%
+    \text{\color{blue}\footnotesize \{\,{\itshape #1}\,\} }%
+}
+\end{latexex-alone}
+
+
+Pour la mise en forme des explications à sens unique, la macro \macro{explnext*} fait appel aux macros \macro{expltxtup}, \macro{expltxtdown} et \macro{expltxtupdown}.
+Par défaut le package utilise les définitions suivantes.
+
+\begin{latexex-alone}
+\newcommand\expltxtup[1]{%
+    $\uparrow$ #1 $\uparrow$%
+}
+
+\newcommand\expltxtdown[1]{%
+    $\downarrow$ #1 $\downarrow$%
+}
+
+\newcommand\expltxtupdown[2]{{%
+    \displaystyle\footnotesize\color{blue}%
+    \left\{\,%
+        \genfrac{}{}{0pt}{}{%
+            \text{\itshape\expltxtdown{\samesizeas{#1}{#2}}}%
+        }{%
+            \text{\itshape\expltxtup{\samesizeas{#2}{#1}}}%
+        }%
+    \,\right\}%
+}}
+\end{latexex-alone}
+
+
+Nous allons expliquer comment obtenir l'affreux exemple ci-dessous montrant que l'on peut adapter si besoin la mise en forme.
+
+% ==================== %
+
+\bgroup
+
+\newcommand\myexpltxt[2]{%
+    \text{\color{#1} \footnotesize \itshape \bfseries #2}%
+}
+
+\renewcommand\expltxt[1]{%
+    \myexpltxt{gray}{$\Downarrow$ #1 $\Uparrow$}%
+}
+
+\renewcommand\expltxtup[1]{%
+    \myexpltxt{orange}{$\Uparrow$ #1 $\Uparrow$}%
+}
+
+\renewcommand\expltxtdown[1]{%
+    \myexpltxt{red}{$\Downarrow$ #1 $\Downarrow$}%
+}
+
+\renewcommand\expltxtupdown[2]{%
+    \displaystyle\color{blue!20!black!30!green}\genfrac{\langle}{\rangle}{1pt}{}{%
+        \expltxtdown{\samesizeas{#1}{#2}}%
+    }{%
+        \expltxtup{\samesizeas{#2}{#1}}%
+    }%
+}
+
+
+\begin{latexex}
+\begin{explain}
+    (a + b) (a + b)
+        \explnext{Se souvenir de $P\cdot P = P^2$.}%
+    (a + b)^2
+        \explnext*{Id. Rm. - Dév.}%
+                  {Id. Rm. - Facto.}
+    a^2 + 2 a b + b^2
+\end{explain}
+\end{latexex}
+
+\egroup
+
+
+La mise en forme a été obtenue en utilisant le code \LaTeX{} suivant où la macro \macro{samesizeas\{\#1\}\{\#2\}} rend le texte \verb+#1+ aussi large que \verb+#2+ en ajoutant des espaces supplémentaires tout en centrant le résultat final si besoin  \emph{(ne pas oublier de passer en mode texte via \macro{text})}.
+
+\begin{latexex-alone}
+\newcommand\myexpltxt[2]{%
+    \text{\color{#1} \footnotesize \itshape \bfseries #2}%
+}
+
+\renewcommand\expltxt[1]{%
+    \myexpltxt{gray}{$\Downarrow$ #1 $\Uparrow$}%
+}
+
+\renewcommand\expltxtup[1]{%
+    \myexpltxt{orange}{$\Uparrow$ #1 $\Uparrow$}%
+}
+
+\renewcommand\expltxtdown[1]{%
+    \myexpltxt{red}{$\Downarrow$ #1 $\Downarrow$}%
+}
+
+\renewcommand\expltxtupdown[2]{%
+    \displaystyle\color{blue!20!black!30!green}%
+    \genfrac{\langle}{\rangle}{1pt}{}{%
+        \expltxtdown{\samesizeas{#1}{#2}}%
+    }{%
+        \expltxtup{\samesizeas{#2}{#1}}%
+    }%
+}
+\end{latexex-alone}
+
+
+% ==================== %
+
+
+\end{document}

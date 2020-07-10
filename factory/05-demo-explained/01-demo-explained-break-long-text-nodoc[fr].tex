@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper]{article}
+
+\makeatletter
+    \input{../config/header[fr].sty}
+
+    \usepackage{01-demo-explained}
+\makeatother
+
+
+\begin{document}
+
+\section{Université}
+
+\vspace{22.5cm}
+
+\begin{demoexplain}
+    \demostep
+        Hypothèse & $A$     
+    \demostep
+        Axiome 1  & $A \implies B$
+    \demostep
+        m.p. sur
+        \explref*{1} et \explref*{2}
+      & $B$
+    \demostep
+        \explref*{1} et \explref*{3}
+      & $A \wedge B$
+\end{demoexplain}
+
+
+
+\setcounter{page}{0}
+\newpage
+
+
+
+\section{Collège et lycée}
+
+\vspace{19cm}
+
+\begin{demoexplain*}
+    \demostep
+        $ABC$ est un triangle \newline équilatéral 
+      & Définition d'un triangle \newline équilatéral. 
+      & $AB = BC = AC$
+    \demostep{} % --> Ne pas oublier !
+      & Voir l'énoncé.
+      & $AB = 10 \, cm$
+    \demostep
+        Voir les conséquences \newline \explref*{1} et \explref*{2} .
+      & Simple calcul.
+      & $ABC$ a pour périmètre $30 \, cm$.
+    %
+    \demostep
+        $ABC$ est un triangle \newline équilatéral 
+      & Définition d'un triangle \newline équilatéral. 
+      & $AB = BC = AC$
+    \demostep{} % --> Ne pas oublier !
+      & Voir l'énoncé.
+      & $AB = 10 \, cm$
+    \demostep
+        Voir les conséquences \newline \explref*{4} et \explref*{5} .
+      & Simple calcul.
+      & $ABC$ a pour périmètre $30 \, cm$.
+\end{demoexplain*}
+
+\end{document}
