@@ -199,7 +199,7 @@ latextable = f"""
 {table_lines}
         \\end{{tabular}}
     \\end{{center}}
-    \\label{{table:decorations-operators}}
+    \\label{{tnslog-table:deco-opes}}
 \\end{{table}}
 
 """

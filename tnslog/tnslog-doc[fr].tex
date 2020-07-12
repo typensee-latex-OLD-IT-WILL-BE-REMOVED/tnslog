@@ -216,7 +216,7 @@ Bien entendu on tord les règles de typographie avec ce type de pratique mais c'
 
 \subsection{Définir quelque chose}
 
-L'exemple suivant montre deux façons de rédiger une égalité signifiant une définition \emph{(la section \ref{text-for-opes} explique comment est défini le texte \emph{\og \textopdef \fg})}.
+L'exemple suivant montre deux façons de rédiger une égalité signifiant une définition \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \textopdef \fg})}.
 
 \begin{latexex}
 $f(x) \eqdef x^3 + 1$
@@ -230,7 +230,7 @@ $f(x) \eqdef* x^3 + 1$
 
 \subsection{Indiquer une identité}
 
-L'exemple suivant montre deux façons de rédiger des identités avec une notation symbolique non standard \emph{(la section \ref{text-for-opes} explique comment est défini le texte \emph{\og \textopid \fg})}.
+L'exemple suivant montre deux façons de rédiger des identités avec une notation symbolique non standard \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \textopid \fg})}.
 
 \begin{latexex}
 $(a + b)^2 \eqid a^2 + b^2 + 2 a b$
@@ -244,7 +244,7 @@ $(a + b)^2 \eqid* a^2 + b^2 + 2 a b$
 
 \subsection{Une égalité à vérifier ou non, une hypothèse, une condition}
 
-Se reporter à la section \ref{text-for-opes} pour savoir comment sont définis les textes \emph{\og \textopcons \fg} , \emph{\og \textopcond \fg} et \emph{\og \textophyp \fg}.
+Se reporter à la section \ref{tnslog-texts-for-opes} pour savoir comment sont définis les textes \emph{\og \textopcons \fg} , \emph{\og \textopcond \fg} et \emph{\og \textophyp \fg}.
 
 \begin{latexex}
 $(a + b)^3 \eqtest a^3 + b^3 + 3 a b$
@@ -262,7 +262,7 @@ $x \eqcons 0$
 
 \subsection{Une égalité indiquant le choix d'une valeur ou l'application d'une relation}
 
-La section \ref{text-for-opes} permet de savoir comment les textes \emph{\og \textopchoice \fg} et \emph{\og \textopappli \fg} sont définis.
+La section \ref{tnslog-texts-for-opes} permet de savoir comment les textes \emph{\og \textopchoice \fg} et \emph{\og \textopappli \fg} sont définis.
 
 \begin{latexex}
 $x \geqcond 4$ implique
@@ -278,7 +278,7 @@ $123^2 \geqappli 16$.
 
 \subsection{Une égalité indiquant l'équation d'une courbe}
 
-La section \ref{text-for-opes} permet de savoir comment les texte \emph{\og \textopplot \fg} est défini \emph{(la macro \emph{\macro{setgeo}} est présentée dans la section \ref{set-geo})}.
+La section \ref{tnslog-texts-for-opes} permet de savoir comment les texte \emph{\og \textopplot \fg} est défini.
 
 \begin{latexex}
 $M \in C: y \eqplot x^2 + 3$
@@ -320,13 +320,13 @@ $z \ngeqcons 5$
 
 \subsection{Une table récapitulative}
 
-La table \ref{table:decorations-operators} \vpageref{table:decorations-operators} fournit toutes les associations autorisées entre opérateurs de comparaison et décorations.
+La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} fournit toutes les associations autorisées entre opérateurs de comparaison et décorations.
 
 
 % ---------------------- %
 
 
-\subsection{Textes utilisés} \label{text-for-opes}
+\subsection{Textes utilisés} \label{tnslog-texts-for-opes}
 
 Voici les macros définissant les textes utilisés qui tiennent compte de l'utilisation ou non de l'option \verb+french+ de \verb+babel+. Nous ne donnons que les versions françaises.
 
@@ -398,7 +398,7 @@ $A \liesimphyp B \nliesimptest C$
 
 \subsection{Une table récapitulative}
 
-La table \ref{table:decorations-operators} \vpageref{table:decorations-operators} montre toutes les associations autorisées entre opérateurs logiques et décorations.
+La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} montre toutes les associations autorisées entre opérateurs logiques et décorations.
 
 
 % ---------------------- %
@@ -408,7 +408,7 @@ La table \ref{table:decorations-operators} \vpageref{table:decorations-operators
 
 \paragraph{À quoi cela sert-il ?}
 
-Les sections \ref{explain-proof-for-youngs} et \ref{explain-proof} présentent deux environnements pour détailler les étapes d'un raisonnement.
+Les sections \ref{tnslog-explain-proof} et \ref{tnslog-explain-proof-for-youngs} présentent deux environnements pour détailler les étapes d'un raisonnement.
 Avec ces outils il devient utile d'avoir des versions verticales non décorées des symboles d'équivalence et d'implication. Voici comment les obtenir \emph{(tous les cas possibles ont été indiqués)}.
 Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
 
@@ -434,7 +434,7 @@ Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
 
 \subsection{Tables des décorations possibles des opérateurs}
 
-La table \ref{table:decorations-operators} \vpageref{table:decorations-operators} donne toutes les associations autorisées entre opérateurs et décorations.
+La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} donne toutes les associations autorisées entre opérateurs et décorations.
 Il faut retenir que les versions étoilées produisent des écritures symboliques. 
 
 
@@ -451,7 +451,7 @@ Il faut retenir que les versions étoilées produisent des écritures symbolique
             \hline \makecell{\macro{iff}\\\macro{niff}\\\macro{implies}\\\macro{nimplies}\\\macro{liesimp}\\\macro{nliesimp}} & $\times$ & $\times$ & $\times$ & $\times$ &          &          & $\times$ &          &          &          & $\times$ \\
         \end{tabular}
     \end{center}
-    \label{table:decorations-operators}
+    \label{tnslog-table:deco-opes}
 \end{table}
 
 % == Table - END == %
@@ -493,7 +493,7 @@ $\nexists$ vient de \verb+amssymb+.
 % ---------------------- %
 \section{Détailler un raisonnement simple}
 
-\subsection{Version pour le lycée et après} \label{explain-proof}
+\subsection{Version pour le lycée et après} \label{tnslog-explain-proof}
 
 \newparaexample{Avec les réglages par défaut}
 
@@ -510,7 +510,7 @@ On dispose aussi de \macro{explnext*} pour des explications descendantes et/ou m
 
 
 Ci-dessous se trouve un exemple, très farfelu vers la fin, où l'on utilise les réglages par défaut.
-Notons au passage que ce type de présentation n'est sûrement pas bien adaptée à un jeune public pour lequel une 2\ieme{} façon de détailler des calculs et/ou un raisonnement simple est proposée plus bas dans la section \ref{explain-proof-for-youngs}.
+Notons au passage que ce type de présentation n'est sûrement pas bien adaptée à un jeune public pour lequel une 2\ieme{} façon de détailler des calculs et/ou un raisonnement simple est proposée plus bas dans la section \ref{tnslog-explain-proof-for-youngs}.
 
 \begin{latexex-flat}
 \begin{explain}
@@ -748,7 +748,7 @@ La mise en forme a été obtenue en utilisant le code \LaTeX{} suivant où la ma
 % ==================== %
 %\section{Détailler un raisonnement simple}
 
-\subsection{Version pour les collégiens} \label{explain-proof-for-youngs}
+\subsection{Version pour les collégiens} \label{tnslog-explain-proof-for-youngs}
 
 L'environnement \env{explain} avec l'option \verb+style = ar+
 \footnote{
@@ -1036,7 +1036,7 @@ Voici un style de codage que nous trouvons très facile à relire et maintenir.
 
 \newparaexample{Le minimum avec les réglages par défaut}
 
-Prenons un exemple utile à la logique formelle en informatique théorique mais qui a complètement sa place en mathématiques plus classiques \emph{(voir la section \ref{explain-hard-proof-for-youngs} pour un autre type de présentation plus adapté à un public de collège ou de lycée)}.
+Prenons un exemple utile à la logique formelle en informatique théorique mais qui a complètement sa place en mathématiques plus classiques \emph{(voir la section \ref{tnslog-explain-hard-proof-for-youngs} pour un autre type de présentation plus adapté à un public de collège ou de lycée)}.
 Ci-dessous l'environnement \env{demoexplain} facilite la mise en page
 \footnote{
 	En coulisse est utilisé l'environnement \env{longtable} du package éponyme.
@@ -1150,7 +1150,7 @@ Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans pe
 \end{center}
 %\section{Détailler un \og vrai \fg{} raisonnement}
 
-\subsection{Un tableau pour le collège et le lycée} \label{explain-hard-proof-for-youngs}
+\subsection{Un tableau pour le collège et le lycée} \label{tnslog-explain-hard-proof-for-youngs}
 
 
 \newparaexample{Avec les réglages par défaut}
@@ -1244,7 +1244,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \newpage
 \section{Toutes les fiches techniques} \label{techincal-ids}
 
-
+\subsection{Introduction}
 \subsubsection{Espace après la négation logique}
 
 \IDmacro*{neg}{0}
@@ -1419,7 +1419,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \IDmacro*{existsone}{0}
 
 \IDmacro*{nexistsone}{0}
-
+\subsection{Détailler un raisonnement simple}
 
 
 
@@ -1548,7 +1548,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
                             et \mwhyprefix{com}{ment}
 
 \IDarg{} le texte d'un court commentaire.
-
+\subsection{Détailler un \og vrai \fg{} raisonnement}
 
 \subsubsection{Détailler un \og vrai \fg{} raisonnement via un tableau}
 
@@ -1623,6 +1623,6 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \extraspace
 
 \IDmacro*{textdemoNEXTPAGE}{0}
-
+\newpage
 
 \end{document}
