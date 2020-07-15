@@ -63,29 +63,16 @@
 % == Decorations - ENGLISH - END == %
 }
 
-% Sources
-%    * https://tex.stackexchange.com/a/506745/6880
-%    * https://tex.stackexchange.com/a/510011/6880
-
-\newcommand{\my@hat@eq}[2]{%
-  \begingroup
-  \sbox\z@{$\m@th#1=$}%
-  \ooalign{%
-    \hidewidth\raisebox{-0.3\ht\z@}{$\m@th#1\widehat{}$}\hidewidth\cr
-    \box\z@\cr
-  }%
-  \endgroup
-}
 
 % == Decorated versions - START == %
 
-\newcommand\eqdef{\@ifstar{\@eqdef@star}{\@eqdef@no@star}}
-\newcommand\@eqdef@no@star{\tns@over@math@symbol{\textopdef}{=}}
-\newcommand\@eqdef@star{\coloneqq}
+\newcommand\eqdef{\@ifstar{\tnslog@eqdef@star}{\tnslog@eqdef@no@star}}
+\newcommand\tnslog@eqdef@no@star{\tns@over@math@symbol{\textopdef}{=}}
+\newcommand\tnslog@eqdef@star{\coloneqq}
 
-\newcommand\eqid{\@ifstar{\@eqid@star}{\@eqid@no@star}}
-\newcommand\@eqid@no@star{\tns@over@math@symbol{\textopid}{=}}
-\newcommand\@eqid@star{\rightleftharpoons}
+\newcommand\eqid{\@ifstar{\tnslog@eqid@star}{\tnslog@eqid@no@star}}
+\newcommand\tnslog@eqid@no@star{\tns@over@math@symbol{\textopid}{=}}
+\newcommand\tnslog@eqid@star{\rightleftharpoons}
 
 \newcommand\eqplot{\tns@over@math@symbol{\textopplot}{=}}
 \newcommand\eqappli{\tns@over@math@symbol{\textopappli}{=}}
@@ -269,18 +256,18 @@
 }
 
 
-\newcommand\explnext{\@ifstar{\@explnext@star}{\@explnext@no@star}}
-\newcommand\@explnext@no@star{}
-\newcommand\@explnext@star{}
+\newcommand\explnext{\@ifstar{\tnslog@expl@next@star}{\tnslog@expl@next@no@star}}
+\newcommand\tnslog@expl@next@no@star{}
+\newcommand\tnslog@expl@next@star{}
 
-\newcommand\@explain@ope@{=}
+\newcommand\tnslog@explain@ope{=}
 
 
-\newcommand\comthis{\@ifstar{\@comthis@star}{\@comthis@no@star}}
-\newcommand\@comthis@no@star{}
+\newcommand\comthis{\@ifstar{\tnslog@com@this@star}{\tnslog@com@this@no@star}}
+\newcommand\tnslog@com@this@no@star{}
 
-\newcommand\@comthis@star[1]{%
-    \ifbool{@start@explain@arrow@}{%
+\newcommand\tnslog@com@this@star[1]{%
+    \ifbool{tnslog@starttnslog@explain@arrow@}{%
         \PackageError{tnslog}{comment can't be use to start explain[style = sar]}%
                              {No comment for the 1st part of explain[style = sar]}
     }{%
@@ -288,48 +275,48 @@
     }%
 }
 
-\newcommand\@comthis@aligned[1]{%
-    \global\booltrue{@com@this@no@star@used@}%
+\newcommand\tnslog@com@this@aligned[1]{%
+    \global\booltrue{tnslog@com@this@no@star@used}%
     &%
-    \@comthis@star{#1}%
+    \tnslog@com@this@star{#1}%
 }
 
 
-\newcommand\@explnext@extra@column{}
+\newcommand\tnslog@expl@next@extra@column{}
 
 
 % Wrapper env with key-val options 
 
-\setKVdefault[@calc@explain@keys]{%
+\setKVdefault[tnslog@calc@explain@keys]{%
     ope   = {=},
     style = u,
     com   = nal
 }
 
 \newenvironment{explain}[1][]{%
-    \useKVdefault[@calc@explain@keys]%
-    \setKV[@calc@explain@keys]{#1}%
-    \def\style{\useKV[@calc@explain@keys]{style}}%
+    \useKVdefault[tnslog@calc@explain@keys]%
+    \setKV[tnslog@calc@explain@keys]{#1}%
+    \def\style{\useKV[tnslog@calc@explain@keys]{style}}%
 % Comments
-    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
-        \renewcommand\@comthis@no@star\@comthis@aligned%
-        \renewcommand\@explnext@extra@column{&}
+    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
+        \renewcommand\tnslog@com@this@no@star\tnslog@com@this@aligned%
+        \renewcommand\tnslog@expl@next@extra@column{&}
     }{%
-        \renewcommand\@comthis@no@star\@comthis@star%
-        \renewcommand\@explnext@extra@column{}
+        \renewcommand\tnslog@com@this@no@star\tnslog@com@this@star%
+        \renewcommand\tnslog@expl@next@extra@column{}
     }%
     \IfEqCase{\style}{%
 % University
         {u}{%
-            \begin{@explain@university}%
+            \begin{tnslog@explain@university}%
         }%
 % Arrows (long)
         {ar}{%
-            \begin{@explain@arrow}%
+            \begin{tnslog@explain@arrow}%
         }%
 % Arrows (short)
         {sar}{%
-            \begin{@explain@short@arrow}%
+            \begin{tnslog@explain@short@arrow}%
         }%
     }[%
         \PackageError{tnslog}{unknown style}%
@@ -339,15 +326,15 @@
     \IfEqCase{\style}{%
 % University
         {u}{%
-            \end{@explain@university}%
+            \end{tnslog@explain@university}%
         }%
 % Arrows (long)
         {ar}{%
-            \end{@explain@arrow}%
+            \end{tnslog@explain@arrow}%
         }%
 % Arrows (short)
         {sar}{%
-            \end{@explain@short@arrow}%
+            \end{tnslog@explain@short@arrow}%
         }%
     }%
 }
@@ -362,13 +349,13 @@
     \ifdim#1>#2 #1\else #2\fi
 }
 
-\newlength{\@upper@text@size}
-\newlength{\@lower@text@size}
+\newlength{\tnslog@upper@text@size}
+\newlength{\tnslog@lower@text@size}
 
 \newcommand\samesizeas[2]{%
-    \settowidth\@upper@text@size{#1}%
-    \settowidth\@lower@text@size{#2}%
-    \makebox[\dimmax{\@upper@text@size}{\@lower@text@size}][c]{#1}%
+    \settowidth\tnslog@upper@text@size{#1}%
+    \settowidth\tnslog@lower@text@size{#2}%
+    \makebox[\dimmax{\tnslog@upper@text@size}{\tnslog@lower@text@size}][c]{#1}%
 }
 
 
@@ -398,7 +385,7 @@
 
 
 
-\newcommand\@explnext@university@no@star[2][\@explain@ope@]{
+\newcommand\tnslog@expl@next@university@no@star[2][\tnslog@explain@ope]{
     \\&
     {#1}
     \if\relax\detokenize{#2}\relax\else
@@ -407,13 +394,13 @@
     \\&
 }
 
-\newcommand\@explnext@university@separation{
+\newcommand\tnslog@expl@next@university@separation{
     \\&
 }
 
 
 
-\newcommand\@explnext@university@star[3][\@explain@ope@]{
+\newcommand\tnslog@expl@next@university@star[3][\tnslog@explain@ope]{
     \if\relax\detokenize{#2}\relax%
         \if\relax\detokenize{#3}\relax%
             \PackageError{tnslog}{two empty arguments}%
@@ -421,7 +408,7 @@
         \fi%
     \fi%
     %
-    \@explnext@university@separation{}%
+    \tnslog@expl@next@university@separation{}%
     \if\relax\detokenize{#2}\relax%
 % Up empty
 %     + Down none empty
@@ -439,17 +426,18 @@
             \expltxtupdown{#2}{#3}%
         \fi%
     \fi%
-    \@explnext@extra@column{}
-    \@explnext@university@separation{}
+    \tnslog@expl@next@extra@column{}
+    \tnslog@expl@next@university@separation{}
 }
 
-\newenvironment{@explain@university}{
+
+\newenvironment{tnslog@explain@university}{
     \setlength{\abovedisplayskip}{0pt}%
     \setlength{\belowdisplayskip}{0pt}%
-    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
-    \renewcommand\@explnext@no@star\@explnext@university@no@star%
-    \renewcommand\@explnext@star\@explnext@university@star%
-    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
+    \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@university@no@star%
+    \renewcommand\tnslog@expl@next@star\tnslog@expl@next@university@star%
+    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
         $\WithArrows[format = rll]
     }{%
         $\WithArrows[format = rl]
@@ -462,20 +450,20 @@
 
 % Middle school version
 
-\newcommand\@explnext@middle@school@no@star[2][\@explain@ope@]{%
-    \ifbool{@com@this@no@star@used@}{}{%
-        \@explnext@extra@column{}%
+\newcommand\tnslog@expl@next@middle@school@no@star[2][\tnslog@explain@ope]{%
+    \ifbool{tnslog@com@this@no@star@used}{}{%
+        \tnslog@expl@next@extra@column{}%
     }%
-    \global\boolfalse{@com@this@no@star@used@}%
+    \global\boolfalse{tnslog@com@this@no@star@used}%
     %
     %
-    \ifbool{@inside@explain@short@arrow@}{%
-        \ifbool{@start@explain@arrow@}{%
+    \ifbool{tnslog@insidetnslog@explain@short@arrow@}{%
+        \ifbool{tnslog@starttnslog@explain@arrow@}{%
             \if\relax\detokenize{#2}\relax\else
                 \PackageError{tnslog}{illegal argument to start explain[style = sar]}%
                                      {no argument for the first use of explnext in [style = sar]}
             \fi
-            \global\boolfalse{@start@explain@arrow@}%
+            \global\boolfalse{tnslog@starttnslog@explain@arrow@}%
         }{
             \if\relax\detokenize{#2}\relax\else
                 \Arrow[tikz = <->]{#2}
@@ -500,11 +488,11 @@
 }
  
 
-\newcommand\@explnext@middle@school@star[3][\@explain@ope@]{
-    \ifbool{@com@this@no@star@used@}{}{%
-        \@explnext@extra@column{}%
+\newcommand\tnslog@expl@next@middle@school@star[3][\tnslog@explain@ope]{
+    \ifbool{tnslog@com@this@no@star@used}{}{%
+        \tnslog@expl@next@extra@column{}%
     }%
-    \global\boolfalse{@com@this@no@star@used@}%
+    \global\boolfalse{tnslog@com@this@no@star@used}%
     %
     \if\relax\detokenize{#2}\relax%
         \if\relax\detokenize{#3}\relax%
@@ -524,41 +512,41 @@
     &#1%
 }
 
-\newbool{@com@this@no@star@used@} 
+\newbool{tnslog@com@this@no@star@used} 
 
-\newbool{@start@explain@arrow@} 
-\newbool{@inside@explain@short@arrow@} 
+\newbool{tnslog@starttnslog@explain@arrow@} 
+\newbool{tnslog@insidetnslog@explain@short@arrow@} 
 
-\newenvironment{@explain@arrow}{
-    \renewcommand\@explnext@no@star\@explnext@middle@school@no@star%
-    \renewcommand\@explnext@star\@explnext@middle@school@star%
-    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+\newenvironment{tnslog@explain@arrow}{
+    \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@middle@school@no@star%
+    \renewcommand\tnslog@expl@next@star\tnslog@expl@next@middle@school@star%
+    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
     %
-    \boolfalse{@inside@explain@short@arrow@}%
-    \boolfalse{@start@explain@arrow@}%
-    \boolfalse{@com@this@no@star@used@}%
+    \boolfalse{tnslog@insidetnslog@explain@short@arrow@}%
+    \boolfalse{tnslog@starttnslog@explain@arrow@}%
+    \boolfalse{tnslog@com@this@no@star@used}%
     %
-    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
         $\WithArrows[tikz = blue, groups, format = rll]
     }{%
         $\WithArrows[tikz = blue, groups, format = rl]
     }
-            &\phantom{{}\@explain@ope@{}}
+            &\phantom{{}\tnslog@explain@ope{}}
 }{%
          \endWithArrows$
 }
 
-\newenvironment{@explain@short@arrow}{
-    \renewcommand\@explnext@no@star\@explnext@middle@school@no@star%
-    \renewcommand\@explnext@star\@explnext@middle@school@star%
-    \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
+\newenvironment{tnslog@explain@short@arrow}{
+    \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@middle@school@no@star%
+    \renewcommand\tnslog@expl@next@star\tnslog@expl@next@middle@school@star%
+    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
     %
-    \booltrue{@inside@explain@short@arrow@}%
-    \booltrue{@start@explain@arrow@}%
-    \boolfalse{@com@this@no@star@used@}%
+    \booltrue{tnslog@insidetnslog@explain@short@arrow@}%
+    \booltrue{tnslog@starttnslog@explain@arrow@}%
+    \boolfalse{tnslog@com@this@no@star@used}%
     %
     %
-    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
         $\WithArrows[tikz = blue, groups, format = rll]%
     }{%
         $\WithArrows[tikz = blue, groups, format = rl]%
@@ -588,14 +576,14 @@
 
 %    * Common tools
 
-\newcommand\explref{\@ifstar{\@explref@star}{\@explref@no@star}}
+\newcommand\explref{\@ifstar{\tnslog@expl@ref@star}{\tnslog@expl@ref@no@star}}
 
-\newcommand\@explref@star[1]{%
+\newcommand\tnslog@expl@ref@star[1]{%
     \framebox[1.5em]{#1}%
 }
 
-\newcommand\@explref@no@star[1]{%
-    \@explref@star{\ref{#1}}%
+\newcommand\tnslog@expl@ref@no@star[1]{%
+    \tnslog@expl@ref@star{\ref{#1}}%
 }
 
 \newcommand\demostep{}
@@ -603,25 +591,25 @@
 
 %    * University version 
 
-\newcounter{@demo@explain@id}
+\newcounter{tnslog@demo@explain@id}
 
 
 \newcommand\@expl@id[1]{%
-    \framebox[1.5em]{\the@demo@explain@id}%
+    \framebox[1.5em]{\thetnslog@demo@explain@id}%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{@demo@explain@id}{-1}%
-        \refstepcounter{@demo@explain@id}\label{#1}
+        \addtocounter{tnslog@demo@explain@id}{-1}%
+        \refstepcounter{tnslog@demo@explain@id}\label{#1}
     \fi
-    \stepcounter{@demo@explain@id}%
+    \stepcounter{tnslog@demo@explain@id}%
 }
 
 
-\newbool{@start@demo@explain@} 
+\newbool{tnslog@start@demo@explain} 
 
 
 \newcommand\@demostep@no@star[1][]{%
-    \ifbool{@start@demo@explain@}{%
-        \global\boolfalse{@start@demo@explain@}%
+    \ifbool{tnslog@start@demo@explain}{%
+        \global\boolfalse{tnslog@start@demo@explain}%
     }{%
         \\
     }%
@@ -630,7 +618,7 @@
 }
 
 
-\setKVdefault[@demo@explain@keys]{%
+\setKVdefault[tnslog@demo@explain@keys]{%
     start = 1,
     hyps  = {},
     hyp   = {},
@@ -640,20 +628,20 @@
 
 \newenvironment{demoexplain}[1][]{
     \renewcommand\demostep\@demostep@no@star
-    \useKVdefault[@demo@explain@keys]
-    \setKV[@demo@explain@keys]{#1}
+    \useKVdefault[tnslog@demo@explain@keys]
+    \setKV[tnslog@demo@explain@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[@demo@explain@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@explain@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{@demo@explain@id}<1
-            \setcounter{@demo@explain@id}{1}
+        \ifnum\value{tnslog@demo@explain@id}<1
+            \setcounter{tnslog@demo@explain@id}{1}
         \fi
     }{%
-        \setcounter{@demo@explain@id}{\useKV[@demo@explain@keys]{start}}%
+        \setcounter{tnslog@demo@explain@id}{\useKV[tnslog@demo@explain@keys]{start}}%
     }%
-    \def\hyps{\useKV[@demo@explain@keys]{hyps}}
-    \def\hyp{\useKV[@demo@explain@keys]{hyp}}
-    \edef\ccl{\useKV[@demo@explain@keys]{ccl}}
+    \def\hyps{\useKV[tnslog@demo@explain@keys]{hyps}}
+    \def\hyp{\useKV[tnslog@demo@explain@keys]{hyp}}
+    \edef\ccl{\useKV[tnslog@demo@explain@keys]{ccl}}
     %
     \if\relax\hyps\relax\else%
         \if\relax\hyp\relax\else%
@@ -670,12 +658,12 @@
         \underline{\textdemoHYP\vphantom{p\textdemoCCL}} : \hyp
         \vspace{-.25em}
     \fi
-    \booltrue{@start@demo@explain@}
+    \booltrue{tnslog@start@demo@explain}
     \begin{longtable}{lll}
         \multicolumn{3}{c}{}
         \\[-.5em]
         \multicolumn{3}{c}{%
-            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+            \textit{\tnslog@demo@extra{\textdemoNEXTPAGE}}%
         }
         \endfoot
         \endlastfoot
@@ -690,78 +678,78 @@
 
 %    * Middle school version
 
-\newbool{@start@demo@explain@star@}
+\newbool{tnslog@start@demo@explain@star}
 
-\newcounter{@demo@explain@star@id}
+\newcounter{tnslog@demo@explain@star@id}
 
 
-\newcommand\@demo@extra[1]{%
+\newcommand\tnslog@demo@extra[1]{%
     {\footnotesize#1}%
 }
 
 
-\newcommand\@expl@star@id[1]{%
-    \the@demo@explain@star@id%
+\newcommand\tnslog@expl@star@id[1]{%
+    \thetnslog@demo@explain@star@id%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{@demo@explain@star@id}{-1}%
-        \refstepcounter{@demo@explain@star@id}\label{#1}
+        \addtocounter{tnslog@demo@explain@star@id}{-1}%
+        \refstepcounter{tnslog@demo@explain@star@id}\label{#1}
     \fi
-    \stepcounter{@demo@explain@star@id}%
+    \stepcounter{tnslog@demo@explain@star@id}%
 }
 
 
-\newcommand\@demostep@star[1][]{%
-    \ifbool{@start@demo@explain@star@}{%
-        \global\boolfalse{@start@demo@explain@star@}%
+\newcommand\tnslog@demostep@star[1][]{%
+    \ifbool{tnslog@start@demo@explain@star}{%
+        \global\boolfalse{tnslog@start@demo@explain@star}%
     }{%
         \\
         \hline%
     }%
-    \@expl@star@id{#1}%
+    \tnslog@expl@star@id{#1}%
     &
 }
 
 
-\setKVdefault[@demo@explain@star@keys]{%
+\setKVdefault[tnslog@demo@explain@star@keys]{%
     start = 1
 }
 
 
 \newenvironment{demoexplain*}[1][]{
-    \renewcommand\demostep\@demostep@star
-    \useKVdefault[@demo@explain@star@keys]
-    \setKV[@demo@explain@star@keys]{#1}
+    \renewcommand\demostep\tnslog@demostep@star
+    \useKVdefault[tnslog@demo@explain@star@keys]
+    \setKV[tnslog@demo@explain@star@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[@demo@explain@star@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@explain@star@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{@demo@explain@star@id}<1
-            \setcounter{@demo@explain@star@id}{1}
+        \ifnum\value{tnslog@demo@explain@star@id}<1
+            \setcounter{tnslog@demo@explain@star@id}{1}
         \fi
     }{%
-        \setcounter{@demo@explain@star@id}{\useKV[@demo@explain@star@keys]{start}}%
+        \setcounter{tnslog@demo@explain@star@id}{\useKV[tnslog@demo@explain@star@keys]{start}}%
     }%
-    \booltrue{@start@demo@explain@star@}
+    \booltrue{tnslog@start@demo@explain@star}
     \small
     \renewcommand{\arraystretch}{1.5}
     \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}
-        \textbf{\@demo@extra{\textdemoID}}
-            & \textbf{\@demo@extra{\textdemoKNOWN}}
-            & \textbf{\@demo@extra{\textdemoPROP}}
-            & \textbf{\@demo@extra{\textdemoCONS}}
+        \textbf{\tnslog@demo@extra{\textdemoID}}
+            & \textbf{\tnslog@demo@extra{\textdemoKNOWN}}
+            & \textbf{\tnslog@demo@extra{\textdemoPROP}}
+            & \textbf{\tnslog@demo@extra{\textdemoCONS}}
         \\ \hline
         \endfirsthead
         %
-        \textbf{\@demo@extra{\textdemoID}}
-            & \textbf{\@demo@extra{\textdemoKNOWN}}
-            & \textbf{\@demo@extra{\textdemoPROP}}
-            & \textbf{\@demo@extra{\textdemoCONS}}
+        \textbf{\tnslog@demo@extra{\textdemoID}}
+            & \textbf{\tnslog@demo@extra{\textdemoKNOWN}}
+            & \textbf{\tnslog@demo@extra{\textdemoPROP}}
+            & \textbf{\tnslog@demo@extra{\textdemoCONS}}
         \\ \hline
         \endhead
         %
         \multicolumn{3}{c}{}
         \\[-1.25em]
         \multicolumn{4}{c}{%
-            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+            \textit{\tnslog@demo@extra{\textdemoNEXTPAGE}}%
         }
         \\
         \endfoot

@@ -28,14 +28,14 @@
 
 %    * Common tools
 
-\newcommand\explref{\@ifstar{\@explref@star}{\@explref@no@star}}
+\newcommand\explref{\@ifstar{\tnslog@expl@ref@star}{\tnslog@expl@ref@no@star}}
 
-\newcommand\@explref@star[1]{%
+\newcommand\tnslog@expl@ref@star[1]{%
     \framebox[1.5em]{#1}%
 }
 
-\newcommand\@explref@no@star[1]{%
-    \@explref@star{\ref{#1}}%
+\newcommand\tnslog@expl@ref@no@star[1]{%
+    \tnslog@expl@ref@star{\ref{#1}}%
 }
 
 \newcommand\demostep{}
@@ -43,25 +43,25 @@
 
 %    * University version 
 
-\newcounter{@demo@explain@id}
+\newcounter{tnslog@demo@explain@id}
 
 
 \newcommand\@expl@id[1]{%
-    \framebox[1.5em]{\the@demo@explain@id}%
+    \framebox[1.5em]{\thetnslog@demo@explain@id}%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{@demo@explain@id}{-1}%
-        \refstepcounter{@demo@explain@id}\label{#1}
+        \addtocounter{tnslog@demo@explain@id}{-1}%
+        \refstepcounter{tnslog@demo@explain@id}\label{#1}
     \fi
-    \stepcounter{@demo@explain@id}%
+    \stepcounter{tnslog@demo@explain@id}%
 }
 
 
-\newbool{@start@demo@explain@} 
+\newbool{tnslog@start@demo@explain} 
 
 
 \newcommand\@demostep@no@star[1][]{%
-    \ifbool{@start@demo@explain@}{%
-        \global\boolfalse{@start@demo@explain@}%
+    \ifbool{tnslog@start@demo@explain}{%
+        \global\boolfalse{tnslog@start@demo@explain}%
     }{%
         \\
     }%
@@ -70,7 +70,7 @@
 }
 
 
-\setKVdefault[@demo@explain@keys]{%
+\setKVdefault[tnslog@demo@explain@keys]{%
     start = 1,
     hyps  = {},
     hyp   = {},
@@ -80,20 +80,20 @@
 
 \newenvironment{demoexplain}[1][]{
     \renewcommand\demostep\@demostep@no@star
-    \useKVdefault[@demo@explain@keys]
-    \setKV[@demo@explain@keys]{#1}
+    \useKVdefault[tnslog@demo@explain@keys]
+    \setKV[tnslog@demo@explain@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[@demo@explain@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@explain@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{@demo@explain@id}<1
-            \setcounter{@demo@explain@id}{1}
+        \ifnum\value{tnslog@demo@explain@id}<1
+            \setcounter{tnslog@demo@explain@id}{1}
         \fi
     }{%
-        \setcounter{@demo@explain@id}{\useKV[@demo@explain@keys]{start}}%
+        \setcounter{tnslog@demo@explain@id}{\useKV[tnslog@demo@explain@keys]{start}}%
     }%
-    \def\hyps{\useKV[@demo@explain@keys]{hyps}}
-    \def\hyp{\useKV[@demo@explain@keys]{hyp}}
-    \edef\ccl{\useKV[@demo@explain@keys]{ccl}}
+    \def\hyps{\useKV[tnslog@demo@explain@keys]{hyps}}
+    \def\hyp{\useKV[tnslog@demo@explain@keys]{hyp}}
+    \edef\ccl{\useKV[tnslog@demo@explain@keys]{ccl}}
     %
     \if\relax\hyps\relax\else%
         \if\relax\hyp\relax\else%
@@ -110,12 +110,12 @@
         \underline{\textdemoHYP\vphantom{p\textdemoCCL}} : \hyp
         \vspace{-.25em}
     \fi
-    \booltrue{@start@demo@explain@}
+    \booltrue{tnslog@start@demo@explain}
     \begin{longtable}{lll}
         \multicolumn{3}{c}{}
         \\[-.5em]
         \multicolumn{3}{c}{%
-            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+            \textit{\tnslog@demo@extra{\textdemoNEXTPAGE}}%
         }
         \endfoot
         \endlastfoot
@@ -130,78 +130,78 @@
 
 %    * Middle school version
 
-\newbool{@start@demo@explain@star@}
+\newbool{tnslog@start@demo@explain@star}
 
-\newcounter{@demo@explain@star@id}
+\newcounter{tnslog@demo@explain@star@id}
 
 
-\newcommand\@demo@extra[1]{%
+\newcommand\tnslog@demo@extra[1]{%
     {\footnotesize#1}%
 }
 
 
-\newcommand\@expl@star@id[1]{%
-    \the@demo@explain@star@id%
+\newcommand\tnslog@expl@star@id[1]{%
+    \thetnslog@demo@explain@star@id%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{@demo@explain@star@id}{-1}%
-        \refstepcounter{@demo@explain@star@id}\label{#1}
+        \addtocounter{tnslog@demo@explain@star@id}{-1}%
+        \refstepcounter{tnslog@demo@explain@star@id}\label{#1}
     \fi
-    \stepcounter{@demo@explain@star@id}%
+    \stepcounter{tnslog@demo@explain@star@id}%
 }
 
 
-\newcommand\@demostep@star[1][]{%
-    \ifbool{@start@demo@explain@star@}{%
-        \global\boolfalse{@start@demo@explain@star@}%
+\newcommand\tnslog@demostep@star[1][]{%
+    \ifbool{tnslog@start@demo@explain@star}{%
+        \global\boolfalse{tnslog@start@demo@explain@star}%
     }{%
         \\
         \hline%
     }%
-    \@expl@star@id{#1}%
+    \tnslog@expl@star@id{#1}%
     &
 }
 
 
-\setKVdefault[@demo@explain@star@keys]{%
+\setKVdefault[tnslog@demo@explain@star@keys]{%
     start = 1
 }
 
 
 \newenvironment{demoexplain*}[1][]{
-    \renewcommand\demostep\@demostep@star
-    \useKVdefault[@demo@explain@star@keys]
-    \setKV[@demo@explain@star@keys]{#1}
+    \renewcommand\demostep\tnslog@demostep@star
+    \useKVdefault[tnslog@demo@explain@star@keys]
+    \setKV[tnslog@demo@explain@star@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[@demo@explain@star@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@explain@star@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{@demo@explain@star@id}<1
-            \setcounter{@demo@explain@star@id}{1}
+        \ifnum\value{tnslog@demo@explain@star@id}<1
+            \setcounter{tnslog@demo@explain@star@id}{1}
         \fi
     }{%
-        \setcounter{@demo@explain@star@id}{\useKV[@demo@explain@star@keys]{start}}%
+        \setcounter{tnslog@demo@explain@star@id}{\useKV[tnslog@demo@explain@star@keys]{start}}%
     }%
-    \booltrue{@start@demo@explain@star@}
+    \booltrue{tnslog@start@demo@explain@star}
     \small
     \renewcommand{\arraystretch}{1.5}
     \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}
-        \textbf{\@demo@extra{\textdemoID}}
-            & \textbf{\@demo@extra{\textdemoKNOWN}}
-            & \textbf{\@demo@extra{\textdemoPROP}}
-            & \textbf{\@demo@extra{\textdemoCONS}}
+        \textbf{\tnslog@demo@extra{\textdemoID}}
+            & \textbf{\tnslog@demo@extra{\textdemoKNOWN}}
+            & \textbf{\tnslog@demo@extra{\textdemoPROP}}
+            & \textbf{\tnslog@demo@extra{\textdemoCONS}}
         \\ \hline
         \endfirsthead
         %
-        \textbf{\@demo@extra{\textdemoID}}
-            & \textbf{\@demo@extra{\textdemoKNOWN}}
-            & \textbf{\@demo@extra{\textdemoPROP}}
-            & \textbf{\@demo@extra{\textdemoCONS}}
+        \textbf{\tnslog@demo@extra{\textdemoID}}
+            & \textbf{\tnslog@demo@extra{\textdemoKNOWN}}
+            & \textbf{\tnslog@demo@extra{\textdemoPROP}}
+            & \textbf{\tnslog@demo@extra{\textdemoCONS}}
         \\ \hline
         \endhead
         %
         \multicolumn{3}{c}{}
         \\[-1.25em]
         \multicolumn{4}{c}{%
-            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+            \textit{\tnslog@demo@extra{\textdemoNEXTPAGE}}%
         }
         \\
         \endfoot

@@ -193,11 +193,11 @@ for symbname, decos in INFOS["todecorate"].items():
             ALL_OPES_DECO += [ALL_OPES_DECO[-1] + "*"]
 
             newmacros += [
-f"\\newcommand\\{macroname}{{\@ifstar{{\@{macroname}@pre@star}}{{\@{macroname}@no@star}}}}",
-f"\\newcommand\\@{macroname}@pre@star{{\@ifstar{{\@{macroname}@star@star}}{{\@{macroname}@star}}}}",
-f"\\newcommand\\@{macroname}@no@star{{{textversion}}}",
-f"\\newcommand\\@{macroname}@star{{{onestarver}}}",
-f"\\newcommand\\@{macroname}@star@star{{{twostarsver}}}",
+f"\\newcommand\\{macroname}{{\@ifstar{{\\tnslog@{macroname}@pre@star}}{{\\tnslog@{macroname}@no@star}}}}",
+f"\\newcommand\\tnslog@{macroname}@pre@star{{\@ifstar{{\\tnslog@{macroname}@star@star}}{{\\tnslog@{macroname}@star}}}}",
+f"\\newcommand\\tnslog@{macroname}@no@star{{{textversion}}}",
+f"\\newcommand\\tnslog@{macroname}@star{{{onestarver}}}",
+f"\\newcommand\\tnslog@{macroname}@star@star{{{twostarsver}}}",
 ""
             ]
 
@@ -208,9 +208,9 @@ f"\\newcommand\\@{macroname}@star@star{{{twostarsver}}}",
             ALL_OPES_DECO += [ALL_OPES_DECO[-1] + "*"]
 
             newmacros += [
-f"\\newcommand\\{macroname}{{\@ifstar{{\@{macroname}@star}}{{\@{macroname}@no@star}}}}",
-f"\\newcommand\\@{macroname}@no@star{{{textversion}}}",
-f"\\newcommand\\@{macroname}@star{{{onestarver}}}",
+f"\\newcommand\\{macroname}{{\@ifstar{{\\tnslog@{macroname}@star}}{{\\tnslog@{macroname}@no@star}}}}",
+f"\\newcommand\\tnslog@{macroname}@no@star{{{textversion}}}",
+f"\\newcommand\\tnslog@{macroname}@star{{{onestarver}}}",
 ""
             ]
 

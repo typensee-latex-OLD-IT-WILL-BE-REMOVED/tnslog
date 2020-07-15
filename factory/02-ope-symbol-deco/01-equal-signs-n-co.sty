@@ -35,29 +35,16 @@
 % == Decorations - ENGLISH - END == %
 }
 
-% Sources
-%    * https://tex.stackexchange.com/a/506745/6880
-%    * https://tex.stackexchange.com/a/510011/6880
-
-\newcommand{\my@hat@eq}[2]{%
-  \begingroup
-  \sbox\z@{$\m@th#1=$}%
-  \ooalign{%
-    \hidewidth\raisebox{-0.3\ht\z@}{$\m@th#1\widehat{}$}\hidewidth\cr
-    \box\z@\cr
-  }%
-  \endgroup
-}
 
 % == Decorated versions - START == %
 
-\newcommand\eqdef{\@ifstar{\@eqdef@star}{\@eqdef@no@star}}
-\newcommand\@eqdef@no@star{\tns@over@math@symbol{\textopdef}{=}}
-\newcommand\@eqdef@star{\coloneqq}
+\newcommand\eqdef{\@ifstar{\tnslog@eqdef@star}{\tnslog@eqdef@no@star}}
+\newcommand\tnslog@eqdef@no@star{\tns@over@math@symbol{\textopdef}{=}}
+\newcommand\tnslog@eqdef@star{\coloneqq}
 
-\newcommand\eqid{\@ifstar{\@eqid@star}{\@eqid@no@star}}
-\newcommand\@eqid@no@star{\tns@over@math@symbol{\textopid}{=}}
-\newcommand\@eqid@star{\rightleftharpoons}
+\newcommand\eqid{\@ifstar{\tnslog@eqid@star}{\tnslog@eqid@no@star}}
+\newcommand\tnslog@eqid@no@star{\tns@over@math@symbol{\textopid}{=}}
+\newcommand\tnslog@eqid@star{\rightleftharpoons}
 
 \newcommand\eqplot{\tns@over@math@symbol{\textopplot}{=}}
 \newcommand\eqappli{\tns@over@math@symbol{\textopappli}{=}}
