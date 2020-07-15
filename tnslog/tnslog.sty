@@ -280,16 +280,16 @@
 \newcommand\@comthis@no@star{}
 
 \newcommand\@comthis@star[1]{%
-	\ifbool{@start@explain@arrow@}{%
-    	\PackageError{lymath}{comment can't be use to start explain[style = sar]}%
+    \ifbool{@start@explain@arrow@}{%
+        \PackageError{tnslog}{comment can't be use to start explain[style = sar]}%
                              {No comment for the 1st part of explain[style = sar]}
     }{%
-    	\kern\expltxtspacein\explcom{#1}%
-	}%
+        \kern\expltxtspacein\explcom{#1}%
+    }%
 }
 
 \newcommand\@comthis@aligned[1]{%
-	\global\booltrue{@com@this@no@star@used@}%
+    \global\booltrue{@com@this@no@star@used@}%
     &%
     \@comthis@star{#1}%
 }
@@ -307,68 +307,68 @@
 }
 
 \newenvironment{explain}[1][]{%
-	\useKVdefault[@calc@explain@keys]%
-	\setKV[@calc@explain@keys]{#1}%
-	\def\style{\useKV[@calc@explain@keys]{style}}%
+    \useKVdefault[@calc@explain@keys]%
+    \setKV[@calc@explain@keys]{#1}%
+    \def\style{\useKV[@calc@explain@keys]{style}}%
 % Comments
-	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
-		\renewcommand\@comthis@no@star\@comthis@aligned%
-		\renewcommand\@explnext@extra@column{&}
-	}{%
-		\renewcommand\@comthis@no@star\@comthis@star%
-		\renewcommand\@explnext@extra@column{}
-	}%
-	\IfEqCase{\style}{%
+    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+        \renewcommand\@comthis@no@star\@comthis@aligned%
+        \renewcommand\@explnext@extra@column{&}
+    }{%
+        \renewcommand\@comthis@no@star\@comthis@star%
+        \renewcommand\@explnext@extra@column{}
+    }%
+    \IfEqCase{\style}{%
 % University
-		{u}{%
-			\begin{@explain@university}%
-		}%
+        {u}{%
+            \begin{@explain@university}%
+        }%
 % Arrows (long)
-		{ar}{%
-			\begin{@explain@arrow}%
-		}%
+        {ar}{%
+            \begin{@explain@arrow}%
+        }%
 % Arrows (short)
-		{sar}{%
-			\begin{@explain@short@arrow}%
-		}%
-	}[%
-        \PackageError{lymath}{unknown style}%
+        {sar}{%
+            \begin{@explain@short@arrow}%
+        }%
+    }[%
+        \PackageError{tnslog}{unknown style}%
                              {You can use u (default), ar or sar.}%
-	]%
+    ]%
 }{%
-	\IfEqCase{\style}{%
+    \IfEqCase{\style}{%
 % University
-		{u}{%
-			\end{@explain@university}%
-		}%
+        {u}{%
+            \end{@explain@university}%
+        }%
 % Arrows (long)
-		{ar}{%
-			\end{@explain@arrow}%
-		}%
+        {ar}{%
+            \end{@explain@arrow}%
+        }%
 % Arrows (short)
-		{sar}{%
-			\end{@explain@short@arrow}%
-		}%
-	}%
+        {sar}{%
+            \end{@explain@short@arrow}%
+        }%
+    }%
 }
     
     
 % University version
 
 % For the good extra lengths, see :
-%	* https://tex.stackexchange.com/a/550837/6880
+%    * https://tex.stackexchange.com/a/550837/6880
 
 \newcommand\dimmax[2]{%
-  \ifdim#1>#2 #1\else #2\fi
+    \ifdim#1>#2 #1\else #2\fi
 }
 
 \newlength{\@upper@text@size}
 \newlength{\@lower@text@size}
 
 \newcommand\samesizeas[2]{%
-	\settowidth\@upper@text@size{#1}%
- 	\settowidth\@lower@text@size{#2}%
-  	\makebox[\dimmax{\@upper@text@size}{\@lower@text@size}][c]{#1}%
+    \settowidth\@upper@text@size{#1}%
+    \settowidth\@lower@text@size{#2}%
+    \makebox[\dimmax{\@upper@text@size}{\@lower@text@size}][c]{#1}%
 }
 
 
@@ -386,14 +386,14 @@
 }
 
 \newcommand\expltxtupdown[2]{{%
-	\displaystyle\footnotesize\color{blue}%
-	\left\{\,%
-		\genfrac{}{}{0pt}{}{%
-			\text{\itshape\expltxtdown{\samesizeas{#1}{#2}}}%
-		}{%
-			\text{\itshape\expltxtup{\samesizeas{#2}{#1}}}%
-		}%
-	\,\right\}%
+    \displaystyle\footnotesize\color{blue}%
+    \left\{\,%
+        \genfrac{}{}{0pt}{}{%
+            \text{\itshape\expltxtdown{\samesizeas{#1}{#2}}}%
+        }{%
+            \text{\itshape\expltxtup{\samesizeas{#2}{#1}}}%
+        }%
+    \,\right\}%
 }}
 
 
@@ -416,7 +416,7 @@
 \newcommand\@explnext@university@star[3][\@explain@ope@]{
     \if\relax\detokenize{#2}\relax%
         \if\relax\detokenize{#3}\relax%
-            \PackageError{lymath}{two empty arguments}%
+            \PackageError{tnslog}{two empty arguments}%
                                  {at least one none empty text is needed}
         \fi%
     \fi%
@@ -425,20 +425,20 @@
     \if\relax\detokenize{#2}\relax%
 % Up empty
 %     + Down none empty
-		{#1}\kern\expltxtspacein%
-		\expltxt{\expltxtup{\samesizeas{#3}{#2}}}%
+        {#1}\kern\expltxtspacein%
+        \expltxt{\expltxtup{\samesizeas{#3}{#2}}}%
     \else%
 % Up none empty
 %     + Down empty
-    	\if\relax\detokenize{#3}\relax%
-			{#1}\kern\expltxtspacein{}%
-			\expltxt{\expltxtdown{\samesizeas{#2}{#3}}}%
+        \if\relax\detokenize{#3}\relax%
+            {#1}\kern\expltxtspacein{}%
+            \expltxt{\expltxtdown{\samesizeas{#2}{#3}}}%
 %     + Down none empty
-		\else%
-			{#1}\kern\expltxtspacein{}%
-			\expltxtupdown{#2}{#3}%
-		\fi%
-	\fi%
+        \else%
+            {#1}\kern\expltxtspacein{}%
+            \expltxtupdown{#2}{#3}%
+        \fi%
+    \fi%
     \@explnext@extra@column{}
     \@explnext@university@separation{}
 }
@@ -449,22 +449,22 @@
     \renewcommand\@explain@ope@{\useKV[@calc@explain@keys]{ope}}%
     \renewcommand\@explnext@no@star\@explnext@university@no@star%
     \renewcommand\@explnext@star\@explnext@university@star%
-	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
-		$\WithArrows[format = rll]
-	}{%
-		$\WithArrows[format = rl]
-	}
+    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+        $\WithArrows[format = rll]
+    }{%
+        $\WithArrows[format = rl]
+    }
             &
 }{%
-	\endWithArrows$
+         \endWithArrows$
 }
 
 
 % Middle school version
 
 \newcommand\@explnext@middle@school@no@star[2][\@explain@ope@]{%
-	\ifbool{@com@this@no@star@used@}{}{%
-    	\@explnext@extra@column{}%
+    \ifbool{@com@this@no@star@used@}{}{%
+        \@explnext@extra@column{}%
     }%
     \global\boolfalse{@com@this@no@star@used@}%
     %
@@ -472,21 +472,21 @@
     \ifbool{@inside@explain@short@arrow@}{%
         \ifbool{@start@explain@arrow@}{%
             \if\relax\detokenize{#2}\relax\else
-                \PackageError{lymath}{illegal argument to start explain[style = sar]}%
+                \PackageError{tnslog}{illegal argument to start explain[style = sar]}%
                                      {no argument for the first use of explnext in [style = sar]}
             \fi
             \global\boolfalse{@start@explain@arrow@}%
         }{
-        	\if\relax\detokenize{#2}\relax\else
-        	    \Arrow[tikz = <->]{#2}
-        	\fi
-    		\\
+            \if\relax\detokenize{#2}\relax\else
+                \Arrow[tikz = <->]{#2}
+            \fi
+            \\
         }
     }{
-         \if\relax\detokenize{#2}\relax\else
+        \if\relax\detokenize{#2}\relax\else
             \Arrow[tikz = <->]{#2}
         \fi
-    	\\
+        \\
     }%
     &#1%
 }
@@ -502,13 +502,13 @@
 
 \newcommand\@explnext@middle@school@star[3][\@explain@ope@]{
     \ifbool{@com@this@no@star@used@}{}{%
-    	\@explnext@extra@column{}%
+        \@explnext@extra@column{}%
     }%
     \global\boolfalse{@com@this@no@star@used@}%
     %
     \if\relax\detokenize{#2}\relax%
         \if\relax\detokenize{#3}\relax%
-            \PackageError{lymath}{two empty arguments}%
+            \PackageError{tnslog}{two empty arguments}%
                                  {at least one none empty text is needed}
         \else%
             \Arrow[tikz = <-]{#3}%
@@ -538,14 +538,14 @@
     \boolfalse{@start@explain@arrow@}%
     \boolfalse{@com@this@no@star@used@}%
     %
-	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
-		$\WithArrows[tikz = blue, groups, format = rll]
-	}{%
-		$\WithArrows[tikz = blue, groups, format = rl]
-	}
-        	&\phantom{{}\@explain@ope@{}}
+    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+        $\WithArrows[tikz = blue, groups, format = rll]
+    }{%
+        $\WithArrows[tikz = blue, groups, format = rl]
+    }
+            &\phantom{{}\@explain@ope@{}}
 }{%
-    \endWithArrows$
+         \endWithArrows$
 }
 
 \newenvironment{@explain@short@arrow}{
@@ -558,13 +558,13 @@
     \boolfalse{@com@this@no@star@used@}%
     %
     %
-	\IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
-		$\WithArrows[tikz = blue, groups, format = rll]%
-	}{%
-		$\WithArrows[tikz = blue, groups, format = rl]%
-	}%
+    \IfStrEq{\useKV[@calc@explain@keys]{com}}{al}{%
+        $\WithArrows[tikz = blue, groups, format = rll]%
+    }{%
+        $\WithArrows[tikz = blue, groups, format = rl]%
+    }%
 }{%
-    \endWithArrows$
+         \endWithArrows$
 }
 
 
@@ -639,7 +639,7 @@
 
 
 \newenvironment{demoexplain}[1][]{
-	\renewcommand\demostep\@demostep@no@star
+    \renewcommand\demostep\@demostep@no@star
     \useKVdefault[@demo@explain@keys]
     \setKV[@demo@explain@keys]{#1}
     %
@@ -657,32 +657,32 @@
     %
     \if\relax\hyps\relax\else%
         \if\relax\hyp\relax\else%
-            \PackageError{lymath}{hyps and hyp are both used}%
+            \PackageError{tnslog}{hyps and hyp are both used}%
                                  {use either hyps or hyp, or none of them}
         \fi
     \fi
     %
     \if\relax\hyps\relax\else%
         \underline{\textdemoHYPS\vphantom{p\textdemoCCL}} : \hyps
-		\vspace{-.25em}
-	\fi
+        \vspace{-.25em}
+    \fi
     \if\relax\hyp\relax\else%
         \underline{\textdemoHYP\vphantom{p\textdemoCCL}} : \hyp
-		\vspace{-.25em}
+        \vspace{-.25em}
     \fi
     \booltrue{@start@demo@explain@}
     \begin{longtable}{lll}
-	    \multicolumn{3}{c}{}
-		\\[-.5em]
-	    \multicolumn{3}{c}{%
-	    	\textit{\@demo@extra{\textdemoNEXTPAGE}}%
-		}
-		\endfoot
-		\endlastfoot
+        \multicolumn{3}{c}{}
+        \\[-.5em]
+        \multicolumn{3}{c}{%
+            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+        }
+        \endfoot
+        \endlastfoot
 }{
     \end{longtable}
     \if\relax\ccl\relax\else%
-		\vspace{-.25em}
+        \vspace{-.25em}
         \underline{\textdemoCCL\vphantom{\textdemoHYPS}} : \ccl
     \fi
 }
@@ -696,7 +696,7 @@
 
 
 \newcommand\@demo@extra[1]{%
-	{\footnotesize#1}%
+    {\footnotesize#1}%
 }
 
 
@@ -711,12 +711,12 @@
 
 
 \newcommand\@demostep@star[1][]{%
-	\ifbool{@start@demo@explain@star@}{%
-		\global\boolfalse{@start@demo@explain@star@}%
-	}{%
-	    \\
-	    \hline%
-	}%
+    \ifbool{@start@demo@explain@star@}{%
+        \global\boolfalse{@start@demo@explain@star@}%
+    }{%
+        \\
+        \hline%
+    }%
     \@expl@star@id{#1}%
     &
 }
@@ -728,7 +728,7 @@
 
 
 \newenvironment{demoexplain*}[1][]{
-	\renewcommand\demostep\@demostep@star
+    \renewcommand\demostep\@demostep@star
     \useKVdefault[@demo@explain@star@keys]
     \setKV[@demo@explain@star@keys]{#1}
     %
@@ -744,29 +744,29 @@
     \small
     \renewcommand{\arraystretch}{1.5}
     \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}
-    	\textbf{\@demo@extra{\textdemoID}}
-			& \textbf{\@demo@extra{\textdemoKNOWN}}
-	        & \textbf{\@demo@extra{\textdemoPROP}}
-	        & \textbf{\@demo@extra{\textdemoCONS}}
-	    \\ \hline
-	    \endfirsthead
-	    %
-    	\textbf{\@demo@extra{\textdemoID}}
-			& \textbf{\@demo@extra{\textdemoKNOWN}}
-	        & \textbf{\@demo@extra{\textdemoPROP}}
-	        & \textbf{\@demo@extra{\textdemoCONS}}
-	    \\ \hline
-	    \endhead
-		%
-	    \multicolumn{3}{c}{}
-		\\[-1.25em]
-		\multicolumn{4}{c}{%
-			\textit{\@demo@extra{\textdemoNEXTPAGE}}%
-		}
-		\\
-		\endfoot
+        \textbf{\@demo@extra{\textdemoID}}
+            & \textbf{\@demo@extra{\textdemoKNOWN}}
+            & \textbf{\@demo@extra{\textdemoPROP}}
+            & \textbf{\@demo@extra{\textdemoCONS}}
+        \\ \hline
+        \endfirsthead
+        %
+        \textbf{\@demo@extra{\textdemoID}}
+            & \textbf{\@demo@extra{\textdemoKNOWN}}
+            & \textbf{\@demo@extra{\textdemoPROP}}
+            & \textbf{\@demo@extra{\textdemoCONS}}
+        \\ \hline
+        \endhead
+        %
+        \multicolumn{3}{c}{}
+        \\[-1.25em]
+        \multicolumn{4}{c}{%
+            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+        }
+        \\
+        \endfoot
 
-		\endlastfoot
+        \endlastfoot
 }{
     \end{longtable}
     \renewcommand{\arraystretch}{1}

@@ -79,7 +79,7 @@
 
 
 \newenvironment{demoexplain}[1][]{
-	\renewcommand\demostep\@demostep@no@star
+    \renewcommand\demostep\@demostep@no@star
     \useKVdefault[@demo@explain@keys]
     \setKV[@demo@explain@keys]{#1}
     %
@@ -97,32 +97,32 @@
     %
     \if\relax\hyps\relax\else%
         \if\relax\hyp\relax\else%
-            \PackageError{lymath}{hyps and hyp are both used}%
+            \PackageError{tnslog}{hyps and hyp are both used}%
                                  {use either hyps or hyp, or none of them}
         \fi
     \fi
     %
     \if\relax\hyps\relax\else%
         \underline{\textdemoHYPS\vphantom{p\textdemoCCL}} : \hyps
-		\vspace{-.25em}
-	\fi
+        \vspace{-.25em}
+    \fi
     \if\relax\hyp\relax\else%
         \underline{\textdemoHYP\vphantom{p\textdemoCCL}} : \hyp
-		\vspace{-.25em}
+        \vspace{-.25em}
     \fi
     \booltrue{@start@demo@explain@}
     \begin{longtable}{lll}
-	    \multicolumn{3}{c}{}
-		\\[-.5em]
-	    \multicolumn{3}{c}{%
-	    	\textit{\@demo@extra{\textdemoNEXTPAGE}}%
-		}
-		\endfoot
-		\endlastfoot
+        \multicolumn{3}{c}{}
+        \\[-.5em]
+        \multicolumn{3}{c}{%
+            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+        }
+        \endfoot
+        \endlastfoot
 }{
     \end{longtable}
     \if\relax\ccl\relax\else%
-		\vspace{-.25em}
+        \vspace{-.25em}
         \underline{\textdemoCCL\vphantom{\textdemoHYPS}} : \ccl
     \fi
 }
@@ -136,7 +136,7 @@
 
 
 \newcommand\@demo@extra[1]{%
-	{\footnotesize#1}%
+    {\footnotesize#1}%
 }
 
 
@@ -151,12 +151,12 @@
 
 
 \newcommand\@demostep@star[1][]{%
-	\ifbool{@start@demo@explain@star@}{%
-		\global\boolfalse{@start@demo@explain@star@}%
-	}{%
-	    \\
-	    \hline%
-	}%
+    \ifbool{@start@demo@explain@star@}{%
+        \global\boolfalse{@start@demo@explain@star@}%
+    }{%
+        \\
+        \hline%
+    }%
     \@expl@star@id{#1}%
     &
 }
@@ -168,7 +168,7 @@
 
 
 \newenvironment{demoexplain*}[1][]{
-	\renewcommand\demostep\@demostep@star
+    \renewcommand\demostep\@demostep@star
     \useKVdefault[@demo@explain@star@keys]
     \setKV[@demo@explain@star@keys]{#1}
     %
@@ -184,29 +184,29 @@
     \small
     \renewcommand{\arraystretch}{1.5}
     \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}
-    	\textbf{\@demo@extra{\textdemoID}}
-			& \textbf{\@demo@extra{\textdemoKNOWN}}
-	        & \textbf{\@demo@extra{\textdemoPROP}}
-	        & \textbf{\@demo@extra{\textdemoCONS}}
-	    \\ \hline
-	    \endfirsthead
-	    %
-    	\textbf{\@demo@extra{\textdemoID}}
-			& \textbf{\@demo@extra{\textdemoKNOWN}}
-	        & \textbf{\@demo@extra{\textdemoPROP}}
-	        & \textbf{\@demo@extra{\textdemoCONS}}
-	    \\ \hline
-	    \endhead
-		%
-	    \multicolumn{3}{c}{}
-		\\[-1.25em]
-		\multicolumn{4}{c}{%
-			\textit{\@demo@extra{\textdemoNEXTPAGE}}%
-		}
-		\\
-		\endfoot
+        \textbf{\@demo@extra{\textdemoID}}
+            & \textbf{\@demo@extra{\textdemoKNOWN}}
+            & \textbf{\@demo@extra{\textdemoPROP}}
+            & \textbf{\@demo@extra{\textdemoCONS}}
+        \\ \hline
+        \endfirsthead
+        %
+        \textbf{\@demo@extra{\textdemoID}}
+            & \textbf{\@demo@extra{\textdemoKNOWN}}
+            & \textbf{\@demo@extra{\textdemoPROP}}
+            & \textbf{\@demo@extra{\textdemoCONS}}
+        \\ \hline
+        \endhead
+        %
+        \multicolumn{3}{c}{}
+        \\[-1.25em]
+        \multicolumn{4}{c}{%
+            \textit{\@demo@extra{\textdemoNEXTPAGE}}%
+        }
+        \\
+        \endfoot
 
-		\endlastfoot
+        \endlastfoot
 }{
     \end{longtable}
     \renewcommand{\arraystretch}{1}
