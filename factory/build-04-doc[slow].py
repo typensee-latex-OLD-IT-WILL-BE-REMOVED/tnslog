@@ -29,11 +29,12 @@ PYFORMAT = MultiReplace({
 })
 
 
+DECO = " "*4
+
+
 # ----------- #
 # -- TOOLS -- #
 # ----------- #
-
-DECO = " "*4
 
 MYFRAME = lambda x: withframe(
     text  = x,
@@ -76,9 +77,9 @@ def closetechsec(text, section):
     return False
 
 
-# ---------------------- #
-# -- COPYING PICTURES -- #
-# ---------------------- #
+# ------------------------- #
+# -- COPYING EXTRA FILES -- #
+# ------------------------- #
 
 for img in THIS_DIR.walk("file::**\[fr\].png"):
     if img.stem.endswith("-nodoc[fr]"):
