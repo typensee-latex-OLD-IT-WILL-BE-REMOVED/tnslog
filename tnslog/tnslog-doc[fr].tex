@@ -49,6 +49,16 @@
 	listing side text
 }
 
+\newtcbinputlisting{\inputlatexex}[2][]{%
+	listing file={#2},%
+	sharp corners,%
+	left=1mm, right=1mm,%
+	bottom=1mm, top=1mm,%
+	colupper=red!75!blue,%
+	listing side text
+}
+
+
 \newtcblisting{latexex-flat}{%
 	sharp corners,%
 	left=1mm, right=1mm,%
@@ -56,12 +66,56 @@
 	colupper=red!75!blue,%
 }
 
+\newtcbinputlisting{\inputlatexexflat}[2][]{%
+	listing file={#2},%
+	sharp corners,%
+	left=1mm, right=1mm,%
+	bottom=1mm, top=1mm,%
+	colupper=red!75!blue,%
+}
+
+
 \newtcblisting{latexex-alone}{%
 	sharp corners,%
 	left=1mm, right=1mm,%
 	bottom=1mm, top=1mm,%
 	colupper=red!75!blue,%
 	listing only
+}
+
+\newtcbinputlisting{\inputlatexexalone}[2][]{%
+	listing file={#2},%
+	sharp corners,%
+	left=1mm, right=1mm,%
+	bottom=1mm, top=1mm,%
+	colupper=red!75!blue,%
+	listing only
+}
+
+
+\newcommand\inputlatexexcodeafter[1]{%
+	\begin{center}
+		\input{#1}
+	\end{center}
+
+	\vspace{-.5em}
+	
+	Le rendu précédent a été obtenu via le code suivant.
+	
+	\inputlatexexalone{#1}
+}
+
+
+\newcommand\inputlatexexcodebefore[1]{%
+	\inputlatexexalone{#1}
+	\vspace{-.75em}
+	\begin{center}
+		\textit{\footnotesize Rendu du code précédent}
+		
+		\medskip
+		
+		\input{#1}
+	\end{center}
 }
 
 
@@ -361,7 +415,7 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 % ---------------------- %
 \section{Équivalences et implications}
 
-\subsection{Des symboles supplémentaires}
+\subsection{Des symboles logiques supplémentaires}
 
 \newparaexample{Implication réciproque}
 
@@ -395,6 +449,9 @@ $A \impliescond B \nimpliescons C$
 
 $A \liesimphyp B \nliesimptest C$
 \end{latexex}
+
+
+% ---------------------- %
 
 
 \subsection{Une table récapitulative}
@@ -1029,8 +1086,6 @@ Voici un style de codage que nous trouvons très facile à relire et maintenir.
 \end{explain}
 \end{latexex}
 %\section{Logique et fondements}
-
-%\subsection{Détailler un raisonnement simple}
 \section{Détailler un \og vrai \fg{} raisonnement}
 
 \subsection{Un tableau pour le post-bac}
@@ -1245,13 +1300,15 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \newpage
 \section{Toutes les fiches techniques} \label{techincal-ids}
 
-\subsection{Introduction}
-\subsubsection{Espace après la négation logique}
 
-\IDmacro*{neg}{0}
+\subsection{Espace après la négation logique}
+
+
+\IDmacro*{neg   }{0}
 
 \IDmacro*{stdneg}{0}
 \subsection{Différents types de comparaisons \og standard \fg}
+
 
 \subsubsection{Opérateurs décorés -- Les textes}
 
@@ -1269,7 +1326,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 % ---------------------- %
 
 
-\subsubsection{Opérateurs décorés -- Comparaisons algébriques}
+\subsubsection{Opérateurs de comparaison supplémentaires}
 
 % == Technical infos - Operators - START == %
 
@@ -1337,7 +1394,8 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 % == Technical infos - Operators - END == %
 \subsection{Équivalences et implications}
 
-\subsubsection{Opérateurs décorés -- Pour la logique}
+\subsubsection{Des symboles logiques supplémentaires}
+
 
 % == Decorated versions - START == %
 
@@ -1387,8 +1445,8 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 % ---------------------- %
 
 
+\subsubsection{Équivalences et implications verticales}
 
-\subsubsection{Opérateurs de logique \og verticaux \fg}
 
 % == Vertical versions - START == %
 
@@ -1405,9 +1463,8 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \subsection{Des versions alternatives du quantificateur existentiel}
 
-\subsubsection{Versions alternatives du quantificateur existentiel}
 
-\IDmacro*{existmulti}{1}
+\IDmacro*{existmulti }{1}
 
 \IDmacro*{nexistmulti}{1}
 
@@ -1417,11 +1474,14 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \separation
 
 
-\IDmacro*{existsone}{0}
+\IDmacro*{existsone }{0}
 
 \IDmacro*{nexistsone}{0}
-\subsection{Détailler un raisonnement simple}
 
+
+
+
+\subsection{Détailler un raisonnement simple}
 
 
 \subsubsection{Détailler un raisonnement simple} 
@@ -1549,7 +1609,10 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
                             et \mwhyprefix{com}{ment}
 
 \IDarg{} le texte d'un court commentaire.
+
+
 \subsection{Détailler un \og vrai \fg{} raisonnement}
+
 
 \subsubsection{Détailler un \og vrai \fg{} raisonnement via un tableau}
 
@@ -1558,14 +1621,14 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \IDkey{start} le début de la numérotation des identifiants des justifications.
               La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demoexplain} ou \env{demoexplain*} utilisé.
 
-\IDkey{hyps} les hypothèses, au format texte, vérifiées au départ.
-             Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
+\IDkey{hyps } les hypothèses, au format texte, vérifiées au départ.
+              Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
 
-\IDkey{hyp} une unique hypothèse, au format texte, vérifiée au départ.
-            Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyps+.
+\IDkey{hyp  } une unique hypothèse, au format texte, vérifiée au départ.
+              Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyps+.
 
-\IDkey{ccl} la conclusion, au format texte, du raisonnement détaillé.
-            Cet argument peut être vide.
+\IDkey{ccl  } la conclusion, au format texte, du raisonnement détaillé.
+              Cet argument peut être vide.
 
 
 \separation
@@ -1624,6 +1687,6 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \extraspace
 
 \IDmacro*{textdemoNEXTPAGE}{0}
-\newpage
+
 
 \end{document}
