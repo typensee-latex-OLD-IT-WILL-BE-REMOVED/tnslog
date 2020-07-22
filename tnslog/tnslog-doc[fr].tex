@@ -38,6 +38,12 @@
 \usepackage{cbdevtool}
 
 
+% Sections numbering
+
+\renewcommand\thesection{\arabic{section}.}
+\renewcommand\thesubsection{\alph{subsection}.}
+\renewcommand\thesubsubsection{\roman{subsubsection}.}
+
 
 % MISC
 
@@ -1301,13 +1307,21 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \section{Toutes les fiches techniques} \label{techincal-ids}
 
 
+
+
+
+
 \subsection{Espace après la négation logique}
+
 
 
 \IDmacro*{neg   }{0}
 
 \IDmacro*{stdneg}{0}
+
+
 \subsection{Différents types de comparaisons \og standard \fg}
+
 
 
 \subsubsection{Opérateurs décorés -- Les textes}
@@ -1392,9 +1406,12 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 }
                 
 % == Technical infos - Operators - END == %
+
+
 \subsection{Équivalences et implications}
 
 \subsubsection{Des symboles logiques supplémentaires}
+
 
 
 % == Decorated versions - START == %
@@ -1448,6 +1465,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \subsubsection{Équivalences et implications verticales}
 
 
+
 % == Vertical versions - START == %
 
 \foreach \k in {viff, vimplies, vliesimp}{
@@ -1461,7 +1479,12 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 % == Vertical versions - END == %
 
+
+
+
+
 \subsection{Des versions alternatives du quantificateur existentiel}
+
 
 
 \IDmacro*{existmulti }{1}
@@ -1481,7 +1504,18 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 
 
+
+
+
+
+
+
+
+
+
+
 \subsection{Détailler un raisonnement simple}
+
 
 
 \subsubsection{Détailler un raisonnement simple} 
@@ -1611,7 +1645,14 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \IDarg{} le texte d'un court commentaire.
 
 
+
+
+
+
+
+
 \subsection{Détailler un \og vrai \fg{} raisonnement}
+
 
 
 \subsubsection{Détailler un \og vrai \fg{} raisonnement via un tableau}
@@ -1687,6 +1728,8 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \extraspace
 
 \IDmacro*{textdemoNEXTPAGE}{0}
+
+
 
 
 \end{document}
