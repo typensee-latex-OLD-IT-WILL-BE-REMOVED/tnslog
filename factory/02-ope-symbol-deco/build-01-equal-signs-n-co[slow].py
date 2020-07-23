@@ -250,7 +250,7 @@ textversions = ["", "\\begin{multicols}{2}"]
 
 for onedeco in ALL_DECOS:
     textversions += [
-f"    \\macro{{textop{onedeco}}} donne \\emph{{\\og \\textop{onedeco} \\fg}}",
+f"    \\macro{{textop{onedeco}\\{{\\}}}} donne \\emph{{\\og \\textop{onedeco} \\fg}}",
 ""
     ]
 
@@ -284,7 +284,7 @@ alldecos = ", ".join(alldecos)
 template_tex = text_start + f"""
 \\foreach \\k in {{{alldecos}}}{{
 
-	\\IDmacro*{{\k}}{{0}}
+	\\IDmacro**{{\k}}
 
 }}
 """ + text_end
@@ -315,7 +315,7 @@ for oneope in ALL_OPES_DECO + ["ZZZZ-unsed-ZZZZ"]:
                 f"""
 \\foreach \\k in {{{lastopes}}}{{
 
-    \\IDmacro*{{\k}}{{0}}
+    \\IDope{{\k}}
 }}
                 """,
                 "\\separation"

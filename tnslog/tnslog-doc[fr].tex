@@ -12,6 +12,8 @@
 \usepackage[top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage{enumitem}
 
+\usepackage{pgffor}
+
 \usepackage{multicol}
 
 \usepackage{makecell}
@@ -35,7 +37,7 @@
 
 \usepackage{ifthen}
 
-\usepackage{cbdevtool}
+\usepackage{macroenvsign}
 
 
 % Sections numbering
@@ -396,23 +398,23 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 % == All texts - START == %
 
 \begin{multicols}{2}
-    \macro{textopappli} donne \emph{\og \textopappli \fg}
+    \macro{textopappli\{\}} donne \emph{\og \textopappli \fg}
 
-    \macro{textopchoice} donne \emph{\og \textopchoice \fg}
+    \macro{textopchoice\{\}} donne \emph{\og \textopchoice \fg}
 
-    \macro{textopcond} donne \emph{\og \textopcond \fg}
+    \macro{textopcond\{\}} donne \emph{\og \textopcond \fg}
 
-    \macro{textopcons} donne \emph{\og \textopcons \fg}
+    \macro{textopcons\{\}} donne \emph{\og \textopcons \fg}
 
-    \macro{textopdef} donne \emph{\og \textopdef \fg}
+    \macro{textopdef\{\}} donne \emph{\og \textopdef \fg}
 
-    \macro{textophyp} donne \emph{\og \textophyp \fg}
+    \macro{textophyp\{\}} donne \emph{\og \textophyp \fg}
 
-    \macro{textopid} donne \emph{\og \textopid \fg}
+    \macro{textopid\{\}} donne \emph{\og \textopid \fg}
 
-    \macro{textopplot} donne \emph{\og \textopplot \fg}
+    \macro{textopplot\{\}} donne \emph{\og \textopplot \fg}
 
-    \macro{textoptest} donne \emph{\og \textoptest \fg}
+    \macro{textoptest\{\}} donne \emph{\og \textoptest \fg}
 \vfill\null\end{multicols}
 
 % == All texts - END == %
@@ -1315,9 +1317,9 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 
 
-\IDmacro*{neg   }{0}
+\IDope{neg}
 
-\IDmacro*{stdneg}{0}
+\IDope{stdneg} (pour retrouver le symbole par défaut)
 
 
 \subsection{Différents types de comparaisons \og standard \fg}
@@ -1330,7 +1332,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \foreach \k in {textopappli, textopchoice, textopcond, textopcons, textopdef, textophyp, textopid, textopplot, textoptest}{
 
-	\IDmacro*{\k}{0}
+	\IDmacro**{\k}
 
 }
 
@@ -1346,63 +1348,63 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {ngtrplot, ngtrappli, ngtrchoice, ngtrcond, ngtrcons, ngtrhyp, ngtrtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {geqplot, geqappli, geqchoice, geqcond, geqcons, geqhyp, geqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 % == Technical infos - Operators - END == %
@@ -1417,42 +1419,42 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 % == Decorated versions - START == %
 
 \foreach \k in {iff, iffappli, iffchoice, iffcond, iffcons, iffhyp, ifftest}{
-	\IDmacro*{\k}{0}
+	\IDope{\k}
 
 }
     
 \separation
 
 \foreach \k in {niff, niffappli, niffchoice, niffcond, niffcons, niffhyp, nifftest}{
-	\IDmacro*{\k}{0}
+	\IDope{\k}
 
 }
     
 \separation
 
 \foreach \k in {implies, impliesappli, implieschoice, impliescond, impliescons, implieshyp, impliestest}{
-	\IDmacro*{\k}{0}
+	\IDope{\k}
 
 }
     
 \separation
 
 \foreach \k in {nimplies, nimpliesappli, nimplieschoice, nimpliescond, nimpliescons, nimplieshyp, nimpliestest}{
-	\IDmacro*{\k}{0}
+	\IDope{\k}
 
 }
     
 \separation
 
 \foreach \k in {liesimp, liesimpappli, liesimpchoice, liesimpcond, liesimpcons, liesimphyp, liesimptest}{
-	\IDmacro*{\k}{0}
+	\IDope{\k}
 
 }
     
 \separation
 
 \foreach \k in {nliesimp, nliesimpappli, nliesimpchoice, nliesimpcond, nliesimpcons, nliesimphyp, nliesimptest}{
-	\IDmacro*{\k}{0}
+	\IDope{\k}
 
 }
     
@@ -1470,9 +1472,9 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \foreach \k in {viff, vimplies, vliesimp}{
 
-	\IDmacro*{\k}{0}
+	\IDope{\k}
 
-	\IDmacro*{n\k}{0}
+	\IDope{n\k}
 
     \extraspace
 }
@@ -1497,9 +1499,9 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \separation
 
 
-\IDmacro*{existsone }{0}
+\IDope{existsone}
 
-\IDmacro*{nexistsone}{0}
+\IDope{nexistsone}
 
 
 
@@ -1550,13 +1552,13 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \separation
 
 
-\emph{\textbf{ATTENTION !} La macro \macro{explnext} est à utiliser sans argument au tout début de l'environnement \env{aexplain*}.}
+\emph{\textbf{ATTENTION !} La macro \macro{explnext} est à utiliser sans argument au tout début du contenu de l'environnement \env{aexplain*}.}
 
 \extraspace
 
 \extraspace
 
-\IDmacro{explnext}{1}{1} où \quad \mwhyprefix{expl}{ain}
+\IDmacro{explnext}{1}{1} \hfill \mwhyprefix{expl}{ain}
 
 \IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
 
@@ -1566,7 +1568,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \separation
 
 
-\IDmacro{explnext*}{1}{2} où \quad \mwhyprefix{expl}{ain}
+\IDmacro{explnext*}{1}{2} \hfill \mwhyprefix{expl}{ain}
 
 \IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
 
@@ -1580,9 +1582,9 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \separation
 
 
-\IDmacro*{comthis}{1} où \quad \mwhyprefix{com}{ment}
+\IDmacro*{comthis}{1} \hfill \mwhyprefix{com}{ment}
 
-\IDmacro*{comthis*}{1} où \quad \mwhyprefix{com}{ment}
+\IDmacro*{comthis*}{1} \hfill \mwhyprefix{com}{ment}
 
 
 \IDarg{} le texte d'un court commentaire.
@@ -1605,7 +1607,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxt}{1} où \quad \mwhyprefix{expl}{ain}
+\IDmacro*{expltxt}{1} \hfill \mwhyprefix{expl}{ain}
 
 \IDarg{} le texte de l'explication que l'on veut mettre en forme.
 
@@ -1613,7 +1615,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxtdown}{1} où \quad \mwhyprefix{expl}{ain}
+\IDmacro*{expltxtdown}{1} \hfill \mwhyprefix{expl}{ain}
 
 \IDarg{} le texte de l'explication du haut vers le bas que l'on veut mettre en forme.
 
@@ -1621,7 +1623,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxtup}{1} où \quad \mwhyprefix{expl}{ain}
+\IDmacro*{expltxtup}{1} \hfill \mwhyprefix{expl}{ain}
 
 \IDarg{} le texte de l'explication du bas vers le haut que l'on veut mettre en forme.
 
@@ -1629,7 +1631,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxtupdown}{2} où \quad \mwhyprefix{expl}{ain}
+\IDmacro*{expltxtupdown}{2} \hfill \mwhyprefix{expl}{ain}
 
 \IDarg{1} le texte de l'explication du haut vers le bas que l'on veut mettre en forme.
 
@@ -1639,7 +1641,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{explcom}{1} où \quad \mwhyprefix{expl}{ain}
+\IDmacro*{explcom}{1} \hfill \mwhyprefix{expl}{ain}
                             et \mwhyprefix{com}{ment}
 
 \IDarg{} le texte d'un court commentaire.
@@ -1692,7 +1694,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{explref}{1}  où \quad \mwhyprefix{expl}{ain}
+\IDmacro*{explref}{1}  \hfill \mwhyprefix{expl}{ain}
                              et \mwhyprefix{ref}{erence}
 
 \IDarg{} un numéro de $1$ ou $2$ chiffres qui sera encadré comme le sont les numérotations des indications.
@@ -1701,7 +1703,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{explref*}{1}  où \quad \mwhyprefix{expl}{ain}
+\IDmacro*{explref*}{1}  \hfill \mwhyprefix{expl}{ain}
                               et \mwhyprefix{ref}{erence}
 
 \IDarg{} un texte correspondant à un label global référençant le numéro d'une justification.
@@ -1709,21 +1711,21 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 
 \subsubsection{Détailler un \og vrai \fg{} raisonnement via un tableau - Textes utilisés}
 
-\IDmacro*{textdemoID}{0}     où \quad \mwhyprefix{ID}{entifier}
+\IDmacro*{textdemoID}{0}     \hfill \mwhyprefix{ID}{entifier}
 
 \IDmacro*{textdemoKNOWN}{0}
 
-\IDmacro*{textdemoPROP}{0}   où \quad \mwhyprefix{PROP}{osition}
+\IDmacro*{textdemoPROP}{0}   \hfill \mwhyprefix{PROP}{osition}
 
-\IDmacro*{textdemoCONS}{0}   où \quad \mwhyprefix{CONS}{equence}
+\IDmacro*{textdemoCONS}{0}   \hfill \mwhyprefix{CONS}{equence}
 
 \extraspace
 
-\IDmacro*{textdemoHYPS}{0}   où \quad \prefix{HYPS = HYP-othesis (S-everal ones)} 
+\IDmacro*{textdemoHYPS}{0}   \hfill \prefix{HYPS = HYP-othesis (S-everal ones)} 
 
-\IDmacro*{textdemoHYP}{0}    où \quad \prefix{HYP = HYP-othesis (just one)}
+\IDmacro*{textdemoHYP}{0}    \hfill \prefix{HYP = HYP-othesis (just one)}
 
-\IDmacro*{textdemoCCL}{0}    où \quad \prefix{CCL = C-on-CL-usion}
+\IDmacro*{textdemoCCL}{0}    \hfill \prefix{CCL = C-on-CL-usion}
 
 \extraspace
 

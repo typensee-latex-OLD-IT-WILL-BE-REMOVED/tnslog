@@ -130,7 +130,7 @@ for symb, assocdecos in infos["todecorate"].items():
 
     texforidmacros.append(f"""
 \\foreach \\k in {{{somemacros}}}{{
-	\\IDmacro*{{\k}}{{0}}
+	\\IDope{{\k}}
 
 }}
     """)
@@ -159,9 +159,9 @@ allmacros = ", ".join(allmacros)
 template_tex = text_start + f"""
 \\foreach \\k in {{{allmacros}}}{{
 
-	\\IDmacro*{{\k}}{{0}}
+	\\IDope{{\k}}
 
-	\\IDmacro*{{n\k}}{{0}}
+	\\IDope{{n\k}}
 
     \\extraspace
 }}

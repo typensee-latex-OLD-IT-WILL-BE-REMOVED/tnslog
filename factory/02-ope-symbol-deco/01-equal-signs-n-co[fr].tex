@@ -136,23 +136,23 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 % == All texts - START == %
 
 \begin{multicols}{2}
-    \macro{textopappli} donne \emph{\og \textopappli \fg}
+    \macro{textopappli\{\}} donne \emph{\og \textopappli \fg}
 
-    \macro{textopchoice} donne \emph{\og \textopchoice \fg}
+    \macro{textopchoice\{\}} donne \emph{\og \textopchoice \fg}
 
-    \macro{textopcond} donne \emph{\og \textopcond \fg}
+    \macro{textopcond\{\}} donne \emph{\og \textopcond \fg}
 
-    \macro{textopcons} donne \emph{\og \textopcons \fg}
+    \macro{textopcons\{\}} donne \emph{\og \textopcons \fg}
 
-    \macro{textopdef} donne \emph{\og \textopdef \fg}
+    \macro{textopdef\{\}} donne \emph{\og \textopdef \fg}
 
-    \macro{textophyp} donne \emph{\og \textophyp \fg}
+    \macro{textophyp\{\}} donne \emph{\og \textophyp \fg}
 
-    \macro{textopid} donne \emph{\og \textopid \fg}
+    \macro{textopid\{\}} donne \emph{\og \textopid \fg}
 
-    \macro{textopplot} donne \emph{\og \textopplot \fg}
+    \macro{textopplot\{\}} donne \emph{\og \textopplot \fg}
 
-    \macro{textoptest} donne \emph{\og \textoptest \fg}
+    \macro{textoptest\{\}} donne \emph{\og \textoptest \fg}
 \vfill\null\end{multicols}
 
 % == All texts - END == %
@@ -169,7 +169,7 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 \foreach \k in {textopappli, textopchoice, textopcond, textopcons, textopdef, textophyp, textopid, textopplot, textoptest}{
 
-	\IDmacro*{\k}{0}
+	\IDmacro**{\k}
 
 }
 
@@ -185,63 +185,63 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 \foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {ngtrplot, ngtrappli, ngtrchoice, ngtrcond, ngtrcons, ngtrhyp, ngtrtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 \separation
 
 \foreach \k in {geqplot, geqappli, geqchoice, geqcond, geqcons, geqhyp, geqtest}{
 
-    \IDmacro*{\k}{0}
+    \IDope{\k}
 }
                 
 % == Technical infos - Operators - END == %
