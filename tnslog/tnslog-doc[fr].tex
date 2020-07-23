@@ -395,30 +395,22 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 \vspace{-.5em}
 
+\begin{center}
+	\begin{tabular}{l@{\kern1ex}l@{\kern2cm}l@{\kern1ex}l}
 % == All texts - START == %
-
-\begin{multicols}{2}
-    \macro{textopappli\{\}} donne \emph{\og \textopappli \fg}
-
-    \macro{textopchoice\{\}} donne \emph{\og \textopchoice \fg}
-
-    \macro{textopcond\{\}} donne \emph{\og \textopcond \fg}
-
-    \macro{textopcons\{\}} donne \emph{\og \textopcons \fg}
-
-    \macro{textopdef\{\}} donne \emph{\og \textopdef \fg}
-
-    \macro{textophyp\{\}} donne \emph{\og \textophyp \fg}
-
-    \macro{textopid\{\}} donne \emph{\og \textopid \fg}
-
-    \macro{textopplot\{\}} donne \emph{\og \textopplot \fg}
-
-    \macro{textoptest\{\}} donne \emph{\og \textoptest \fg}
-\vfill\null\end{multicols}
-
+        \macro{textopappli\{\}} & donne \emph{\og \textopappli \fg}
+        & \macro{textopchoice\{\}} & donne \emph{\og \textopchoice \fg} \\
+        \macro{textopcond\{\}} & donne \emph{\og \textopcond \fg}
+        & \macro{textopcons\{\}} & donne \emph{\og \textopcons \fg} \\
+        \macro{textopdef\{\}} & donne \emph{\og \textopdef \fg}
+        & \macro{textophyp\{\}} & donne \emph{\og \textophyp \fg} \\
+        \macro{textopid\{\}} & donne \emph{\og \textopid \fg}
+        & \macro{textopplot\{\}} & donne \emph{\og \textopplot \fg} \\
+        \macro{textoptest\{\}} & donne \emph{\og \textoptest \fg}
+        & & \\
 % == All texts - END == %
-
+	\end{tabular}
+\end{center}
 
 % ---------------------- %
 \section{Équivalences et implications}
@@ -1328,6 +1320,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \subsubsection{Opérateurs décorés -- Les textes}
 
+\begin{multicols}{4}
 % == Technical infos - Texts - START == %
 
 \foreach \k in {textopappli, textopchoice, textopcond, textopcons, textopdef, textophyp, textopid, textopplot, textoptest}{
@@ -1338,6 +1331,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 % == Technical infos - Texts - END == %
 
+\end{multicols}
 
 % ---------------------- %
 
@@ -1346,67 +1340,68 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 % == Technical infos - Operators - START == %
 
-\foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
+\begin{multicols}{6}
+    \foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
+\begin{multicols}{6}
+    \foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
+\begin{multicols}{6}
+    \foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
+\begin{multicols}{6}
+    \foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
+\begin{multicols}{6}
+    \foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
+\begin{multicols}{6}
+    \foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
+\begin{multicols}{6}
+    \foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
-
-\foreach \k in {ngtrplot, ngtrappli, ngtrchoice, ngtrcond, ngtrcons, ngtrhyp, ngtrtest}{
-
-    \IDope{\k}
-}
-                
-\separation
-
-\foreach \k in {geqplot, geqappli, geqchoice, geqcond, geqcons, geqhyp, geqtest}{
-
-    \IDope{\k}
-}
-                
 % == Technical infos - Operators - END == %
 
 
@@ -1418,45 +1413,57 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 % == Decorated versions - START == %
 
-\foreach \k in {iff, iffappli, iffchoice, iffcond, iffcons, iffhyp, ifftest}{
-	\IDope{\k}
+\begin{multicols}{4}
+    \foreach \k in {iff, iffappli, iffchoice, iffcond, iffcons, iffhyp, ifftest}{
+	   \IDope{\k}
 
-}
+    }
+\end{multicols}
     
 \separation
 
-\foreach \k in {niff, niffappli, niffchoice, niffcond, niffcons, niffhyp, nifftest}{
-	\IDope{\k}
+\begin{multicols}{4}
+    \foreach \k in {niff, niffappli, niffchoice, niffcond, niffcons, niffhyp, nifftest}{
+	   \IDope{\k}
 
-}
+    }
+\end{multicols}
     
 \separation
 
-\foreach \k in {implies, impliesappli, implieschoice, impliescond, impliescons, implieshyp, impliestest}{
-	\IDope{\k}
+\begin{multicols}{4}
+    \foreach \k in {implies, impliesappli, implieschoice, impliescond, impliescons, implieshyp, impliestest}{
+	   \IDope{\k}
 
-}
+    }
+\end{multicols}
     
 \separation
 
-\foreach \k in {nimplies, nimpliesappli, nimplieschoice, nimpliescond, nimpliescons, nimplieshyp, nimpliestest}{
-	\IDope{\k}
+\begin{multicols}{4}
+    \foreach \k in {nimplies, nimpliesappli, nimplieschoice, nimpliescond, nimpliescons, nimplieshyp, nimpliestest}{
+	   \IDope{\k}
 
-}
+    }
+\end{multicols}
     
 \separation
 
-\foreach \k in {liesimp, liesimpappli, liesimpchoice, liesimpcond, liesimpcons, liesimphyp, liesimptest}{
-	\IDope{\k}
+\begin{multicols}{4}
+    \foreach \k in {liesimp, liesimpappli, liesimpchoice, liesimpcond, liesimpcons, liesimphyp, liesimptest}{
+	   \IDope{\k}
 
-}
+    }
+\end{multicols}
     
 \separation
 
-\foreach \k in {nliesimp, nliesimpappli, nliesimpchoice, nliesimpcond, nliesimpcons, nliesimphyp, nliesimptest}{
-	\IDope{\k}
+\begin{multicols}{4}
+    \foreach \k in {nliesimp, nliesimpappli, nliesimpchoice, nliesimpcond, nliesimpcons, nliesimphyp, nliesimptest}{
+	   \IDope{\k}
 
-}
+    }
+\end{multicols}
     
 % == Decorated versions - END == %
 
@@ -1470,14 +1477,14 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 % == Vertical versions - START == %
 
-\foreach \k in {viff, vimplies, vliesimp}{
+\begin{multicols}{4}
+    \foreach \k in {viff, vimplies, vliesimp}{
 
-	\IDope{\k}
+	   \IDope{\k}
 
-	\IDope{n\k}
-
-    \extraspace
-}
+	   \IDope{n\k}
+    }
+\end{multicols}
 
 % == Vertical versions - END == %
 
@@ -1489,9 +1496,9 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 
 
-\IDmacro*{existmulti }{1}
+\IDmacro*[1]{existmulti}{1}
 
-\IDmacro*{nexistmulti}{1}
+\IDmacro*   {nexistmulti}{1}
 
 \IDarg{1} une écriture mathématique servant à préciser la portée du quantificateur.
 
@@ -1582,9 +1589,9 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \separation
 
 
-\IDmacro*{comthis}{1} \hfill \mwhyprefix{com}{ment}
+\IDmacro*[1]{comthis}{1} \hfill \mwhyprefix{com}{ment}
 
-\IDmacro*{comthis*}{1} \hfill \mwhyprefix{com}{ment}
+\IDmacro*   {comthis*}{1} \hfill \mwhyprefix{com}{ment}
 
 
 \IDarg{} le texte d'un court commentaire.

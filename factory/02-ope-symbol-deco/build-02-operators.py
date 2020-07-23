@@ -129,10 +129,12 @@ for symb, assocdecos in infos["todecorate"].items():
     somemacros = ", ".join(somemacros)
 
     texforidmacros.append(f"""
-\\foreach \\k in {{{somemacros}}}{{
-	\\IDope{{\k}}
+\\begin{{multicols}}{{4}}
+    \\foreach \\k in {{{somemacros}}}{{
+	   \\IDope{{\k}}
 
-}}
+    }}
+\\end{{multicols}}
     """)
 
 texforidmacros = "\n".join(texforidmacros)
@@ -157,14 +159,14 @@ allmacros = [
 allmacros = ", ".join(allmacros)
 
 template_tex = text_start + f"""
-\\foreach \\k in {{{allmacros}}}{{
+\\begin{{multicols}}{{4}}
+    \\foreach \\k in {{{allmacros}}}{{
 
-	\\IDope{{\k}}
+	   \\IDope{{\k}}
 
-	\\IDope{{n\k}}
-
-    \\extraspace
-}}
+	   \\IDope{{n\k}}
+    }}
+\\end{{multicols}}
 """ + text_end
 
 # -------------------------- #

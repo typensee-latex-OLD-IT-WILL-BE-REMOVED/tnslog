@@ -133,30 +133,22 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 \vspace{-.5em}
 
+\begin{center}
+	\begin{tabular}{l@{\kern1ex}l@{\kern2cm}l@{\kern1ex}l}
 % == All texts - START == %
-
-\begin{multicols}{2}
-    \macro{textopappli\{\}} donne \emph{\og \textopappli \fg}
-
-    \macro{textopchoice\{\}} donne \emph{\og \textopchoice \fg}
-
-    \macro{textopcond\{\}} donne \emph{\og \textopcond \fg}
-
-    \macro{textopcons\{\}} donne \emph{\og \textopcons \fg}
-
-    \macro{textopdef\{\}} donne \emph{\og \textopdef \fg}
-
-    \macro{textophyp\{\}} donne \emph{\og \textophyp \fg}
-
-    \macro{textopid\{\}} donne \emph{\og \textopid \fg}
-
-    \macro{textopplot\{\}} donne \emph{\og \textopplot \fg}
-
-    \macro{textoptest\{\}} donne \emph{\og \textoptest \fg}
-\vfill\null\end{multicols}
-
+        \macro{textopappli\{\}} & donne \emph{\og \textopappli \fg}
+        & \macro{textopchoice\{\}} & donne \emph{\og \textopchoice \fg} \\
+        \macro{textopcond\{\}} & donne \emph{\og \textopcond \fg}
+        & \macro{textopcons\{\}} & donne \emph{\og \textopcons \fg} \\
+        \macro{textopdef\{\}} & donne \emph{\og \textopdef \fg}
+        & \macro{textophyp\{\}} & donne \emph{\og \textophyp \fg} \\
+        \macro{textopid\{\}} & donne \emph{\og \textopid \fg}
+        & \macro{textopplot\{\}} & donne \emph{\og \textopplot \fg} \\
+        \macro{textoptest\{\}} & donne \emph{\og \textoptest \fg}
+        & & \\
 % == All texts - END == %
-
+	\end{tabular}
+\end{center}
 
 % ---------------------- %
 
@@ -165,6 +157,7 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 \subsection{Opérateurs décorés -- Les textes}
 
+\begin{multicols}{4}
 % == Technical infos - Texts - START == %
 
 \foreach \k in {textopappli, textopchoice, textopcond, textopcons, textopdef, textophyp, textopid, textopplot, textoptest}{
@@ -175,6 +168,7 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 % == Technical infos - Texts - END == %
 
+\end{multicols}
 
 % ---------------------- %
 
@@ -183,67 +177,68 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 % == Technical infos - Operators - START == %
 
-\foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
+\begin{multicols}{6}
+    \foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
+\begin{multicols}{6}
+    \foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
+\begin{multicols}{6}
+    \foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
+\begin{multicols}{6}
+    \foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
+\begin{multicols}{6}
+    \foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
+\begin{multicols}{6}
+    \foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
 
-\foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
+\begin{multicols}{6}
+    \foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
+        \IDope{\k}
 
-    \IDope{\k}
-}
-                
+    }
+\end{multicols}
+
 \separation
-
-\foreach \k in {ngtrplot, ngtrappli, ngtrchoice, ngtrcond, ngtrcons, ngtrhyp, ngtrtest}{
-
-    \IDope{\k}
-}
-                
-\separation
-
-\foreach \k in {geqplot, geqappli, geqchoice, geqcond, geqcons, geqhyp, geqtest}{
-
-    \IDope{\k}
-}
-                
 % == Technical infos - Operators - END == %
 
 \end{document}

@@ -246,19 +246,30 @@ alldecos = [
 ]
 alldecos.sort()
 
-textversions = ["", "\\begin{multicols}{2}"]
+textversions = []
 
-for onedeco in ALL_DECOS:
-    textversions += [
-f"    \\macro{{textop{onedeco}\\{{\\}}}} donne \\emph{{\\og \\textop{onedeco} \\fg}}",
-""
-    ]
+nbdecos = len(ALL_DECOS)
 
-textversions = textversions[:-1] + [
-    "\\vfill\\null"
-    "\\end{multicols}",
-    ""
-]
+for pos in range(0, nbdecos, 2):
+    onedeco  = ALL_DECOS[pos]
+
+    textversions.append(
+        f"{DECO*2}\\macro{{textop{onedeco}\\{{\\}}}} "
+        f"& donne \\emph{{\\og \\textop{onedeco} \\fg}}"
+    )
+
+    if pos < nbdecos - 1:
+
+        onedeco = ALL_DECOS[pos+1]
+
+        textversions.append(
+            f"{DECO*2}& \\macro{{textop{onedeco}\\{{\\}}}} "
+            f"& donne \\emph{{\\og \\textop{onedeco} \\fg}} \\\\"
+        )
+
+    else:
+        textversions.append(f"{DECO*2}& & \\\\")
+
 
 textversions = "\n".join(textversions)
 
@@ -311,16 +322,18 @@ for oneope in ALL_OPES_DECO + ["ZZZZ-unsed-ZZZZ"]:
 
             lastopes = ", ".join(lastopes)
 
-            template_tex += [
+            template_tex.append(
                 f"""
-\\foreach \\k in {{{lastopes}}}{{
+\\begin{{multicols}}{{6}}
+    \\foreach \\k in {{{lastopes}}}{{
+        \\IDope{{\k}}
 
-    \\IDope{{\k}}
-}}
-                """,
-                "\\separation"
-                ""
-            ]
+    }}
+\\end{{multicols}}
+
+\\separation
+                """.rstrip()
+            )
 
             lastopes     = []
 
