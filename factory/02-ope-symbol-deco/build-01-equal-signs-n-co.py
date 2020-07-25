@@ -295,7 +295,7 @@ alldecos = ", ".join(alldecos)
 template_tex = text_start + f"""
 \\foreach \\k in {{{alldecos}}}{{
 
-	\\IDmacro**{{\k}}
+	\\IDmacro[n]{{\k}}
 
 }}
 """ + text_end

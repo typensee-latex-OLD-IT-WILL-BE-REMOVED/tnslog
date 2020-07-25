@@ -15,7 +15,7 @@
 
 \subsection{Détailler un raisonnement simple} 
 
-\IDenv{explain}{1}
+\IDenv[o]{explain}{1}
 
 \IDoption{} la valeur utilise une syntaxe de type clé-valeur. Voici les différentes clés disponibles.
 
@@ -45,7 +45,7 @@
 \separation
 
 
-\IDmacro{explnext}{1}{1} \hfill \mwhyprefix{expl}{ain}
+\IDmacro{explnext}{1}{1}  \hfill \mwhyprefix{expl}{ain}
 
 \IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
 
@@ -61,7 +61,7 @@
 \separation
 
 
-\IDmacro{explnext*}{1}{2} \hfill \mwhyprefix{expl}{ain}
+\IDmacro{explnext*}{1}{2}
 
 \IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
 
@@ -75,9 +75,9 @@
 \separation
 
 
-\IDmacro*[1]{comthis}{1} \hfill \mwhyprefix{com}{ment}
+\IDmacro[a]{comthis }{1}  \hfill \mwhyprefix{com}{ment}
 
-\IDmacro*   {comthis*}{1} \hfill \mwhyprefix{com}{ment}
+\IDmacro[a]{comthis*}{1}
 
 
 \IDarg{} le texte d'un court commentaire.
@@ -94,13 +94,13 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxtspacein}{0}
+\IDmacro[n]{expltxtspacein}
 
 
 \separation
 
 
-\IDmacro*{expltxt}{1} \hfill \mwhyprefix{expl}{ain}
+\IDmacro[a]{expltxt}{1}
 
 \IDarg{} le texte de l'explication que l'on veut mettre en forme.
 
@@ -108,7 +108,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxtdown}{1} \hfill \mwhyprefix{expl}{ain}
+\IDmacro[a]{expltxtdown}{1}
 
 \IDarg{} le texte de l'explication du haut vers le bas que l'on veut mettre en forme.
 
@@ -116,7 +116,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxtup}{1} \hfill \mwhyprefix{expl}{ain}
+\IDmacro[a]{expltxtup}{1}
 
 \IDarg{} le texte de l'explication du bas vers le haut que l'on veut mettre en forme.
 
@@ -124,7 +124,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{expltxtupdown}{2} \hfill \mwhyprefix{expl}{ain}
+\IDmacro[a]{expltxtupdown}{2}
 
 \IDarg{1} le texte de l'explication du haut vers le bas que l'on veut mettre en forme.
 
@@ -134,8 +134,7 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDmacro*{explcom}{1} \hfill \mwhyprefix{expl}{ain}
-                            et \mwhyprefix{com}{ment}
+\IDmacro[a]{explcom}{1}
 
 \IDarg{} le texte d'un court commentaire.
 

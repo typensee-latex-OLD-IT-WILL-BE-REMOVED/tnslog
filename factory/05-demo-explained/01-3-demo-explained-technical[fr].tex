@@ -17,7 +17,7 @@
 
 \subsection{Détailler un \og vrai \fg{} raisonnement via un tableau}
 
-\IDenv{demoexplain}{4}
+\IDenv[o]{demoexplain}{4}
 
 \IDkey{start} le début de la numérotation des identifiants des justifications.
               La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demoexplain} ou \env{demoexplain*} utilisé.
@@ -35,7 +35,7 @@
 \separation
 
 
-\IDenv{demoexplain*}{1}
+\IDenv[o]{demoexplain*}{1}
 
 \IDkey{start} le début de la numérotation des identifiants des justifications.
               La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demoexplain} ou \env{demoexplain*} utilisé.
@@ -44,7 +44,7 @@
 \separation
 
 
-\IDmacro{demostep}{1}{0}
+\IDmacro[o]{demostep}{1}
 
 \IDoption{} un texte qui sera utilisé comme label global référençant le numéro d'une justification.
 
@@ -52,8 +52,7 @@
 \separation
 
 
-\IDmacro*{explref}{1}  \hfill \mwhyprefix{expl}{ain}
-                             et \mwhyprefix{ref}{erence}
+\IDmacro[a]{explref}{1}  \hfill \mwhyprefix{ref}{erence}
 
 \IDarg{} un numéro de $1$ ou $2$ chiffres qui sera encadré comme le sont les numérotations des indications.
 
@@ -61,33 +60,32 @@
 \separation
 
 
-\IDmacro*{explref*}{1}  \hfill \mwhyprefix{expl}{ain}
-                              et \mwhyprefix{ref}{erence}
+\IDmacro[a]{explref*}{1}
 
 \IDarg{} un texte correspondant à un label global référençant le numéro d'une justification.
 
 
 \subsection{Détailler un \og vrai \fg{} raisonnement via un tableau - Textes utilisés}
 
-\IDmacro*{textdemoID}{0}     \hfill \mwhyprefix{ID}{entifier}
+\IDmacro[n]{textdemoID}     \hfill \mwhyprefix{ID}{entifier}
 
-\IDmacro*{textdemoKNOWN}{0}
+\IDmacro[n]{textdemoKNOWN}
 
-\IDmacro*{textdemoPROP}{0}   \hfill \mwhyprefix{PROP}{osition}
+\IDmacro[n]{textdemoPROP}   \hfill \mwhyprefix{PROP}{osition}
 
-\IDmacro*{textdemoCONS}{0}   \hfill \mwhyprefix{CONS}{equence}
-
-\extraspace
-
-\IDmacro*{textdemoHYPS}{0}   \hfill \prefix{HYPS = HYP-othesis (S-everal ones)} 
-
-\IDmacro*{textdemoHYP}{0}    \hfill \prefix{HYP = HYP-othesis (just one)}
-
-\IDmacro*{textdemoCCL}{0}    \hfill \prefix{CCL = C-on-CL-usion}
+\IDmacro[n]{textdemoCONS}   \hfill \mwhyprefix{CONS}{equence}
 
 \extraspace
 
-\IDmacro*{textdemoNEXTPAGE}{0}
+\IDmacro[n]{textdemoHYPS}   \hfill \prefix{HYPS = HYP-othesis (S-everal ones)} 
+
+\IDmacro[n]{textdemoHYP}    \hfill \prefix{HYP = HYP-othesis (just one)}
+
+\IDmacro[n]{textdemoCCL}    \hfill \prefix{CCL = C-on-CL-usion}
+
+\extraspace
+
+\IDmacro[n]{textdemoNEXTPAGE}
 
 
 \end{document}
