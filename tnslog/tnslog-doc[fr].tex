@@ -42,9 +42,11 @@
 
 % Sections numbering
 
-\renewcommand\thesection{\arabic{section}.}
-\renewcommand\thesubsection{\alph{subsection}.}
+%\renewcommand\thechapter{\Alph{chapter}.}
+\renewcommand\thesection{\Roman{section}.}
+\renewcommand\thesubsection{\arabic{subsection}.}
 \renewcommand\thesubsubsection{\roman{subsubsection}.}
+
 
 
 % MISC
@@ -261,12 +263,12 @@ Le package \verb+tnslog+ facilite la rédaction de preuves formelles basiques vi
 % tnscom used - START
 \section{Beta-dépendance}
 
-\verb#\tnscom# qui est disponible sur \url{https://github.com/typensee-latex/tnscom.git} est un package utilisé en coulisse.
+\verb#tnscom# qui est disponible sur \url{https://github.com/typensee-latex/tnscom.git} est un package utilisé en coulisse.
 % tnscom used - END
 % List of packages - START
 \section{Packages utilisés}
 
-La roue ayant déjà été inventée, le package \verb#tnslinalg# réutilise les packages suivants sans aucun scrupule.
+La roue ayant déjà été inventée, le package \verb#tnslog# réutilise les packages suivants sans aucun scrupule.
 
 \begin{multicols}{4}
     \begin{itemize}
