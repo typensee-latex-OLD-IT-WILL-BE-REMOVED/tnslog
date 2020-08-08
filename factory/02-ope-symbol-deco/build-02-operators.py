@@ -87,7 +87,7 @@ for symb, assocdecos in infos["todecorate"].items():
     if assocdecos == ":all:":
         for onedeco in infos["decorations"]:
             newmacros.append(
-f"\\newcommand\\{symb}{onedeco}{{\\tns@over@math@symbol{{\\textop{onedeco}}}{{\\{symb}}}}}"
+f"\\newcommand\\{symb}{onedeco}{{\\tns@over@math@symbol{{\\txtop{onedeco}}}{{\\{symb}}}}}"
             )
 
 

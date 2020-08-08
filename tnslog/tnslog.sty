@@ -39,27 +39,27 @@
 % Settable texts
 \@ifpackagewith{babel}{french}{
 % == Decorations - FRENCH - START == %
-    \newcommand\textopappli{appli}
-    \newcommand\textopchoice{choix}
-    \newcommand\textopcond{cond}
-    \newcommand\textopcons{cons}
-    \newcommand\textopdef{déf}
-    \newcommand\textopplot{graph}
-    \newcommand\textophyp{hyp}
-    \newcommand\textopid{id}
-    \newcommand\textoptest{?}
+    \newcommand\txtopappli{appli}
+    \newcommand\txtopchoice{choix}
+    \newcommand\txtopcond{cond}
+    \newcommand\txtopcons{cons}
+    \newcommand\txtopdef{déf}
+    \newcommand\txtopplot{graph}
+    \newcommand\txtophyp{hyp}
+    \newcommand\txtopid{id}
+    \newcommand\txtoptest{?}
 % == Decorations - FRENCH - END == %
 }{
 % == Decorations - ENGLISH - START == %
-    \newcommand\textopappli{appli}
-    \newcommand\textopchoice{choice}
-    \newcommand\textopcond{cond}
-    \newcommand\textopcons{cons}
-    \newcommand\textopdef{def}
-    \newcommand\textopplot{plot}
-    \newcommand\textophyp{hyp}
-    \newcommand\textopid{id}
-    \newcommand\textoptest{?}
+    \newcommand\txtopappli{appli}
+    \newcommand\txtopchoice{choice}
+    \newcommand\txtopcond{cond}
+    \newcommand\txtopcons{cons}
+    \newcommand\txtopdef{def}
+    \newcommand\txtopplot{plot}
+    \newcommand\txtophyp{hyp}
+    \newcommand\txtopid{id}
+    \newcommand\txtoptest{?}
 % == Decorations - ENGLISH - END == %
 }
 
@@ -67,93 +67,93 @@
 % == Decorated versions - START == %
 
 \newcommand\eqdef{\@ifstar{\tnslog@eqdef@star}{\tnslog@eqdef@no@star}}
-\newcommand\tnslog@eqdef@no@star{\tns@over@math@symbol{\textopdef}{=}}
+\newcommand\tnslog@eqdef@no@star{\tns@over@math@symbol{\txtopdef}{=}}
 \newcommand\tnslog@eqdef@star{\coloneqq}
 
 \newcommand\eqid{\@ifstar{\tnslog@eqid@star}{\tnslog@eqid@no@star}}
-\newcommand\tnslog@eqid@no@star{\tns@over@math@symbol{\textopid}{=}}
+\newcommand\tnslog@eqid@no@star{\tns@over@math@symbol{\txtopid}{=}}
 \newcommand\tnslog@eqid@star{\rightleftharpoons}
 
-\newcommand\eqplot{\tns@over@math@symbol{\textopplot}{=}}
-\newcommand\eqappli{\tns@over@math@symbol{\textopappli}{=}}
-\newcommand\eqchoice{\tns@over@math@symbol{\textopchoice}{=}}
-\newcommand\eqcond{\tns@over@math@symbol{\textopcond}{=}}
-\newcommand\eqcons{\tns@over@math@symbol{\textopcons}{=}}
-\newcommand\eqhyp{\tns@over@math@symbol{\textophyp}{=}}
-\newcommand\eqtest{\tns@over@math@symbol{\textoptest}{=}}
+\newcommand\eqplot{\tns@over@math@symbol{\txtopplot}{=}}
+\newcommand\eqappli{\tns@over@math@symbol{\txtopappli}{=}}
+\newcommand\eqchoice{\tns@over@math@symbol{\txtopchoice}{=}}
+\newcommand\eqcond{\tns@over@math@symbol{\txtopcond}{=}}
+\newcommand\eqcons{\tns@over@math@symbol{\txtopcons}{=}}
+\newcommand\eqhyp{\tns@over@math@symbol{\txtophyp}{=}}
+\newcommand\eqtest{\tns@over@math@symbol{\txtoptest}{=}}
 
-\newcommand\neqid{\tns@over@math@symbol{\textopid}{\neq}}
-\newcommand\neqplot{\tns@over@math@symbol{\textopplot}{\neq}}
-\newcommand\neqappli{\tns@over@math@symbol{\textopappli}{\neq}}
-\newcommand\neqchoice{\tns@over@math@symbol{\textopchoice}{\neq}}
-\newcommand\neqcond{\tns@over@math@symbol{\textopcond}{\neq}}
-\newcommand\neqcons{\tns@over@math@symbol{\textopcons}{\neq}}
-\newcommand\neqhyp{\tns@over@math@symbol{\textophyp}{\neq}}
-\newcommand\neqtest{\tns@over@math@symbol{\textoptest}{\neq}}
+\newcommand\neqid{\tns@over@math@symbol{\txtopid}{\neq}}
+\newcommand\neqplot{\tns@over@math@symbol{\txtopplot}{\neq}}
+\newcommand\neqappli{\tns@over@math@symbol{\txtopappli}{\neq}}
+\newcommand\neqchoice{\tns@over@math@symbol{\txtopchoice}{\neq}}
+\newcommand\neqcond{\tns@over@math@symbol{\txtopcond}{\neq}}
+\newcommand\neqcons{\tns@over@math@symbol{\txtopcons}{\neq}}
+\newcommand\neqhyp{\tns@over@math@symbol{\txtophyp}{\neq}}
+\newcommand\neqtest{\tns@over@math@symbol{\txtoptest}{\neq}}
 
-\newcommand\lessplot{\tns@over@math@symbol{\textopplot}{<}}
-\newcommand\lessappli{\tns@over@math@symbol{\textopappli}{<}}
-\newcommand\lesschoice{\tns@over@math@symbol{\textopchoice}{<}}
-\newcommand\lesscond{\tns@over@math@symbol{\textopcond}{<}}
-\newcommand\lesscons{\tns@over@math@symbol{\textopcons}{<}}
-\newcommand\lesshyp{\tns@over@math@symbol{\textophyp}{<}}
-\newcommand\lesstest{\tns@over@math@symbol{\textoptest}{<}}
+\newcommand\lessplot{\tns@over@math@symbol{\txtopplot}{<}}
+\newcommand\lessappli{\tns@over@math@symbol{\txtopappli}{<}}
+\newcommand\lesschoice{\tns@over@math@symbol{\txtopchoice}{<}}
+\newcommand\lesscond{\tns@over@math@symbol{\txtopcond}{<}}
+\newcommand\lesscons{\tns@over@math@symbol{\txtopcons}{<}}
+\newcommand\lesshyp{\tns@over@math@symbol{\txtophyp}{<}}
+\newcommand\lesstest{\tns@over@math@symbol{\txtoptest}{<}}
 
-\newcommand\nlessplot{\tns@over@math@symbol{\textopplot}{\nless}}
-\newcommand\nlessappli{\tns@over@math@symbol{\textopappli}{\nless}}
-\newcommand\nlesschoice{\tns@over@math@symbol{\textopchoice}{\nless}}
-\newcommand\nlesscond{\tns@over@math@symbol{\textopcond}{\nless}}
-\newcommand\nlesscons{\tns@over@math@symbol{\textopcons}{\nless}}
-\newcommand\nlesshyp{\tns@over@math@symbol{\textophyp}{\nless}}
-\newcommand\nlesstest{\tns@over@math@symbol{\textoptest}{\nless}}
+\newcommand\nlessplot{\tns@over@math@symbol{\txtopplot}{\nless}}
+\newcommand\nlessappli{\tns@over@math@symbol{\txtopappli}{\nless}}
+\newcommand\nlesschoice{\tns@over@math@symbol{\txtopchoice}{\nless}}
+\newcommand\nlesscond{\tns@over@math@symbol{\txtopcond}{\nless}}
+\newcommand\nlesscons{\tns@over@math@symbol{\txtopcons}{\nless}}
+\newcommand\nlesshyp{\tns@over@math@symbol{\txtophyp}{\nless}}
+\newcommand\nlesstest{\tns@over@math@symbol{\txtoptest}{\nless}}
 
-\newcommand\leqplot{\tns@over@math@symbol{\textopplot}{\leq}}
-\newcommand\leqappli{\tns@over@math@symbol{\textopappli}{\leq}}
-\newcommand\leqchoice{\tns@over@math@symbol{\textopchoice}{\leq}}
-\newcommand\leqcond{\tns@over@math@symbol{\textopcond}{\leq}}
-\newcommand\leqcons{\tns@over@math@symbol{\textopcons}{\leq}}
-\newcommand\leqhyp{\tns@over@math@symbol{\textophyp}{\leq}}
-\newcommand\leqtest{\tns@over@math@symbol{\textoptest}{\leq}}
+\newcommand\leqplot{\tns@over@math@symbol{\txtopplot}{\leq}}
+\newcommand\leqappli{\tns@over@math@symbol{\txtopappli}{\leq}}
+\newcommand\leqchoice{\tns@over@math@symbol{\txtopchoice}{\leq}}
+\newcommand\leqcond{\tns@over@math@symbol{\txtopcond}{\leq}}
+\newcommand\leqcons{\tns@over@math@symbol{\txtopcons}{\leq}}
+\newcommand\leqhyp{\tns@over@math@symbol{\txtophyp}{\leq}}
+\newcommand\leqtest{\tns@over@math@symbol{\txtoptest}{\leq}}
 
-\newcommand\nleqplot{\tns@over@math@symbol{\textopplot}{\nleq}}
-\newcommand\nleqappli{\tns@over@math@symbol{\textopappli}{\nleq}}
-\newcommand\nleqchoice{\tns@over@math@symbol{\textopchoice}{\nleq}}
-\newcommand\nleqcond{\tns@over@math@symbol{\textopcond}{\nleq}}
-\newcommand\nleqcons{\tns@over@math@symbol{\textopcons}{\nleq}}
-\newcommand\nleqhyp{\tns@over@math@symbol{\textophyp}{\nleq}}
-\newcommand\nleqtest{\tns@over@math@symbol{\textoptest}{\nleq}}
+\newcommand\nleqplot{\tns@over@math@symbol{\txtopplot}{\nleq}}
+\newcommand\nleqappli{\tns@over@math@symbol{\txtopappli}{\nleq}}
+\newcommand\nleqchoice{\tns@over@math@symbol{\txtopchoice}{\nleq}}
+\newcommand\nleqcond{\tns@over@math@symbol{\txtopcond}{\nleq}}
+\newcommand\nleqcons{\tns@over@math@symbol{\txtopcons}{\nleq}}
+\newcommand\nleqhyp{\tns@over@math@symbol{\txtophyp}{\nleq}}
+\newcommand\nleqtest{\tns@over@math@symbol{\txtoptest}{\nleq}}
 
-\newcommand\gtrplot{\tns@over@math@symbol{\textopplot}{>}}
-\newcommand\gtrappli{\tns@over@math@symbol{\textopappli}{>}}
-\newcommand\gtrchoice{\tns@over@math@symbol{\textopchoice}{>}}
-\newcommand\gtrcond{\tns@over@math@symbol{\textopcond}{>}}
-\newcommand\gtrcons{\tns@over@math@symbol{\textopcons}{>}}
-\newcommand\gtrhyp{\tns@over@math@symbol{\textophyp}{>}}
-\newcommand\gtrtest{\tns@over@math@symbol{\textoptest}{>}}
+\newcommand\gtrplot{\tns@over@math@symbol{\txtopplot}{>}}
+\newcommand\gtrappli{\tns@over@math@symbol{\txtopappli}{>}}
+\newcommand\gtrchoice{\tns@over@math@symbol{\txtopchoice}{>}}
+\newcommand\gtrcond{\tns@over@math@symbol{\txtopcond}{>}}
+\newcommand\gtrcons{\tns@over@math@symbol{\txtopcons}{>}}
+\newcommand\gtrhyp{\tns@over@math@symbol{\txtophyp}{>}}
+\newcommand\gtrtest{\tns@over@math@symbol{\txtoptest}{>}}
 
-\newcommand\ngtrplot{\tns@over@math@symbol{\textopplot}{\ngtr}}
-\newcommand\ngtrappli{\tns@over@math@symbol{\textopappli}{\ngtr}}
-\newcommand\ngtrchoice{\tns@over@math@symbol{\textopchoice}{\ngtr}}
-\newcommand\ngtrcond{\tns@over@math@symbol{\textopcond}{\ngtr}}
-\newcommand\ngtrcons{\tns@over@math@symbol{\textopcons}{\ngtr}}
-\newcommand\ngtrhyp{\tns@over@math@symbol{\textophyp}{\ngtr}}
-\newcommand\ngtrtest{\tns@over@math@symbol{\textoptest}{\ngtr}}
+\newcommand\ngtrplot{\tns@over@math@symbol{\txtopplot}{\ngtr}}
+\newcommand\ngtrappli{\tns@over@math@symbol{\txtopappli}{\ngtr}}
+\newcommand\ngtrchoice{\tns@over@math@symbol{\txtopchoice}{\ngtr}}
+\newcommand\ngtrcond{\tns@over@math@symbol{\txtopcond}{\ngtr}}
+\newcommand\ngtrcons{\tns@over@math@symbol{\txtopcons}{\ngtr}}
+\newcommand\ngtrhyp{\tns@over@math@symbol{\txtophyp}{\ngtr}}
+\newcommand\ngtrtest{\tns@over@math@symbol{\txtoptest}{\ngtr}}
 
-\newcommand\geqplot{\tns@over@math@symbol{\textopplot}{\geq}}
-\newcommand\geqappli{\tns@over@math@symbol{\textopappli}{\geq}}
-\newcommand\geqchoice{\tns@over@math@symbol{\textopchoice}{\geq}}
-\newcommand\geqcond{\tns@over@math@symbol{\textopcond}{\geq}}
-\newcommand\geqcons{\tns@over@math@symbol{\textopcons}{\geq}}
-\newcommand\geqhyp{\tns@over@math@symbol{\textophyp}{\geq}}
-\newcommand\geqtest{\tns@over@math@symbol{\textoptest}{\geq}}
+\newcommand\geqplot{\tns@over@math@symbol{\txtopplot}{\geq}}
+\newcommand\geqappli{\tns@over@math@symbol{\txtopappli}{\geq}}
+\newcommand\geqchoice{\tns@over@math@symbol{\txtopchoice}{\geq}}
+\newcommand\geqcond{\tns@over@math@symbol{\txtopcond}{\geq}}
+\newcommand\geqcons{\tns@over@math@symbol{\txtopcons}{\geq}}
+\newcommand\geqhyp{\tns@over@math@symbol{\txtophyp}{\geq}}
+\newcommand\geqtest{\tns@over@math@symbol{\txtoptest}{\geq}}
 
-\newcommand\ngeqplot{\tns@over@math@symbol{\textopplot}{\ngeq}}
-\newcommand\ngeqappli{\tns@over@math@symbol{\textopappli}{\ngeq}}
-\newcommand\ngeqchoice{\tns@over@math@symbol{\textopchoice}{\ngeq}}
-\newcommand\ngeqcond{\tns@over@math@symbol{\textopcond}{\ngeq}}
-\newcommand\ngeqcons{\tns@over@math@symbol{\textopcons}{\ngeq}}
-\newcommand\ngeqhyp{\tns@over@math@symbol{\textophyp}{\ngeq}}
-\newcommand\ngeqtest{\tns@over@math@symbol{\textoptest}{\ngeq}}
+\newcommand\ngeqplot{\tns@over@math@symbol{\txtopplot}{\ngeq}}
+\newcommand\ngeqappli{\tns@over@math@symbol{\txtopappli}{\ngeq}}
+\newcommand\ngeqchoice{\tns@over@math@symbol{\txtopchoice}{\ngeq}}
+\newcommand\ngeqcond{\tns@over@math@symbol{\txtopcond}{\ngeq}}
+\newcommand\ngeqcons{\tns@over@math@symbol{\txtopcons}{\ngeq}}
+\newcommand\ngeqhyp{\tns@over@math@symbol{\txtophyp}{\ngeq}}
+\newcommand\ngeqtest{\tns@over@math@symbol{\txtoptest}{\ngeq}}
 
 % == Decorated versions - END == %
 
@@ -184,47 +184,47 @@
 \newcommand\liesimp{\mathrel{\Longleftarrow}}
 \newcommand\nliesimp{\centernot\liesimp}
 
-\newcommand\iffappli{\tns@over@math@symbol{\textopappli}{\iff}}
-\newcommand\iffchoice{\tns@over@math@symbol{\textopchoice}{\iff}}
-\newcommand\iffcond{\tns@over@math@symbol{\textopcond}{\iff}}
-\newcommand\iffcons{\tns@over@math@symbol{\textopcons}{\iff}}
-\newcommand\iffhyp{\tns@over@math@symbol{\textophyp}{\iff}}
-\newcommand\ifftest{\tns@over@math@symbol{\textoptest}{\iff}}
+\newcommand\iffappli{\tns@over@math@symbol{\txtopappli}{\iff}}
+\newcommand\iffchoice{\tns@over@math@symbol{\txtopchoice}{\iff}}
+\newcommand\iffcond{\tns@over@math@symbol{\txtopcond}{\iff}}
+\newcommand\iffcons{\tns@over@math@symbol{\txtopcons}{\iff}}
+\newcommand\iffhyp{\tns@over@math@symbol{\txtophyp}{\iff}}
+\newcommand\ifftest{\tns@over@math@symbol{\txtoptest}{\iff}}
 
-\newcommand\niffappli{\tns@over@math@symbol{\textopappli}{\niff}}
-\newcommand\niffchoice{\tns@over@math@symbol{\textopchoice}{\niff}}
-\newcommand\niffcond{\tns@over@math@symbol{\textopcond}{\niff}}
-\newcommand\niffcons{\tns@over@math@symbol{\textopcons}{\niff}}
-\newcommand\niffhyp{\tns@over@math@symbol{\textophyp}{\niff}}
-\newcommand\nifftest{\tns@over@math@symbol{\textoptest}{\niff}}
+\newcommand\niffappli{\tns@over@math@symbol{\txtopappli}{\niff}}
+\newcommand\niffchoice{\tns@over@math@symbol{\txtopchoice}{\niff}}
+\newcommand\niffcond{\tns@over@math@symbol{\txtopcond}{\niff}}
+\newcommand\niffcons{\tns@over@math@symbol{\txtopcons}{\niff}}
+\newcommand\niffhyp{\tns@over@math@symbol{\txtophyp}{\niff}}
+\newcommand\nifftest{\tns@over@math@symbol{\txtoptest}{\niff}}
 
-\newcommand\impliesappli{\tns@over@math@symbol{\textopappli}{\implies}}
-\newcommand\implieschoice{\tns@over@math@symbol{\textopchoice}{\implies}}
-\newcommand\impliescond{\tns@over@math@symbol{\textopcond}{\implies}}
-\newcommand\impliescons{\tns@over@math@symbol{\textopcons}{\implies}}
-\newcommand\implieshyp{\tns@over@math@symbol{\textophyp}{\implies}}
-\newcommand\impliestest{\tns@over@math@symbol{\textoptest}{\implies}}
+\newcommand\impliesappli{\tns@over@math@symbol{\txtopappli}{\implies}}
+\newcommand\implieschoice{\tns@over@math@symbol{\txtopchoice}{\implies}}
+\newcommand\impliescond{\tns@over@math@symbol{\txtopcond}{\implies}}
+\newcommand\impliescons{\tns@over@math@symbol{\txtopcons}{\implies}}
+\newcommand\implieshyp{\tns@over@math@symbol{\txtophyp}{\implies}}
+\newcommand\impliestest{\tns@over@math@symbol{\txtoptest}{\implies}}
 
-\newcommand\nimpliesappli{\tns@over@math@symbol{\textopappli}{\nimplies}}
-\newcommand\nimplieschoice{\tns@over@math@symbol{\textopchoice}{\nimplies}}
-\newcommand\nimpliescond{\tns@over@math@symbol{\textopcond}{\nimplies}}
-\newcommand\nimpliescons{\tns@over@math@symbol{\textopcons}{\nimplies}}
-\newcommand\nimplieshyp{\tns@over@math@symbol{\textophyp}{\nimplies}}
-\newcommand\nimpliestest{\tns@over@math@symbol{\textoptest}{\nimplies}}
+\newcommand\nimpliesappli{\tns@over@math@symbol{\txtopappli}{\nimplies}}
+\newcommand\nimplieschoice{\tns@over@math@symbol{\txtopchoice}{\nimplies}}
+\newcommand\nimpliescond{\tns@over@math@symbol{\txtopcond}{\nimplies}}
+\newcommand\nimpliescons{\tns@over@math@symbol{\txtopcons}{\nimplies}}
+\newcommand\nimplieshyp{\tns@over@math@symbol{\txtophyp}{\nimplies}}
+\newcommand\nimpliestest{\tns@over@math@symbol{\txtoptest}{\nimplies}}
 
-\newcommand\liesimpappli{\tns@over@math@symbol{\textopappli}{\liesimp}}
-\newcommand\liesimpchoice{\tns@over@math@symbol{\textopchoice}{\liesimp}}
-\newcommand\liesimpcond{\tns@over@math@symbol{\textopcond}{\liesimp}}
-\newcommand\liesimpcons{\tns@over@math@symbol{\textopcons}{\liesimp}}
-\newcommand\liesimphyp{\tns@over@math@symbol{\textophyp}{\liesimp}}
-\newcommand\liesimptest{\tns@over@math@symbol{\textoptest}{\liesimp}}
+\newcommand\liesimpappli{\tns@over@math@symbol{\txtopappli}{\liesimp}}
+\newcommand\liesimpchoice{\tns@over@math@symbol{\txtopchoice}{\liesimp}}
+\newcommand\liesimpcond{\tns@over@math@symbol{\txtopcond}{\liesimp}}
+\newcommand\liesimpcons{\tns@over@math@symbol{\txtopcons}{\liesimp}}
+\newcommand\liesimphyp{\tns@over@math@symbol{\txtophyp}{\liesimp}}
+\newcommand\liesimptest{\tns@over@math@symbol{\txtoptest}{\liesimp}}
 
-\newcommand\nliesimpappli{\tns@over@math@symbol{\textopappli}{\nliesimp}}
-\newcommand\nliesimpchoice{\tns@over@math@symbol{\textopchoice}{\nliesimp}}
-\newcommand\nliesimpcond{\tns@over@math@symbol{\textopcond}{\nliesimp}}
-\newcommand\nliesimpcons{\tns@over@math@symbol{\textopcons}{\nliesimp}}
-\newcommand\nliesimphyp{\tns@over@math@symbol{\textophyp}{\nliesimp}}
-\newcommand\nliesimptest{\tns@over@math@symbol{\textoptest}{\nliesimp}}
+\newcommand\nliesimpappli{\tns@over@math@symbol{\txtopappli}{\nliesimp}}
+\newcommand\nliesimpchoice{\tns@over@math@symbol{\txtopchoice}{\nliesimp}}
+\newcommand\nliesimpcond{\tns@over@math@symbol{\txtopcond}{\nliesimp}}
+\newcommand\nliesimpcons{\tns@over@math@symbol{\txtopcons}{\nliesimp}}
+\newcommand\nliesimphyp{\tns@over@math@symbol{\txtophyp}{\nliesimp}}
+\newcommand\nliesimptest{\tns@over@math@symbol{\txtoptest}{\nliesimp}}
 
 % == Decorated versions - END == %
 

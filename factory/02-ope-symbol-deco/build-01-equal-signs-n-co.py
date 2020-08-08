@@ -180,7 +180,7 @@ for symbname, decos in INFOS["todecorate"].items():
 
     for onedeco in decos:
         macroname   = symbname + onedeco
-        textversion = f"\\tns@over@math@symbol{{\\textop{onedeco}}}{{{symb}}}"
+        textversion = f"\\tns@over@math@symbol{{\\txtop{onedeco}}}{{{symb}}}"
 
         ALL_OPES_DECO.append(macroname)
 
@@ -254,8 +254,8 @@ for pos in range(0, nbdecos, 2):
     onedeco  = ALL_DECOS[pos]
 
     textversions.append(
-        f"{DECO*2}\\macro{{textop{onedeco}\\{{\\}}}} "
-        f"& donne \\emph{{\\og \\textop{onedeco} \\fg}}"
+        f"{DECO*2}\\macro{{txtop{onedeco}\\{{\\}}}} "
+        f"& donne \\emph{{\\og \\txtop{onedeco} \\fg}}"
     )
 
     if pos < nbdecos - 1:
@@ -263,8 +263,8 @@ for pos in range(0, nbdecos, 2):
         onedeco = ALL_DECOS[pos+1]
 
         textversions.append(
-            f"{DECO*2}& \\macro{{textop{onedeco}\\{{\\}}}} "
-            f"& donne \\emph{{\\og \\textop{onedeco} \\fg}} \\\\"
+            f"{DECO*2}& \\macro{{txtop{onedeco}\\{{\\}}}} "
+            f"& donne \\emph{{\\og \\txtop{onedeco} \\fg}} \\\\"
         )
 
     else:
@@ -286,7 +286,7 @@ text_start, _, text_end = between(
 )
 
 alldecos = [
-    f"textop{d}"
+    f"txtop{d}"
     for d in ALL_DECOS
 ]
 
@@ -363,7 +363,7 @@ for lang, trans in ALL_LANGS.items():
     )
 
     texlines = [
-        f"\\newcommand\\textop{word}{{{wtrans}}}"
+        f"\\newcommand\\txtop{word}{{{wtrans}}}"
         for word, wtrans in trans.items()
     ]
 

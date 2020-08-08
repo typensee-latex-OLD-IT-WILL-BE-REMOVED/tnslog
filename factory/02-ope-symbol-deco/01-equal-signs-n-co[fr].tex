@@ -17,7 +17,7 @@ Bien entendu on tord les règles de typographie avec ce type de pratique mais c'
 
 \subsection{Définir quelque chose}
 
-L'exemple suivant montre deux façons de rédiger une égalité signifiant une définition \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \textopdef \fg})}.
+L'exemple suivant montre deux façons de rédiger une égalité signifiant une définition \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \txtopdef \fg})}.
 
 \begin{latexex}
 $f(x) \eqdef x^3 + 1$
@@ -31,7 +31,7 @@ $f(x) \eqdef* x^3 + 1$
 
 \subsection{Indiquer une identité}
 
-L'exemple suivant montre deux façons de rédiger des identités avec une notation symbolique non standard \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \textopid \fg})}.
+L'exemple suivant montre deux façons de rédiger des identités avec une notation symbolique non standard \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \txtopid \fg})}.
 
 \begin{latexex}
 $(a + b)^2 \eqid a^2 + b^2 + 2 a b$
@@ -45,7 +45,7 @@ $(a + b)^2 \eqid* a^2 + b^2 + 2 a b$
 
 \subsection{Une égalité à vérifier ou non, une hypothèse, une condition}
 
-Se reporter à la section \ref{tnslog-texts-for-opes} pour savoir comment sont définis les textes \emph{\og \textopcons \fg} , \emph{\og \textopcond \fg} et \emph{\og \textophyp \fg}.
+Se reporter à la section \ref{tnslog-texts-for-opes} pour savoir comment sont définis les textes \emph{\og \txtopcons \fg} , \emph{\og \txtopcond \fg} et \emph{\og \txtophyp \fg}.
 
 \begin{latexex}
 $(a + b)^3 \eqtest a^3 + b^3 + 3 a b$
@@ -63,7 +63,7 @@ $x \eqcons 0$
 
 \subsection{Une égalité indiquant le choix d'une valeur ou l'application d'une relation}
 
-La section \ref{tnslog-texts-for-opes} permet de savoir comment les textes \emph{\og \textopchoice \fg} et \emph{\og \textopappli \fg} sont définis.
+La section \ref{tnslog-texts-for-opes} permet de savoir comment les textes \emph{\og \txtopchoice \fg} et \emph{\og \txtopappli \fg} sont définis.
 
 \begin{latexex}
 $x \geqcond 4$ implique
@@ -79,7 +79,7 @@ $123^2 \geqappli 16$.
 
 \subsection{Une égalité indiquant l'équation d'une courbe}
 
-La section \ref{tnslog-texts-for-opes} permet de savoir comment les texte \emph{\og \textopplot \fg} est défini.
+La section \ref{tnslog-texts-for-opes} permet de savoir comment les texte \emph{\og \txtopplot \fg} est défini.
 
 \begin{latexex}
 $M \in C: y \eqplot x^2 + 3$
@@ -136,15 +136,15 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 \begin{center}
 	\begin{tabular}{l@{\kern1ex}l@{\kern2cm}l@{\kern1ex}l}
 % == All texts - START == %
-        \macro{textopappli\{\}} & donne \emph{\og \textopappli \fg}
-        & \macro{textopchoice\{\}} & donne \emph{\og \textopchoice \fg} \\
-        \macro{textopcond\{\}} & donne \emph{\og \textopcond \fg}
-        & \macro{textopcons\{\}} & donne \emph{\og \textopcons \fg} \\
-        \macro{textopdef\{\}} & donne \emph{\og \textopdef \fg}
-        & \macro{textophyp\{\}} & donne \emph{\og \textophyp \fg} \\
-        \macro{textopid\{\}} & donne \emph{\og \textopid \fg}
-        & \macro{textopplot\{\}} & donne \emph{\og \textopplot \fg} \\
-        \macro{textoptest\{\}} & donne \emph{\og \textoptest \fg}
+        \macro{txtopappli\{\}} & donne \emph{\og \txtopappli \fg}
+        & \macro{txtopchoice\{\}} & donne \emph{\og \txtopchoice \fg} \\
+        \macro{txtopcond\{\}} & donne \emph{\og \txtopcond \fg}
+        & \macro{txtopcons\{\}} & donne \emph{\og \txtopcons \fg} \\
+        \macro{txtopdef\{\}} & donne \emph{\og \txtopdef \fg}
+        & \macro{txtophyp\{\}} & donne \emph{\og \txtophyp \fg} \\
+        \macro{txtopid\{\}} & donne \emph{\og \txtopid \fg}
+        & \macro{txtopplot\{\}} & donne \emph{\og \txtopplot \fg} \\
+        \macro{txtoptest\{\}} & donne \emph{\og \txtoptest \fg}
         & & \\
 % == All texts - END == %
 	\end{tabular}
@@ -160,7 +160,7 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 \begin{multicols}{4}
 % == Technical infos - Texts - START == %
 
-\foreach \k in {textopappli, textopchoice, textopcond, textopcons, textopdef, textophyp, textopid, textopplot, textoptest}{
+\foreach \k in {txtopappli, txtopchoice, txtopcond, txtopcons, txtopdef, txtophyp, txtopid, txtopplot, txtoptest}{
 
 	\IDmacro[n]{\k}
 

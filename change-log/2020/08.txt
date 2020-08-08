@@ -1,0 +1,7 @@
+==========
+2020-08-08
+==========
+
+**New minor version version::``0.1.0-beta``:** see the small important changes below.
+
+**"Text" macros:** the prefix ``txt`` is used instead of ``text``.
