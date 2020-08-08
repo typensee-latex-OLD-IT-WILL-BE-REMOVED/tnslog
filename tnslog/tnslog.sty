@@ -562,16 +562,16 @@
 
 %    * Texts used
 
-\newcommand\textdemoID{Réf.}
-\newcommand\textdemoKNOWN{Je sais que...}
-\newcommand\textdemoPROP{Propriété ou fait utilisé}
-\newcommand\textdemoCONS{Conséquence}
+\newcommand\txtdemoID{Réf.}
+\newcommand\txtdemoKNOWN{Je sais que...}
+\newcommand\txtdemoPROP{Propriété ou fait utilisé}
+\newcommand\txtdemoCONS{Conséquence}
 
-\newcommand\textdemoHYPS{Démonstration sous les hypothèses}
-\newcommand\textdemoHYP{Démonstration sous l'hypothèse}
-\newcommand\textdemoCCL{Conclusion}
+\newcommand\txtdemoHYPS{Démonstration sous les hypothèses}
+\newcommand\txtdemoHYP{Démonstration sous l'hypothèse}
+\newcommand\txtdemoCCL{Conclusion}
 
-\newcommand\textdemoNEXTPAGE{Suite de la démo. page suivante...}
+\newcommand\txtdemoNEXTPAGE{Suite de la démo. page suivante...}
 
 
 %    * Common tools
@@ -651,11 +651,11 @@
     \fi
     %
     \if\relax\hyps\relax\else%
-        \underline{\textdemoHYPS\vphantom{p\textdemoCCL}} : \hyps
+        \underline{\txtdemoHYPS\vphantom{p\txtdemoCCL}} : \hyps
         \vspace{-.25em}
     \fi
     \if\relax\hyp\relax\else%
-        \underline{\textdemoHYP\vphantom{p\textdemoCCL}} : \hyp
+        \underline{\txtdemoHYP\vphantom{p\txtdemoCCL}} : \hyp
         \vspace{-.25em}
     \fi
     \booltrue{tnslog@start@demo@explain}
@@ -663,7 +663,7 @@
         \multicolumn{3}{c}{}
         \\[-.5em]
         \multicolumn{3}{c}{%
-            \textit{\tnslog@demo@extra{\textdemoNEXTPAGE}}%
+            \textit{\tnslog@demo@extra{\txtdemoNEXTPAGE}}%
         }
         \endfoot
         \endlastfoot
@@ -671,7 +671,7 @@
     \end{longtable}
     \if\relax\ccl\relax\else%
         \vspace{-.25em}
-        \underline{\textdemoCCL\vphantom{\textdemoHYPS}} : \ccl
+        \underline{\txtdemoCCL\vphantom{\txtdemoHYPS}} : \ccl
     \fi
 }
 
@@ -732,24 +732,24 @@
     \small
     \renewcommand{\arraystretch}{1.5}
     \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}
-        \textbf{\tnslog@demo@extra{\textdemoID}}
-            & \textbf{\tnslog@demo@extra{\textdemoKNOWN}}
-            & \textbf{\tnslog@demo@extra{\textdemoPROP}}
-            & \textbf{\tnslog@demo@extra{\textdemoCONS}}
+        \textbf{\tnslog@demo@extra{\txtdemoID}}
+            & \textbf{\tnslog@demo@extra{\txtdemoKNOWN}}
+            & \textbf{\tnslog@demo@extra{\txtdemoPROP}}
+            & \textbf{\tnslog@demo@extra{\txtdemoCONS}}
         \\ \hline
         \endfirsthead
         %
-        \textbf{\tnslog@demo@extra{\textdemoID}}
-            & \textbf{\tnslog@demo@extra{\textdemoKNOWN}}
-            & \textbf{\tnslog@demo@extra{\textdemoPROP}}
-            & \textbf{\tnslog@demo@extra{\textdemoCONS}}
+        \textbf{\tnslog@demo@extra{\txtdemoID}}
+            & \textbf{\tnslog@demo@extra{\txtdemoKNOWN}}
+            & \textbf{\tnslog@demo@extra{\txtdemoPROP}}
+            & \textbf{\tnslog@demo@extra{\txtdemoCONS}}
         \\ \hline
         \endhead
         %
         \multicolumn{3}{c}{}
         \\[-1.25em]
         \multicolumn{4}{c}{%
-            \textit{\tnslog@demo@extra{\textdemoNEXTPAGE}}%
+            \textit{\tnslog@demo@extra{\txtdemoNEXTPAGE}}%
         }
         \\
         \endfoot
