@@ -3,7 +3,7 @@
 \makeatletter
     \input{../config/header[fr].sty}
 
-    \usepackage{01-calc-explained}
+    \usepackage{01-stepcalc}
 \makeatother
 
 
@@ -17,7 +17,7 @@
 Vous pouvez écrire très facilement des calculs ou raisonnement simples alignés comme suit sans trop vous fatiguez.
 
 \begin{latexex}
-\begin{explain}[style = sar]
+\begin{stepcalc}[style = sar]
     (a + b) (a + b)
         \explnext{}
     (a + b)^2
@@ -26,13 +26,13 @@ Vous pouvez écrire très facilement des calculs ou raisonnement simples aligné
         \comthis{Pourquoi ?}
         \explnext{}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 On a accès à une autre mise en forme \emph{(ceci peut rendre aussi service)}. 
 
 \begin{latexex}
-\begin{explain}[style = ar]
+\begin{stepcalc}[style = ar]
     (a + b) (a + b)
         \explnext{}
     (a + b)^2
@@ -40,7 +40,7 @@ On a accès à une autre mise en forme \emph{(ceci peut rendre aussi service)}.
     a^2 + b^2 + 2 a b
         \explnext{}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 Enfin dans le cadre de calculs à faire expliquer par des élèves, ce qui suit peut être utile.
@@ -49,7 +49,7 @@ Enfin dans le cadre de calculs à faire expliquer par des élèves, ce qui suit 
 Donner les justifications J1, J2 et J3.
 
 \medskip
-\begin{explain}
+\begin{stepcalc}
     (a + b) (a + b)
         \explnext{J1}
     (a + b)^2
@@ -57,7 +57,7 @@ Donner les justifications J1, J2 et J3.
     a^2 + b^2 + 2 a b
         \explnext{J3}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -69,7 +69,7 @@ Donner les justifications J1, J2 et J3.
 Voici un style de codage que nous trouvons très facile à relire et maintenir.
 
 \begin{latexex}
-\begin{explain}[com = al]
+\begin{stepcalc}[com = al]
     (a + b) (a + b)
     	\comthis{Forme facto.}
     	\explnext{Via $x^2 = x \cdot x$.}
@@ -81,7 +81,7 @@ Voici un style de codage que nous trouvons très facile à relire et maintenir.
     %
     a^2 + 2 a b + b^2
     	\comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 

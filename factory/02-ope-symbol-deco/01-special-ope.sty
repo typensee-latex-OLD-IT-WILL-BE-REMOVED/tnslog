@@ -1,0 +1,404 @@
+% == PACKAGES USED == %
+
+\RequirePackage{mathtools}
+\RequirePackage{centernot}
+
+\RequirePackage{graphicx}
+
+\RequirePackage{tnscom}
+
+
+% == DEFINITIONS == %
+
+% == Specific characters from mathabx == %
+
+% Source:
+%    * https://tex.stackexchange.com/a/585285/6880
+
+\DeclareFontFamily{U}{mathb}{}
+\DeclareFontShape{U}{mathb}{m}{n}{
+  <-5.5> mathb5
+  <5.5-6.5> mathb6
+  <6.5-7.5> mathb7
+  <7.5-8.5> mathb8
+  <8.5-9.5> mathb9
+  <9.5-11> mathb10
+  <11-> mathb12
+}{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+\DeclareFontSubstitution{U}{mathb}{m}{n}
+
+\DeclareMathSymbol{\tnslog@leftleftharpoons}  {3}{mathb}{"D8}
+\DeclareMathSymbol{\tnslog@rightrightharpoons}{3}{mathb}{"D9}
+
+
+\DeclareFontFamily{U}{matha}{}
+\DeclareFontShape{U}{matha}{m}{n}{
+  <-5.5> matha5
+  <5.5-6.5> matha6
+  <6.5-7.5> matha7
+  <7.5-8.5> matha8
+  <8.5-9.5> matha9
+  <9.5-11> matha10
+  <11-> matha12
+}{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontSubstitution{U}{matha}{m}{n}
+
+\DeclareMathSymbol{\tnslog@rightleftharpoons}{\mathrel}{matha}{"E9}
+
+
+% == Vertical versions == %
+
+
+\newcommand\viff{\mathrel{\Updownarrow}}
+\newcommand\vimplies{\mathrel{\Downarrow}}
+\newcommand\vbecauseof{\mathrel{\Uparrow}}
+
+\newcommand\nviff{\centernot\viff}
+\newcommand\nvimplies{\centernot\vimplies}
+\newcommand\nvbecauseof{\centernot\vbecauseof}
+
+
+% == Decorations - START == %
+
+% Source for the short sysmbols.
+%    * https://tex.stackexchange.com/a/585267/6880
+
+\newcommand\shorteq{\mathrel{\mathpalette\shorteq@{.55}}}
+\newcommand{\shorteq@}[2]{%
+  \resizebox{#2\width}{\height}{$\m@th#1=$}%
+}
+
+\newcommand\shortless{\mathrel{\mathpalette\shortless@{.55}}}
+\newcommand{\shortless@}[2]{%
+  \resizebox{#2\width}{\height}{$\m@th#1<$}%
+}
+
+\newcommand\shortgtr{\mathrel{\mathpalette\shortgtr@{.55}}}
+\newcommand{\shortgtr@}[2]{%
+  \resizebox{#2\width}{\height}{$\m@th#1>$}%
+}
+
+% Decorable operators.
+
+\newcommand\coldecoope{blue}
+
+\newcommand\txtdecoope[1]{%
+	\text{\tiny\color{\coldecoope}#1}%
+}
+
+\newcommand\eq{\@ifstar{\tnslog@eq@star}{\tnslog@eq@no@star}}
+
+\newcommand\tnslog@eq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	=%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{=}%
+    \fi%
+}
+
+\newcommand\tnslog@eq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	=%
+    \else%
+        \IfEqCase{#1}{%
+            {?}{\shorteq\mkern1.5mu\shorteq}%
+            {appli}{\tnslog@leftleftharpoons}%
+            {cons}{\tnslog@rightrightharpoons}%
+            {def}{\coloneqq}%
+            {id}{\tnslog@rightleftharpoons}%
+        }[%
+            \tns@over@math@symbol{\txtdecoope{#1}}{=}%
+        ]%
+    \fi%
+}
+
+\let\oldneq\neq
+\renewcommand\neq{\@ifstar{\tnslog@neq@star}{\tnslog@neq@no@star}}
+
+\newcommand\tnslog@neq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldneq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldneq}%
+    \fi%
+}
+
+\newcommand\tnslog@neq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldneq%
+    \else%
+        \IfEqCase{#1}{%
+            {?}{\shortless\mkern1.5mu\shortgtr}%
+            {appli}{\centernot\tnslog@leftleftharpoons}%
+            {cons}{\centernot\tnslog@rightrightharpoons}%
+            {def}{\centernot\coloneqq}%
+            {id}{\centernot\tnslog@rightleftharpoons}%
+        }[%
+            \tns@over@math@symbol{\txtdecoope{#1}}{\oldneq}%
+        ]%
+    \fi%
+}
+
+\newcommand\less{\@ifstar{\tnslog@less@star}{\tnslog@less@no@star}}
+
+\newcommand\tnslog@less@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	<%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{<}%
+    \fi%
+}
+
+\newcommand\tnslog@less@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	<%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{<}%
+    \fi%
+}
+
+\let\oldnless\nless
+\renewcommand\nless{\@ifstar{\tnslog@nless@star}{\tnslog@nless@no@star}}
+
+\newcommand\tnslog@nless@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnless%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnless}%
+    \fi%
+}
+
+\newcommand\tnslog@nless@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnless%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnless}%
+    \fi%
+}
+
+\newcommand\gtr{\@ifstar{\tnslog@gtr@star}{\tnslog@gtr@no@star}}
+
+\newcommand\tnslog@gtr@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	>%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{>}%
+    \fi%
+}
+
+\newcommand\tnslog@gtr@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	>%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{>}%
+    \fi%
+}
+
+\let\oldngtr\ngtr
+\renewcommand\ngtr{\@ifstar{\tnslog@ngtr@star}{\tnslog@ngtr@no@star}}
+
+\newcommand\tnslog@ngtr@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngtr%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngtr}%
+    \fi%
+}
+
+\newcommand\tnslog@ngtr@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngtr%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngtr}%
+    \fi%
+}
+
+\let\oldleq\leq
+\renewcommand\leq{\@ifstar{\tnslog@leq@star}{\tnslog@leq@no@star}}
+
+\newcommand\tnslog@leq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldleq}%
+    \fi%
+}
+
+\newcommand\tnslog@leq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldleq}%
+    \fi%
+}
+
+\let\oldnleq\nleq
+\renewcommand\nleq{\@ifstar{\tnslog@nleq@star}{\tnslog@nleq@no@star}}
+
+\newcommand\tnslog@nleq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnleq}%
+    \fi%
+}
+
+\newcommand\tnslog@nleq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnleq}%
+    \fi%
+}
+
+\let\oldgeq\geq
+\renewcommand\geq{\@ifstar{\tnslog@geq@star}{\tnslog@geq@no@star}}
+
+\newcommand\tnslog@geq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldgeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldgeq}%
+    \fi%
+}
+
+\newcommand\tnslog@geq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldgeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldgeq}%
+    \fi%
+}
+
+\let\oldngeq\ngeq
+\renewcommand\ngeq{\@ifstar{\tnslog@ngeq@star}{\tnslog@ngeq@no@star}}
+
+\newcommand\tnslog@ngeq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngeq}%
+    \fi%
+}
+
+\newcommand\tnslog@ngeq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngeq}%
+    \fi%
+}
+
+\let\oldiff\iff
+\renewcommand\iff{\@ifstar{\tnslog@iff@star}{\tnslog@iff@no@star}}
+
+\newcommand\tnslog@iff@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldiff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldiff}%
+    \fi%
+}
+
+\newcommand\tnslog@iff@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldiff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldiff}%
+    \fi%
+}
+
+\newcommand\niff{\@ifstar{\tnslog@niff@star}{\tnslog@niff@no@star}}
+
+\newcommand\tnslog@niff@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\iff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\iff}%
+    \fi%
+}
+
+\newcommand\tnslog@niff@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\iff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\iff}%
+    \fi%
+}
+
+\let\oldimplies\implies
+\renewcommand\implies{\@ifstar{\tnslog@implies@star}{\tnslog@implies@no@star}}
+
+\newcommand\tnslog@implies@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldimplies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldimplies}%
+    \fi%
+}
+
+\newcommand\tnslog@implies@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldimplies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldimplies}%
+    \fi%
+}
+
+\newcommand\nimplies{\@ifstar{\tnslog@nimplies@star}{\tnslog@nimplies@no@star}}
+
+\newcommand\tnslog@nimplies@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\implies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\implies}%
+    \fi%
+}
+
+\newcommand\tnslog@nimplies@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\implies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\implies}%
+    \fi%
+}
+
+\newcommand\becauseof{\@ifstar{\tnslog@becauseof@star}{\tnslog@becauseof@no@star}}
+
+\newcommand\tnslog@becauseof@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\mathrel{\Longleftarrow}%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\mathrel{\Longleftarrow}}%
+    \fi%
+}
+
+\newcommand\tnslog@becauseof@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\mathrel{\Longleftarrow}%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\mathrel{\Longleftarrow}}%
+    \fi%
+}
+
+\newcommand\nbecauseof{\@ifstar{\tnslog@nbecauseof@star}{\tnslog@nbecauseof@no@star}}
+
+\newcommand\tnslog@nbecauseof@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\becauseof%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\becauseof}%
+    \fi%
+}
+
+\newcommand\tnslog@nbecauseof@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\becauseof%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\becauseof}%
+    \fi%
+}
+
+% == Decorations - END == %

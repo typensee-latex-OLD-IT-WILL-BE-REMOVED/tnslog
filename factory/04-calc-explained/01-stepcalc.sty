@@ -1,6 +1,5 @@
 % == PACKAGES USED == %
 
-
 \RequirePackage{amsmath}
 \RequirePackage{witharrows}
 
@@ -26,20 +25,22 @@
 \newcommand\tnslog@expl@next@no@star{}
 \newcommand\tnslog@expl@next@star{}
 
-\newcommand\tnslog@explain@ope{=}
+
+\newcommand\tnslog@step@calc@ope{=}
 
 
 \newcommand\comthis{\@ifstar{\tnslog@com@this@star}{\tnslog@com@this@no@star}}
 \newcommand\tnslog@com@this@no@star{}
 
 \newcommand\tnslog@com@this@star[1]{%
-    \ifbool{tnslog@starttnslog@explain@arrow@}{%
-        \PackageError{tnslog}{comment can't be use to start explain[style = sar]}%
-                             {No comment for the 1st part of explain[style = sar]}
+    \ifbool{tnslog@start@step@calc@arrow@}{%
+        \PackageError{tnslog}{comment can't be use to start stepcalc[style = sar]}%
+                             {No comment for the 1st part of stepcalc[style = sar]}
     }{%
         \kern\expltxtspacein\explcom{#1}%
     }%
 }
+
 
 \newcommand\tnslog@com@this@aligned[1]{%
     \global\booltrue{tnslog@com@this@no@star@used}%
@@ -53,18 +54,22 @@
 
 % Wrapper env with key-val options 
 
-\setKVdefault[tnslog@calc@explain@keys]{%
+\setKVdefault[tnslog@step@calc@keys]{%
     ope   = {=},
     style = u,
     com   = nal
 }
 
-\newenvironment{explain}[1][]{%
-    \useKVdefault[tnslog@calc@explain@keys]%
-    \setKV[tnslog@calc@explain@keys]{#1}%
-    \def\style{\useKV[tnslog@calc@explain@keys]{style}}%
+
+\newbool{tnslog@inside@step@calc@short@arrow@star@}
+
+
+\newenvironment{stepcalc}[1][]{%
+    \useKVdefault[tnslog@step@calc@keys]%
+    \setKV[tnslog@step@calc@keys]{#1}%
+    \def\style{\useKV[tnslog@step@calc@keys]{style}}%
 % Comments
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
         \renewcommand\tnslog@com@this@no@star\tnslog@com@this@aligned%
         \renewcommand\tnslog@expl@next@extra@column{&}
     }{%
@@ -74,33 +79,45 @@
     \IfEqCase{\style}{%
 % University
         {u}{%
-            \begin{tnslog@explain@university}%
+            \begin{tnslog@step@calc@university}%
+            \global\boolfalse{tnslog@inside@step@calc@short@arrow@star@}%
         }%
 % Arrows (long)
         {ar}{%
-            \begin{tnslog@explain@arrow}%
+            \begin{tnslog@step@calc@arrow}%
+            \global\boolfalse{tnslog@inside@step@calc@short@arrow@star@}%
+        }%
+% Arrows (long + operator in margin)
+        {ar*}{%
+            \begin{tnslog@step@calc@arrow}%
+            \global\booltrue{tnslog@inside@step@calc@short@arrow@star@}%
         }%
 % Arrows (short)
         {sar}{%
-            \begin{tnslog@explain@short@arrow}%
+            \begin{tnslog@step@calc@short@arrow}%
+            \global\boolfalse{tnslog@inside@step@calc@short@arrow@star@}%
         }%
     }[%
         \PackageError{tnslog}{unknown style}%
-                             {You can use u (default), ar or sar.}%
+                             {You can use u (default), ar, ar* or sar.}%
     ]%
 }{%
     \IfEqCase{\style}{%
 % University
         {u}{%
-            \end{tnslog@explain@university}%
+            \end{tnslog@step@calc@university}%
         }%
 % Arrows (long)
         {ar}{%
-            \end{tnslog@explain@arrow}%
+            \end{tnslog@step@calc@arrow}%
+        }%
+% Arrows (long + operator in margin)
+        {ar*}{%
+            \end{tnslog@step@calc@arrow}%
         }%
 % Arrows (short)
         {sar}{%
-            \end{tnslog@explain@short@arrow}%
+            \end{tnslog@step@calc@short@arrow}%
         }%
     }%
 }
@@ -123,7 +140,6 @@
     \settowidth\tnslog@lower@text@size{#2}%
     \makebox[\dimmax{\tnslog@upper@text@size}{\tnslog@lower@text@size}][c]{#1}%
 }
-
 
 
 \newcommand\expltxt[1]{%
@@ -150,8 +166,7 @@
 }}
 
 
-
-\newcommand\tnslog@expl@next@university@no@star[2][\tnslog@explain@ope]{
+\newcommand\tnslog@expl@next@university@no@star[2][\tnslog@step@calc@ope]{
     \\&
     {#1}
     \if\relax\detokenize{#2}\relax\else
@@ -165,12 +180,11 @@
 }
 
 
-
-\newcommand\tnslog@expl@next@university@star[3][\tnslog@explain@ope]{
+\newcommand\tnslog@expl@next@university@star[3][\tnslog@step@calc@ope]{
     \if\relax\detokenize{#2}\relax%
         \if\relax\detokenize{#3}\relax%
             \PackageError{tnslog}{two empty arguments}%
-                                 {at least one none empty text is needed}
+                                 {at least one none empty text is needed}%
         \fi%
     \fi%
     %
@@ -197,13 +211,13 @@
 }
 
 
-\newenvironment{tnslog@explain@university}{
+\newenvironment{tnslog@step@calc@university}{
     \setlength{\abovedisplayskip}{0pt}%
     \setlength{\belowdisplayskip}{0pt}%
-    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
+    \renewcommand\tnslog@step@calc@ope{\useKV[tnslog@step@calc@keys]{ope}}%
     \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@university@no@star%
     \renewcommand\tnslog@expl@next@star\tnslog@expl@next@university@star%
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
         $\WithArrows[format = rll]
     }{%
         $\WithArrows[format = rl]
@@ -216,20 +230,20 @@
 
 % Middle school version
 
-\newcommand\tnslog@expl@next@middle@school@no@star[2][\tnslog@explain@ope]{%
+\newcommand\tnslog@expl@next@middle@school@no@star[2][\tnslog@step@calc@ope]{%
     \ifbool{tnslog@com@this@no@star@used}{}{%
         \tnslog@expl@next@extra@column{}%
     }%
     \global\boolfalse{tnslog@com@this@no@star@used}%
     %
     %
-    \ifbool{tnslog@insidetnslog@explain@short@arrow@}{%
-        \ifbool{tnslog@starttnslog@explain@arrow@}{%
+    \ifbool{tnslog@inside@step@calc@short@arrow@}{%
+        \ifbool{tnslog@start@step@calc@arrow@}{%
             \if\relax\detokenize{#2}\relax\else
-                \PackageError{tnslog}{illegal argument to start explain[style = sar]}%
-                                     {no argument for the first use of explnext in [style = sar]}
-            \fi
-            \global\boolfalse{tnslog@starttnslog@explain@arrow@}%
+                \PackageError{tnslog}{illegal argument to start stepcalc[style = sar]}%
+                                     {no argument for the first use of explnext in stepcalc[style = sar]}%
+            \fi%
+            \global\boolfalse{tnslog@start@step@calc@arrow@}%
         }{
             \if\relax\detokenize{#2}\relax\else
                 \Arrow[tikz = <->]{#2}
@@ -237,12 +251,17 @@
             \\
         }
     }{
-        \if\relax\detokenize{#2}\relax\else
+       \if\relax\detokenize{#2}\relax\else
             \Arrow[tikz = <->]{#2}
         \fi
         \\
     }%
-    &#1%
+    \ifbool{tnslog@inside@step@calc@short@arrow@star@}{%
+	    \llap{$#1$}\;%
+	}{%
+		#1%
+	}%
+	&%
 }
 
 % Source
@@ -254,7 +273,7 @@
 }
  
 
-\newcommand\tnslog@expl@next@middle@school@star[3][\tnslog@explain@ope]{
+\newcommand\tnslog@expl@next@middle@school@star[3][\tnslog@step@calc@ope]{
     \ifbool{tnslog@com@this@no@star@used}{}{%
         \tnslog@expl@next@extra@column{}%
     }%
@@ -275,47 +294,54 @@
         \fi%
     \fi%
     \\
-    &#1%
+    \ifbool{tnslog@inside@step@calc@short@arrow@star@}{%
+	    \llap{$#1$}\;%
+	}{%
+		#1%
+	}%
+	&%
 }
 
-\newbool{tnslog@com@this@no@star@used} 
 
-\newbool{tnslog@starttnslog@explain@arrow@} 
-\newbool{tnslog@insidetnslog@explain@short@arrow@} 
+\newbool{tnslog@start@step@calc@arrow@}
 
-\newenvironment{tnslog@explain@arrow}{
+\newbool{tnslog@com@this@no@star@used}
+\newbool{tnslog@inside@step@calc@short@arrow@}
+
+
+\newenvironment{tnslog@step@calc@arrow}{
     \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@middle@school@no@star%
     \renewcommand\tnslog@expl@next@star\tnslog@expl@next@middle@school@star%
-    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
+    \renewcommand\tnslog@step@calc@ope{\useKV[tnslog@step@calc@keys]{ope}}%
     %
-    \boolfalse{tnslog@insidetnslog@explain@short@arrow@}%
-    \boolfalse{tnslog@starttnslog@explain@arrow@}%
+    \boolfalse{tnslog@inside@step@calc@short@arrow@}%
+    \boolfalse{tnslog@start@step@calc@arrow@}%
     \boolfalse{tnslog@com@this@no@star@used}%
     %
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
-        $\WithArrows[tikz = blue, groups, format = rll]
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
+        $\WithArrows[tikz = blue, groups, format = Rll]
     }{%
-        $\WithArrows[tikz = blue, groups, format = rl]
+        $\WithArrows[tikz = blue, groups, format = Rl]
     }
-            &\phantom{{}\tnslog@explain@ope{}}
+            &
 }{%
          \endWithArrows$
 }
 
-\newenvironment{tnslog@explain@short@arrow}{
+\newenvironment{tnslog@step@calc@short@arrow}{
     \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@middle@school@no@star%
     \renewcommand\tnslog@expl@next@star\tnslog@expl@next@middle@school@star%
-    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
+    \renewcommand\tnslog@step@calc@ope{\useKV[tnslog@step@calc@keys]{ope}}%
     %
-    \booltrue{tnslog@insidetnslog@explain@short@arrow@}%
-    \booltrue{tnslog@starttnslog@explain@arrow@}%
+    \booltrue{tnslog@inside@step@calc@short@arrow@}%
+    \booltrue{tnslog@start@step@calc@arrow@}%
     \boolfalse{tnslog@com@this@no@star@used}%
     %
     %
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
-        $\WithArrows[tikz = blue, groups, format = rll]%
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
+        $\WithArrows[tikz = blue, groups, format = Rll]%
     }{%
-        $\WithArrows[tikz = blue, groups, format = rl]%
+        $\WithArrows[tikz = blue, groups, format = Rl]%
     }%
 }{%
          \endWithArrows$

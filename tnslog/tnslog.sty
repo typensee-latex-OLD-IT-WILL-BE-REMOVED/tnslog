@@ -32,201 +32,402 @@
 }
 
 
-% ---------------------- %
-% -- EQUAL SIGNS N CO -- %
-% ---------------------- %
+% ----------------- %
+% -- SPECIAL OPE -- %
+% ----------------- %
 
-% Settable texts
-\@ifpackagewith{babel}{french}{
-% == Decorations - FRENCH - START == %
-    \newcommand\txtopappli{appli}
-    \newcommand\txtopchoice{choix}
-    \newcommand\txtopcond{cond}
-    \newcommand\txtopcons{cons}
-    \newcommand\txtopdef{déf}
-    \newcommand\txtopplot{graph}
-    \newcommand\txtophyp{hyp}
-    \newcommand\txtopid{id}
-    \newcommand\txtoptest{?}
-% == Decorations - FRENCH - END == %
-}{
-% == Decorations - ENGLISH - START == %
-    \newcommand\txtopappli{appli}
-    \newcommand\txtopchoice{choice}
-    \newcommand\txtopcond{cond}
-    \newcommand\txtopcons{cons}
-    \newcommand\txtopdef{def}
-    \newcommand\txtopplot{plot}
-    \newcommand\txtophyp{hyp}
-    \newcommand\txtopid{id}
-    \newcommand\txtoptest{?}
-% == Decorations - ENGLISH - END == %
+% == Specific characters from mathabx == %
+
+% Source:
+%    * https://tex.stackexchange.com/a/585285/6880
+
+\DeclareFontFamily{U}{mathb}{}
+\DeclareFontShape{U}{mathb}{m}{n}{
+  <-5.5> mathb5
+  <5.5-6.5> mathb6
+  <6.5-7.5> mathb7
+  <7.5-8.5> mathb8
+  <8.5-9.5> mathb9
+  <9.5-11> mathb10
+  <11-> mathb12
+}{}
+\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
+\DeclareFontSubstitution{U}{mathb}{m}{n}
+
+\DeclareMathSymbol{\tnslog@leftleftharpoons}  {3}{mathb}{"D8}
+\DeclareMathSymbol{\tnslog@rightrightharpoons}{3}{mathb}{"D9}
+
+
+\DeclareFontFamily{U}{matha}{}
+\DeclareFontShape{U}{matha}{m}{n}{
+  <-5.5> matha5
+  <5.5-6.5> matha6
+  <6.5-7.5> matha7
+  <7.5-8.5> matha8
+  <8.5-9.5> matha9
+  <9.5-11> matha10
+  <11-> matha12
+}{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontSubstitution{U}{matha}{m}{n}
+
+\DeclareMathSymbol{\tnslog@rightleftharpoons}{\mathrel}{matha}{"E9}
+
+
+% == Vertical versions == %
+
+
+\newcommand\viff{\mathrel{\Updownarrow}}
+\newcommand\vimplies{\mathrel{\Downarrow}}
+\newcommand\vbecauseof{\mathrel{\Uparrow}}
+
+\newcommand\nviff{\centernot\viff}
+\newcommand\nvimplies{\centernot\vimplies}
+\newcommand\nvbecauseof{\centernot\vbecauseof}
+
+
+% == Decorations - START == %
+
+% Source for the short sysmbols.
+%    * https://tex.stackexchange.com/a/585267/6880
+
+\newcommand\shorteq{\mathrel{\mathpalette\shorteq@{.55}}}
+\newcommand{\shorteq@}[2]{%
+  \resizebox{#2\width}{\height}{$\m@th#1=$}%
 }
 
+\newcommand\shortless{\mathrel{\mathpalette\shortless@{.55}}}
+\newcommand{\shortless@}[2]{%
+  \resizebox{#2\width}{\height}{$\m@th#1<$}%
+}
 
-% == Decorated versions - START == %
+\newcommand\shortgtr{\mathrel{\mathpalette\shortgtr@{.55}}}
+\newcommand{\shortgtr@}[2]{%
+  \resizebox{#2\width}{\height}{$\m@th#1>$}%
+}
 
-\newcommand\eqdef{\@ifstar{\tnslog@eqdef@star}{\tnslog@eqdef@no@star}}
-\newcommand\tnslog@eqdef@no@star{\tns@over@math@symbol{\txtopdef}{=}}
-\newcommand\tnslog@eqdef@star{\coloneqq}
+% Decorable operators.
 
-\newcommand\eqid{\@ifstar{\tnslog@eqid@star}{\tnslog@eqid@no@star}}
-\newcommand\tnslog@eqid@no@star{\tns@over@math@symbol{\txtopid}{=}}
-\newcommand\tnslog@eqid@star{\rightleftharpoons}
+\newcommand\coldecoope{blue}
 
-\newcommand\eqplot{\tns@over@math@symbol{\txtopplot}{=}}
-\newcommand\eqappli{\tns@over@math@symbol{\txtopappli}{=}}
-\newcommand\eqchoice{\tns@over@math@symbol{\txtopchoice}{=}}
-\newcommand\eqcond{\tns@over@math@symbol{\txtopcond}{=}}
-\newcommand\eqcons{\tns@over@math@symbol{\txtopcons}{=}}
-\newcommand\eqhyp{\tns@over@math@symbol{\txtophyp}{=}}
-\newcommand\eqtest{\tns@over@math@symbol{\txtoptest}{=}}
+\newcommand\txtdecoope[1]{%
+	\text{\tiny\color{\coldecoope}#1}%
+}
 
-\newcommand\neqid{\tns@over@math@symbol{\txtopid}{\neq}}
-\newcommand\neqplot{\tns@over@math@symbol{\txtopplot}{\neq}}
-\newcommand\neqappli{\tns@over@math@symbol{\txtopappli}{\neq}}
-\newcommand\neqchoice{\tns@over@math@symbol{\txtopchoice}{\neq}}
-\newcommand\neqcond{\tns@over@math@symbol{\txtopcond}{\neq}}
-\newcommand\neqcons{\tns@over@math@symbol{\txtopcons}{\neq}}
-\newcommand\neqhyp{\tns@over@math@symbol{\txtophyp}{\neq}}
-\newcommand\neqtest{\tns@over@math@symbol{\txtoptest}{\neq}}
+\newcommand\eq{\@ifstar{\tnslog@eq@star}{\tnslog@eq@no@star}}
 
-\newcommand\lessplot{\tns@over@math@symbol{\txtopplot}{<}}
-\newcommand\lessappli{\tns@over@math@symbol{\txtopappli}{<}}
-\newcommand\lesschoice{\tns@over@math@symbol{\txtopchoice}{<}}
-\newcommand\lesscond{\tns@over@math@symbol{\txtopcond}{<}}
-\newcommand\lesscons{\tns@over@math@symbol{\txtopcons}{<}}
-\newcommand\lesshyp{\tns@over@math@symbol{\txtophyp}{<}}
-\newcommand\lesstest{\tns@over@math@symbol{\txtoptest}{<}}
+\newcommand\tnslog@eq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	=%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{=}%
+    \fi%
+}
 
-\newcommand\nlessplot{\tns@over@math@symbol{\txtopplot}{\nless}}
-\newcommand\nlessappli{\tns@over@math@symbol{\txtopappli}{\nless}}
-\newcommand\nlesschoice{\tns@over@math@symbol{\txtopchoice}{\nless}}
-\newcommand\nlesscond{\tns@over@math@symbol{\txtopcond}{\nless}}
-\newcommand\nlesscons{\tns@over@math@symbol{\txtopcons}{\nless}}
-\newcommand\nlesshyp{\tns@over@math@symbol{\txtophyp}{\nless}}
-\newcommand\nlesstest{\tns@over@math@symbol{\txtoptest}{\nless}}
+\newcommand\tnslog@eq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	=%
+    \else%
+        \IfEqCase{#1}{%
+            {?}{\shorteq\mkern1.5mu\shorteq}%
+            {appli}{\tnslog@leftleftharpoons}%
+            {cons}{\tnslog@rightrightharpoons}%
+            {def}{\coloneqq}%
+            {id}{\tnslog@rightleftharpoons}%
+        }[%
+            \tns@over@math@symbol{\txtdecoope{#1}}{=}%
+        ]%
+    \fi%
+}
 
-\newcommand\leqplot{\tns@over@math@symbol{\txtopplot}{\leq}}
-\newcommand\leqappli{\tns@over@math@symbol{\txtopappli}{\leq}}
-\newcommand\leqchoice{\tns@over@math@symbol{\txtopchoice}{\leq}}
-\newcommand\leqcond{\tns@over@math@symbol{\txtopcond}{\leq}}
-\newcommand\leqcons{\tns@over@math@symbol{\txtopcons}{\leq}}
-\newcommand\leqhyp{\tns@over@math@symbol{\txtophyp}{\leq}}
-\newcommand\leqtest{\tns@over@math@symbol{\txtoptest}{\leq}}
+\let\oldneq\neq
+\renewcommand\neq{\@ifstar{\tnslog@neq@star}{\tnslog@neq@no@star}}
 
-\newcommand\nleqplot{\tns@over@math@symbol{\txtopplot}{\nleq}}
-\newcommand\nleqappli{\tns@over@math@symbol{\txtopappli}{\nleq}}
-\newcommand\nleqchoice{\tns@over@math@symbol{\txtopchoice}{\nleq}}
-\newcommand\nleqcond{\tns@over@math@symbol{\txtopcond}{\nleq}}
-\newcommand\nleqcons{\tns@over@math@symbol{\txtopcons}{\nleq}}
-\newcommand\nleqhyp{\tns@over@math@symbol{\txtophyp}{\nleq}}
-\newcommand\nleqtest{\tns@over@math@symbol{\txtoptest}{\nleq}}
+\newcommand\tnslog@neq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldneq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldneq}%
+    \fi%
+}
 
-\newcommand\gtrplot{\tns@over@math@symbol{\txtopplot}{>}}
-\newcommand\gtrappli{\tns@over@math@symbol{\txtopappli}{>}}
-\newcommand\gtrchoice{\tns@over@math@symbol{\txtopchoice}{>}}
-\newcommand\gtrcond{\tns@over@math@symbol{\txtopcond}{>}}
-\newcommand\gtrcons{\tns@over@math@symbol{\txtopcons}{>}}
-\newcommand\gtrhyp{\tns@over@math@symbol{\txtophyp}{>}}
-\newcommand\gtrtest{\tns@over@math@symbol{\txtoptest}{>}}
+\newcommand\tnslog@neq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldneq%
+    \else%
+        \IfEqCase{#1}{%
+            {?}{\shortless\mkern1.5mu\shortgtr}%
+            {appli}{\centernot\tnslog@leftleftharpoons}%
+            {cons}{\centernot\tnslog@rightrightharpoons}%
+            {def}{\centernot\coloneqq}%
+            {id}{\centernot\tnslog@rightleftharpoons}%
+        }[%
+            \tns@over@math@symbol{\txtdecoope{#1}}{\oldneq}%
+        ]%
+    \fi%
+}
 
-\newcommand\ngtrplot{\tns@over@math@symbol{\txtopplot}{\ngtr}}
-\newcommand\ngtrappli{\tns@over@math@symbol{\txtopappli}{\ngtr}}
-\newcommand\ngtrchoice{\tns@over@math@symbol{\txtopchoice}{\ngtr}}
-\newcommand\ngtrcond{\tns@over@math@symbol{\txtopcond}{\ngtr}}
-\newcommand\ngtrcons{\tns@over@math@symbol{\txtopcons}{\ngtr}}
-\newcommand\ngtrhyp{\tns@over@math@symbol{\txtophyp}{\ngtr}}
-\newcommand\ngtrtest{\tns@over@math@symbol{\txtoptest}{\ngtr}}
+\newcommand\less{\@ifstar{\tnslog@less@star}{\tnslog@less@no@star}}
 
-\newcommand\geqplot{\tns@over@math@symbol{\txtopplot}{\geq}}
-\newcommand\geqappli{\tns@over@math@symbol{\txtopappli}{\geq}}
-\newcommand\geqchoice{\tns@over@math@symbol{\txtopchoice}{\geq}}
-\newcommand\geqcond{\tns@over@math@symbol{\txtopcond}{\geq}}
-\newcommand\geqcons{\tns@over@math@symbol{\txtopcons}{\geq}}
-\newcommand\geqhyp{\tns@over@math@symbol{\txtophyp}{\geq}}
-\newcommand\geqtest{\tns@over@math@symbol{\txtoptest}{\geq}}
+\newcommand\tnslog@less@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	<%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{<}%
+    \fi%
+}
 
-\newcommand\ngeqplot{\tns@over@math@symbol{\txtopplot}{\ngeq}}
-\newcommand\ngeqappli{\tns@over@math@symbol{\txtopappli}{\ngeq}}
-\newcommand\ngeqchoice{\tns@over@math@symbol{\txtopchoice}{\ngeq}}
-\newcommand\ngeqcond{\tns@over@math@symbol{\txtopcond}{\ngeq}}
-\newcommand\ngeqcons{\tns@over@math@symbol{\txtopcons}{\ngeq}}
-\newcommand\ngeqhyp{\tns@over@math@symbol{\txtophyp}{\ngeq}}
-\newcommand\ngeqtest{\tns@over@math@symbol{\txtoptest}{\ngeq}}
+\newcommand\tnslog@less@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	<%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{<}%
+    \fi%
+}
 
-% == Decorated versions - END == %
+\let\oldnless\nless
+\renewcommand\nless{\@ifstar{\tnslog@nless@star}{\tnslog@nless@no@star}}
 
+\newcommand\tnslog@nless@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnless%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnless}%
+    \fi%
+}
 
-% --------------- %
-% -- OPERATORS -- %
-% --------------- %
+\newcommand\tnslog@nless@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnless%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnless}%
+    \fi%
+}
 
-% Vertical versions 
+\newcommand\gtr{\@ifstar{\tnslog@gtr@star}{\tnslog@gtr@no@star}}
 
-\newcommand\vliesimp{\mathrel{\Uparrow}}
-\newcommand\vimplies{\mathrel{\Downarrow}}
-\newcommand\viff{\mathrel{\Updownarrow}}
+\newcommand\tnslog@gtr@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	>%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{>}%
+    \fi%
+}
 
-\newcommand\nvliesimp{\centernot\vliesimp}
-\newcommand\nvimplies{\centernot\vimplies}
-\newcommand\nviff{\centernot\viff}
+\newcommand\tnslog@gtr@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	>%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{>}%
+    \fi%
+}
 
+\let\oldngtr\ngtr
+\renewcommand\ngtr{\@ifstar{\tnslog@ngtr@star}{\tnslog@ngtr@no@star}}
 
-% Horizontal versions
+\newcommand\tnslog@ngtr@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngtr%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngtr}%
+    \fi%
+}
 
+\newcommand\tnslog@ngtr@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngtr%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngtr}%
+    \fi%
+}
 
+\let\oldleq\leq
+\renewcommand\leq{\@ifstar{\tnslog@leq@star}{\tnslog@leq@no@star}}
 
-% == Decorated versions - START == %
+\newcommand\tnslog@leq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldleq}%
+    \fi%
+}
 
-\newcommand\niff{\centernot\iff}
-\newcommand\nimplies{\centernot\implies}
-\newcommand\liesimp{\mathrel{\Longleftarrow}}
-\newcommand\nliesimp{\centernot\liesimp}
+\newcommand\tnslog@leq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldleq}%
+    \fi%
+}
 
-\newcommand\iffappli{\tns@over@math@symbol{\txtopappli}{\iff}}
-\newcommand\iffchoice{\tns@over@math@symbol{\txtopchoice}{\iff}}
-\newcommand\iffcond{\tns@over@math@symbol{\txtopcond}{\iff}}
-\newcommand\iffcons{\tns@over@math@symbol{\txtopcons}{\iff}}
-\newcommand\iffhyp{\tns@over@math@symbol{\txtophyp}{\iff}}
-\newcommand\ifftest{\tns@over@math@symbol{\txtoptest}{\iff}}
+\let\oldnleq\nleq
+\renewcommand\nleq{\@ifstar{\tnslog@nleq@star}{\tnslog@nleq@no@star}}
 
-\newcommand\niffappli{\tns@over@math@symbol{\txtopappli}{\niff}}
-\newcommand\niffchoice{\tns@over@math@symbol{\txtopchoice}{\niff}}
-\newcommand\niffcond{\tns@over@math@symbol{\txtopcond}{\niff}}
-\newcommand\niffcons{\tns@over@math@symbol{\txtopcons}{\niff}}
-\newcommand\niffhyp{\tns@over@math@symbol{\txtophyp}{\niff}}
-\newcommand\nifftest{\tns@over@math@symbol{\txtoptest}{\niff}}
+\newcommand\tnslog@nleq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnleq}%
+    \fi%
+}
 
-\newcommand\impliesappli{\tns@over@math@symbol{\txtopappli}{\implies}}
-\newcommand\implieschoice{\tns@over@math@symbol{\txtopchoice}{\implies}}
-\newcommand\impliescond{\tns@over@math@symbol{\txtopcond}{\implies}}
-\newcommand\impliescons{\tns@over@math@symbol{\txtopcons}{\implies}}
-\newcommand\implieshyp{\tns@over@math@symbol{\txtophyp}{\implies}}
-\newcommand\impliestest{\tns@over@math@symbol{\txtoptest}{\implies}}
+\newcommand\tnslog@nleq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldnleq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldnleq}%
+    \fi%
+}
 
-\newcommand\nimpliesappli{\tns@over@math@symbol{\txtopappli}{\nimplies}}
-\newcommand\nimplieschoice{\tns@over@math@symbol{\txtopchoice}{\nimplies}}
-\newcommand\nimpliescond{\tns@over@math@symbol{\txtopcond}{\nimplies}}
-\newcommand\nimpliescons{\tns@over@math@symbol{\txtopcons}{\nimplies}}
-\newcommand\nimplieshyp{\tns@over@math@symbol{\txtophyp}{\nimplies}}
-\newcommand\nimpliestest{\tns@over@math@symbol{\txtoptest}{\nimplies}}
+\let\oldgeq\geq
+\renewcommand\geq{\@ifstar{\tnslog@geq@star}{\tnslog@geq@no@star}}
 
-\newcommand\liesimpappli{\tns@over@math@symbol{\txtopappli}{\liesimp}}
-\newcommand\liesimpchoice{\tns@over@math@symbol{\txtopchoice}{\liesimp}}
-\newcommand\liesimpcond{\tns@over@math@symbol{\txtopcond}{\liesimp}}
-\newcommand\liesimpcons{\tns@over@math@symbol{\txtopcons}{\liesimp}}
-\newcommand\liesimphyp{\tns@over@math@symbol{\txtophyp}{\liesimp}}
-\newcommand\liesimptest{\tns@over@math@symbol{\txtoptest}{\liesimp}}
+\newcommand\tnslog@geq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldgeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldgeq}%
+    \fi%
+}
 
-\newcommand\nliesimpappli{\tns@over@math@symbol{\txtopappli}{\nliesimp}}
-\newcommand\nliesimpchoice{\tns@over@math@symbol{\txtopchoice}{\nliesimp}}
-\newcommand\nliesimpcond{\tns@over@math@symbol{\txtopcond}{\nliesimp}}
-\newcommand\nliesimpcons{\tns@over@math@symbol{\txtopcons}{\nliesimp}}
-\newcommand\nliesimphyp{\tns@over@math@symbol{\txtophyp}{\nliesimp}}
-\newcommand\nliesimptest{\tns@over@math@symbol{\txtoptest}{\nliesimp}}
+\newcommand\tnslog@geq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldgeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldgeq}%
+    \fi%
+}
 
-% == Decorated versions - END == %
+\let\oldngeq\ngeq
+\renewcommand\ngeq{\@ifstar{\tnslog@ngeq@star}{\tnslog@ngeq@no@star}}
+
+\newcommand\tnslog@ngeq@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngeq}%
+    \fi%
+}
+
+\newcommand\tnslog@ngeq@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldngeq%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldngeq}%
+    \fi%
+}
+
+\let\oldiff\iff
+\renewcommand\iff{\@ifstar{\tnslog@iff@star}{\tnslog@iff@no@star}}
+
+\newcommand\tnslog@iff@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldiff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldiff}%
+    \fi%
+}
+
+\newcommand\tnslog@iff@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldiff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldiff}%
+    \fi%
+}
+
+\newcommand\niff{\@ifstar{\tnslog@niff@star}{\tnslog@niff@no@star}}
+
+\newcommand\tnslog@niff@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\iff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\iff}%
+    \fi%
+}
+
+\newcommand\tnslog@niff@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\iff%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\iff}%
+    \fi%
+}
+
+\let\oldimplies\implies
+\renewcommand\implies{\@ifstar{\tnslog@implies@star}{\tnslog@implies@no@star}}
+
+\newcommand\tnslog@implies@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldimplies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldimplies}%
+    \fi%
+}
+
+\newcommand\tnslog@implies@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\oldimplies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\oldimplies}%
+    \fi%
+}
+
+\newcommand\nimplies{\@ifstar{\tnslog@nimplies@star}{\tnslog@nimplies@no@star}}
+
+\newcommand\tnslog@nimplies@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\implies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\implies}%
+    \fi%
+}
+
+\newcommand\tnslog@nimplies@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\implies%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\implies}%
+    \fi%
+}
+
+\newcommand\becauseof{\@ifstar{\tnslog@becauseof@star}{\tnslog@becauseof@no@star}}
+
+\newcommand\tnslog@becauseof@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\mathrel{\Longleftarrow}%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\mathrel{\Longleftarrow}}%
+    \fi%
+}
+
+\newcommand\tnslog@becauseof@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\mathrel{\Longleftarrow}%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\mathrel{\Longleftarrow}}%
+    \fi%
+}
+
+\newcommand\nbecauseof{\@ifstar{\tnslog@nbecauseof@star}{\tnslog@nbecauseof@no@star}}
+
+\newcommand\tnslog@nbecauseof@no@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\becauseof%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\becauseof}%
+    \fi%
+}
+
+\newcommand\tnslog@nbecauseof@star[1][]{%
+    \if\relax\detokenize{#1}\relax%
+    	\centernot\becauseof%
+    \else%
+        \tns@over@math@symbol{\txtdecoope{#1}}{\centernot\becauseof}%
+    \fi%
+}
+
+% == Decorations - END == %
 
 
 % ----------------- %
@@ -240,9 +441,9 @@
 \newcommand\nexistmulti[1]{\nexists_{\kern0.1em #1}}
 
 
-% -------------------- %
-% -- CALC EXPLAINED -- %
-% -------------------- %
+% -------------- %
+% -- STEPCALC -- %
+% -------------- %
 
 % Space
 
@@ -260,20 +461,22 @@
 \newcommand\tnslog@expl@next@no@star{}
 \newcommand\tnslog@expl@next@star{}
 
-\newcommand\tnslog@explain@ope{=}
+
+\newcommand\tnslog@step@calc@ope{=}
 
 
 \newcommand\comthis{\@ifstar{\tnslog@com@this@star}{\tnslog@com@this@no@star}}
 \newcommand\tnslog@com@this@no@star{}
 
 \newcommand\tnslog@com@this@star[1]{%
-    \ifbool{tnslog@starttnslog@explain@arrow@}{%
-        \PackageError{tnslog}{comment can't be use to start explain[style = sar]}%
-                             {No comment for the 1st part of explain[style = sar]}
+    \ifbool{tnslog@start@step@calc@arrow@}{%
+        \PackageError{tnslog}{comment can't be use to start stepcalc[style = sar]}%
+                             {No comment for the 1st part of stepcalc[style = sar]}
     }{%
         \kern\expltxtspacein\explcom{#1}%
     }%
 }
+
 
 \newcommand\tnslog@com@this@aligned[1]{%
     \global\booltrue{tnslog@com@this@no@star@used}%
@@ -287,18 +490,22 @@
 
 % Wrapper env with key-val options 
 
-\setKVdefault[tnslog@calc@explain@keys]{%
+\setKVdefault[tnslog@step@calc@keys]{%
     ope   = {=},
     style = u,
     com   = nal
 }
 
-\newenvironment{explain}[1][]{%
-    \useKVdefault[tnslog@calc@explain@keys]%
-    \setKV[tnslog@calc@explain@keys]{#1}%
-    \def\style{\useKV[tnslog@calc@explain@keys]{style}}%
+
+\newbool{tnslog@inside@step@calc@short@arrow@star@}
+
+
+\newenvironment{stepcalc}[1][]{%
+    \useKVdefault[tnslog@step@calc@keys]%
+    \setKV[tnslog@step@calc@keys]{#1}%
+    \def\style{\useKV[tnslog@step@calc@keys]{style}}%
 % Comments
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
         \renewcommand\tnslog@com@this@no@star\tnslog@com@this@aligned%
         \renewcommand\tnslog@expl@next@extra@column{&}
     }{%
@@ -308,33 +515,45 @@
     \IfEqCase{\style}{%
 % University
         {u}{%
-            \begin{tnslog@explain@university}%
+            \begin{tnslog@step@calc@university}%
+            \global\boolfalse{tnslog@inside@step@calc@short@arrow@star@}%
         }%
 % Arrows (long)
         {ar}{%
-            \begin{tnslog@explain@arrow}%
+            \begin{tnslog@step@calc@arrow}%
+            \global\boolfalse{tnslog@inside@step@calc@short@arrow@star@}%
+        }%
+% Arrows (long + operator in margin)
+        {ar*}{%
+            \begin{tnslog@step@calc@arrow}%
+            \global\booltrue{tnslog@inside@step@calc@short@arrow@star@}%
         }%
 % Arrows (short)
         {sar}{%
-            \begin{tnslog@explain@short@arrow}%
+            \begin{tnslog@step@calc@short@arrow}%
+            \global\boolfalse{tnslog@inside@step@calc@short@arrow@star@}%
         }%
     }[%
         \PackageError{tnslog}{unknown style}%
-                             {You can use u (default), ar or sar.}%
+                             {You can use u (default), ar, ar* or sar.}%
     ]%
 }{%
     \IfEqCase{\style}{%
 % University
         {u}{%
-            \end{tnslog@explain@university}%
+            \end{tnslog@step@calc@university}%
         }%
 % Arrows (long)
         {ar}{%
-            \end{tnslog@explain@arrow}%
+            \end{tnslog@step@calc@arrow}%
+        }%
+% Arrows (long + operator in margin)
+        {ar*}{%
+            \end{tnslog@step@calc@arrow}%
         }%
 % Arrows (short)
         {sar}{%
-            \end{tnslog@explain@short@arrow}%
+            \end{tnslog@step@calc@short@arrow}%
         }%
     }%
 }
@@ -357,7 +576,6 @@
     \settowidth\tnslog@lower@text@size{#2}%
     \makebox[\dimmax{\tnslog@upper@text@size}{\tnslog@lower@text@size}][c]{#1}%
 }
-
 
 
 \newcommand\expltxt[1]{%
@@ -384,8 +602,7 @@
 }}
 
 
-
-\newcommand\tnslog@expl@next@university@no@star[2][\tnslog@explain@ope]{
+\newcommand\tnslog@expl@next@university@no@star[2][\tnslog@step@calc@ope]{
     \\&
     {#1}
     \if\relax\detokenize{#2}\relax\else
@@ -399,12 +616,11 @@
 }
 
 
-
-\newcommand\tnslog@expl@next@university@star[3][\tnslog@explain@ope]{
+\newcommand\tnslog@expl@next@university@star[3][\tnslog@step@calc@ope]{
     \if\relax\detokenize{#2}\relax%
         \if\relax\detokenize{#3}\relax%
             \PackageError{tnslog}{two empty arguments}%
-                                 {at least one none empty text is needed}
+                                 {at least one none empty text is needed}%
         \fi%
     \fi%
     %
@@ -431,13 +647,13 @@
 }
 
 
-\newenvironment{tnslog@explain@university}{
+\newenvironment{tnslog@step@calc@university}{
     \setlength{\abovedisplayskip}{0pt}%
     \setlength{\belowdisplayskip}{0pt}%
-    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
+    \renewcommand\tnslog@step@calc@ope{\useKV[tnslog@step@calc@keys]{ope}}%
     \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@university@no@star%
     \renewcommand\tnslog@expl@next@star\tnslog@expl@next@university@star%
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
         $\WithArrows[format = rll]
     }{%
         $\WithArrows[format = rl]
@@ -450,20 +666,20 @@
 
 % Middle school version
 
-\newcommand\tnslog@expl@next@middle@school@no@star[2][\tnslog@explain@ope]{%
+\newcommand\tnslog@expl@next@middle@school@no@star[2][\tnslog@step@calc@ope]{%
     \ifbool{tnslog@com@this@no@star@used}{}{%
         \tnslog@expl@next@extra@column{}%
     }%
     \global\boolfalse{tnslog@com@this@no@star@used}%
     %
     %
-    \ifbool{tnslog@insidetnslog@explain@short@arrow@}{%
-        \ifbool{tnslog@starttnslog@explain@arrow@}{%
+    \ifbool{tnslog@inside@step@calc@short@arrow@}{%
+        \ifbool{tnslog@start@step@calc@arrow@}{%
             \if\relax\detokenize{#2}\relax\else
-                \PackageError{tnslog}{illegal argument to start explain[style = sar]}%
-                                     {no argument for the first use of explnext in [style = sar]}
-            \fi
-            \global\boolfalse{tnslog@starttnslog@explain@arrow@}%
+                \PackageError{tnslog}{illegal argument to start stepcalc[style = sar]}%
+                                     {no argument for the first use of explnext in stepcalc[style = sar]}%
+            \fi%
+            \global\boolfalse{tnslog@start@step@calc@arrow@}%
         }{
             \if\relax\detokenize{#2}\relax\else
                 \Arrow[tikz = <->]{#2}
@@ -471,12 +687,17 @@
             \\
         }
     }{
-        \if\relax\detokenize{#2}\relax\else
+       \if\relax\detokenize{#2}\relax\else
             \Arrow[tikz = <->]{#2}
         \fi
         \\
     }%
-    &#1%
+    \ifbool{tnslog@inside@step@calc@short@arrow@star@}{%
+	    \llap{$#1$}\;%
+	}{%
+		#1%
+	}%
+	&%
 }
 
 % Source
@@ -488,7 +709,7 @@
 }
  
 
-\newcommand\tnslog@expl@next@middle@school@star[3][\tnslog@explain@ope]{
+\newcommand\tnslog@expl@next@middle@school@star[3][\tnslog@step@calc@ope]{
     \ifbool{tnslog@com@this@no@star@used}{}{%
         \tnslog@expl@next@extra@column{}%
     }%
@@ -509,56 +730,63 @@
         \fi%
     \fi%
     \\
-    &#1%
+    \ifbool{tnslog@inside@step@calc@short@arrow@star@}{%
+	    \llap{$#1$}\;%
+	}{%
+		#1%
+	}%
+	&%
 }
 
-\newbool{tnslog@com@this@no@star@used} 
 
-\newbool{tnslog@starttnslog@explain@arrow@} 
-\newbool{tnslog@insidetnslog@explain@short@arrow@} 
+\newbool{tnslog@start@step@calc@arrow@}
 
-\newenvironment{tnslog@explain@arrow}{
+\newbool{tnslog@com@this@no@star@used}
+\newbool{tnslog@inside@step@calc@short@arrow@}
+
+
+\newenvironment{tnslog@step@calc@arrow}{
     \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@middle@school@no@star%
     \renewcommand\tnslog@expl@next@star\tnslog@expl@next@middle@school@star%
-    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
+    \renewcommand\tnslog@step@calc@ope{\useKV[tnslog@step@calc@keys]{ope}}%
     %
-    \boolfalse{tnslog@insidetnslog@explain@short@arrow@}%
-    \boolfalse{tnslog@starttnslog@explain@arrow@}%
+    \boolfalse{tnslog@inside@step@calc@short@arrow@}%
+    \boolfalse{tnslog@start@step@calc@arrow@}%
     \boolfalse{tnslog@com@this@no@star@used}%
     %
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
-        $\WithArrows[tikz = blue, groups, format = rll]
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
+        $\WithArrows[tikz = blue, groups, format = Rll]
     }{%
-        $\WithArrows[tikz = blue, groups, format = rl]
+        $\WithArrows[tikz = blue, groups, format = Rl]
     }
-            &\phantom{{}\tnslog@explain@ope{}}
+            &
 }{%
          \endWithArrows$
 }
 
-\newenvironment{tnslog@explain@short@arrow}{
+\newenvironment{tnslog@step@calc@short@arrow}{
     \renewcommand\tnslog@expl@next@no@star\tnslog@expl@next@middle@school@no@star%
     \renewcommand\tnslog@expl@next@star\tnslog@expl@next@middle@school@star%
-    \renewcommand\tnslog@explain@ope{\useKV[tnslog@calc@explain@keys]{ope}}%
+    \renewcommand\tnslog@step@calc@ope{\useKV[tnslog@step@calc@keys]{ope}}%
     %
-    \booltrue{tnslog@insidetnslog@explain@short@arrow@}%
-    \booltrue{tnslog@starttnslog@explain@arrow@}%
+    \booltrue{tnslog@inside@step@calc@short@arrow@}%
+    \booltrue{tnslog@start@step@calc@arrow@}%
     \boolfalse{tnslog@com@this@no@star@used}%
     %
     %
-    \IfStrEq{\useKV[tnslog@calc@explain@keys]{com}}{al}{%
-        $\WithArrows[tikz = blue, groups, format = rll]%
+    \IfStrEq{\useKV[tnslog@step@calc@keys]{com}}{al}{%
+        $\WithArrows[tikz = blue, groups, format = Rll]%
     }{%
-        $\WithArrows[tikz = blue, groups, format = rl]%
+        $\WithArrows[tikz = blue, groups, format = Rl]%
     }%
 }{%
          \endWithArrows$
 }
 
 
-% -------------------- %
-% -- DEMO EXPLAINED -- %
-% -------------------- %
+% ------------- %
+% -- DEMOTAB -- %
+% ------------- %
 
 %    * Texts used
 
@@ -591,25 +819,25 @@
 
 %    * University version 
 
-\newcounter{tnslog@demo@explain@id}
+\newcounter{tnslog@demo@tab@id}
 
 
 \newcommand\@expl@id[1]{%
-    \framebox[1.5em]{\thetnslog@demo@explain@id}%
+    \framebox[1.5em]{\thetnslog@demo@tab@id}%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{tnslog@demo@explain@id}{-1}%
-        \refstepcounter{tnslog@demo@explain@id}\label{#1}
+        \addtocounter{tnslog@demo@tab@id}{-1}%
+        \refstepcounter{tnslog@demo@tab@id}\label{#1}
     \fi
-    \stepcounter{tnslog@demo@explain@id}%
+    \stepcounter{tnslog@demo@tab@id}%
 }
 
 
-\newbool{tnslog@start@demo@explain} 
+\newbool{tnslog@start@demo@tab} 
 
 
 \newcommand\@demostep@no@star[1][]{%
-    \ifbool{tnslog@start@demo@explain}{%
-        \global\boolfalse{tnslog@start@demo@explain}%
+    \ifbool{tnslog@start@demo@tab}{%
+        \global\boolfalse{tnslog@start@demo@tab}%
     }{%
         \\
     }%
@@ -618,7 +846,7 @@
 }
 
 
-\setKVdefault[tnslog@demo@explain@keys]{%
+\setKVdefault[tnslog@demo@tab@keys]{%
     start = 1,
     hyps  = {},
     hyp   = {},
@@ -626,22 +854,22 @@
 }
 
 
-\newenvironment{demoexplain}[1][]{
+\newenvironment{demotab}[1][]{
     \renewcommand\demostep\@demostep@no@star
-    \useKVdefault[tnslog@demo@explain@keys]
-    \setKV[tnslog@demo@explain@keys]{#1}
+    \useKVdefault[tnslog@demo@tab@keys]
+    \setKV[tnslog@demo@tab@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[tnslog@demo@explain@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@tab@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{tnslog@demo@explain@id}<1
-            \setcounter{tnslog@demo@explain@id}{1}
+        \ifnum\value{tnslog@demo@tab@id}<1
+            \setcounter{tnslog@demo@tab@id}{1}
         \fi
     }{%
-        \setcounter{tnslog@demo@explain@id}{\useKV[tnslog@demo@explain@keys]{start}}%
+        \setcounter{tnslog@demo@tab@id}{\useKV[tnslog@demo@tab@keys]{start}}%
     }%
-    \def\hyps{\useKV[tnslog@demo@explain@keys]{hyps}}
-    \def\hyp{\useKV[tnslog@demo@explain@keys]{hyp}}
-    \edef\ccl{\useKV[tnslog@demo@explain@keys]{ccl}}
+    \def\hyps{\useKV[tnslog@demo@tab@keys]{hyps}}
+    \def\hyp{\useKV[tnslog@demo@tab@keys]{hyp}}
+    \edef\ccl{\useKV[tnslog@demo@tab@keys]{ccl}}
     %
     \if\relax\hyps\relax\else%
         \if\relax\hyp\relax\else%
@@ -658,7 +886,7 @@
         \underline{\txtdemoHYP\vphantom{p\txtdemoCCL}} : \hyp
         \vspace{-.25em}
     \fi
-    \booltrue{tnslog@start@demo@explain}
+    \booltrue{tnslog@start@demo@tab}
     \begin{longtable}{lll}
         \multicolumn{3}{c}{}
         \\[-.5em]
@@ -678,9 +906,9 @@
 
 %    * Middle school version
 
-\newbool{tnslog@start@demo@explain@star}
+\newbool{tnslog@start@demo@tab@star}
 
-\newcounter{tnslog@demo@explain@star@id}
+\newcounter{tnslog@demo@tab@star@id}
 
 
 \newcommand\tnslog@demo@extra[1]{%
@@ -689,18 +917,18 @@
 
 
 \newcommand\tnslog@expl@star@id[1]{%
-    \thetnslog@demo@explain@star@id%
+    \thetnslog@demo@tab@star@id%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{tnslog@demo@explain@star@id}{-1}%
-        \refstepcounter{tnslog@demo@explain@star@id}\label{#1}
+        \addtocounter{tnslog@demo@tab@star@id}{-1}%
+        \refstepcounter{tnslog@demo@tab@star@id}\label{#1}
     \fi
-    \stepcounter{tnslog@demo@explain@star@id}%
+    \stepcounter{tnslog@demo@tab@star@id}%
 }
 
 
 \newcommand\tnslog@demostep@star[1][]{%
-    \ifbool{tnslog@start@demo@explain@star}{%
-        \global\boolfalse{tnslog@start@demo@explain@star}%
+    \ifbool{tnslog@start@demo@tab@star}{%
+        \global\boolfalse{tnslog@start@demo@tab@star}%
     }{%
         \\
         \hline%
@@ -710,25 +938,25 @@
 }
 
 
-\setKVdefault[tnslog@demo@explain@star@keys]{%
+\setKVdefault[tnslog@demo@tab@star@keys]{%
     start = 1
 }
 
 
-\newenvironment{demoexplain*}[1][]{
+\newenvironment{demotab*}[1][]{
     \renewcommand\demostep\tnslog@demostep@star
-    \useKVdefault[tnslog@demo@explain@star@keys]
-    \setKV[tnslog@demo@explain@star@keys]{#1}
+    \useKVdefault[tnslog@demo@tab@star@keys]
+    \setKV[tnslog@demo@tab@star@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[tnslog@demo@explain@star@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@tab@star@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{tnslog@demo@explain@star@id}<1
-            \setcounter{tnslog@demo@explain@star@id}{1}
+        \ifnum\value{tnslog@demo@tab@star@id}<1
+            \setcounter{tnslog@demo@tab@star@id}{1}
         \fi
     }{%
-        \setcounter{tnslog@demo@explain@star@id}{\useKV[tnslog@demo@explain@star@keys]{start}}%
+        \setcounter{tnslog@demo@tab@star@id}{\useKV[tnslog@demo@tab@star@keys]{start}}%
     }%
-    \booltrue{tnslog@start@demo@explain@star}
+    \booltrue{tnslog@start@demo@tab@star}
     \small
     \renewcommand{\arraystretch}{1.5}
     \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}

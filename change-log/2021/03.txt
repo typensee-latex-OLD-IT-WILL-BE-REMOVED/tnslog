@@ -1,0 +1,25 @@
+==========
+2021-03-01
+==========
+
+**New major version version::``1.0.0-beta``:** see the changes below with some backward incompatibilities.
+
+
+**Calculations and demonstration step by step:** here are all the changes.
+
+    1) The environment ``demoexplain`` becomes ``demotab``.
+
+    1) The environment ``explain`` becomes ``stepcalc``.
+
+    1) The new environment ``stepcalc`` has also a new style ``ar*`` that puts all operators in the margin for better formattings.
+
+    1) One bug fixed: there were bad spacings with the style ``ar`` for step by step calculations (this was just because of ``&#1`` instead of ``#1&``...).
+
+
+**Logic:** here are all the changes.
+
+    1) ``\liesimp`` has been renamed ``\becauseof`` (the macro ``\because`` already exists).
+
+    1) The way to decorate comparison and logical operators has changed: the corresponding macros have all an optional argument to give any text.
+
+    1) The star version of the macros can produce new symbolic symbols in some rare cases: the macros ``\eq*`` and ``\neq*`` are the only that do that for the moment.

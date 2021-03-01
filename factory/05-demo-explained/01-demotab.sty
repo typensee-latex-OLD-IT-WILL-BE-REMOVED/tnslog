@@ -43,25 +43,25 @@
 
 %    * University version 
 
-\newcounter{tnslog@demo@explain@id}
+\newcounter{tnslog@demo@tab@id}
 
 
 \newcommand\@expl@id[1]{%
-    \framebox[1.5em]{\thetnslog@demo@explain@id}%
+    \framebox[1.5em]{\thetnslog@demo@tab@id}%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{tnslog@demo@explain@id}{-1}%
-        \refstepcounter{tnslog@demo@explain@id}\label{#1}
+        \addtocounter{tnslog@demo@tab@id}{-1}%
+        \refstepcounter{tnslog@demo@tab@id}\label{#1}
     \fi
-    \stepcounter{tnslog@demo@explain@id}%
+    \stepcounter{tnslog@demo@tab@id}%
 }
 
 
-\newbool{tnslog@start@demo@explain} 
+\newbool{tnslog@start@demo@tab} 
 
 
 \newcommand\@demostep@no@star[1][]{%
-    \ifbool{tnslog@start@demo@explain}{%
-        \global\boolfalse{tnslog@start@demo@explain}%
+    \ifbool{tnslog@start@demo@tab}{%
+        \global\boolfalse{tnslog@start@demo@tab}%
     }{%
         \\
     }%
@@ -70,7 +70,7 @@
 }
 
 
-\setKVdefault[tnslog@demo@explain@keys]{%
+\setKVdefault[tnslog@demo@tab@keys]{%
     start = 1,
     hyps  = {},
     hyp   = {},
@@ -78,22 +78,22 @@
 }
 
 
-\newenvironment{demoexplain}[1][]{
+\newenvironment{demotab}[1][]{
     \renewcommand\demostep\@demostep@no@star
-    \useKVdefault[tnslog@demo@explain@keys]
-    \setKV[tnslog@demo@explain@keys]{#1}
+    \useKVdefault[tnslog@demo@tab@keys]
+    \setKV[tnslog@demo@tab@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[tnslog@demo@explain@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@tab@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{tnslog@demo@explain@id}<1
-            \setcounter{tnslog@demo@explain@id}{1}
+        \ifnum\value{tnslog@demo@tab@id}<1
+            \setcounter{tnslog@demo@tab@id}{1}
         \fi
     }{%
-        \setcounter{tnslog@demo@explain@id}{\useKV[tnslog@demo@explain@keys]{start}}%
+        \setcounter{tnslog@demo@tab@id}{\useKV[tnslog@demo@tab@keys]{start}}%
     }%
-    \def\hyps{\useKV[tnslog@demo@explain@keys]{hyps}}
-    \def\hyp{\useKV[tnslog@demo@explain@keys]{hyp}}
-    \edef\ccl{\useKV[tnslog@demo@explain@keys]{ccl}}
+    \def\hyps{\useKV[tnslog@demo@tab@keys]{hyps}}
+    \def\hyp{\useKV[tnslog@demo@tab@keys]{hyp}}
+    \edef\ccl{\useKV[tnslog@demo@tab@keys]{ccl}}
     %
     \if\relax\hyps\relax\else%
         \if\relax\hyp\relax\else%
@@ -110,7 +110,7 @@
         \underline{\txtdemoHYP\vphantom{p\txtdemoCCL}} : \hyp
         \vspace{-.25em}
     \fi
-    \booltrue{tnslog@start@demo@explain}
+    \booltrue{tnslog@start@demo@tab}
     \begin{longtable}{lll}
         \multicolumn{3}{c}{}
         \\[-.5em]
@@ -130,9 +130,9 @@
 
 %    * Middle school version
 
-\newbool{tnslog@start@demo@explain@star}
+\newbool{tnslog@start@demo@tab@star}
 
-\newcounter{tnslog@demo@explain@star@id}
+\newcounter{tnslog@demo@tab@star@id}
 
 
 \newcommand\tnslog@demo@extra[1]{%
@@ -141,18 +141,18 @@
 
 
 \newcommand\tnslog@expl@star@id[1]{%
-    \thetnslog@demo@explain@star@id%
+    \thetnslog@demo@tab@star@id%
     \if\relax\detokenize{#1}\relax\else%
-        \addtocounter{tnslog@demo@explain@star@id}{-1}%
-        \refstepcounter{tnslog@demo@explain@star@id}\label{#1}
+        \addtocounter{tnslog@demo@tab@star@id}{-1}%
+        \refstepcounter{tnslog@demo@tab@star@id}\label{#1}
     \fi
-    \stepcounter{tnslog@demo@explain@star@id}%
+    \stepcounter{tnslog@demo@tab@star@id}%
 }
 
 
 \newcommand\tnslog@demostep@star[1][]{%
-    \ifbool{tnslog@start@demo@explain@star}{%
-        \global\boolfalse{tnslog@start@demo@explain@star}%
+    \ifbool{tnslog@start@demo@tab@star}{%
+        \global\boolfalse{tnslog@start@demo@tab@star}%
     }{%
         \\
         \hline%
@@ -162,25 +162,25 @@
 }
 
 
-\setKVdefault[tnslog@demo@explain@star@keys]{%
+\setKVdefault[tnslog@demo@tab@star@keys]{%
     start = 1
 }
 
 
-\newenvironment{demoexplain*}[1][]{
+\newenvironment{demotab*}[1][]{
     \renewcommand\demostep\tnslog@demostep@star
-    \useKVdefault[tnslog@demo@explain@star@keys]
-    \setKV[tnslog@demo@explain@star@keys]{#1}
+    \useKVdefault[tnslog@demo@tab@star@keys]
+    \setKV[tnslog@demo@tab@star@keys]{#1}
     %
-    \ifthenelse{\equal{\useKV[tnslog@demo@explain@star@keys]{start}}{last}}{
+    \ifthenelse{\equal{\useKV[tnslog@demo@tab@star@keys]{start}}{last}}{
     % If no environment has been used before !
-        \ifnum\value{tnslog@demo@explain@star@id}<1
-            \setcounter{tnslog@demo@explain@star@id}{1}
+        \ifnum\value{tnslog@demo@tab@star@id}<1
+            \setcounter{tnslog@demo@tab@star@id}{1}
         \fi
     }{%
-        \setcounter{tnslog@demo@explain@star@id}{\useKV[tnslog@demo@explain@star@keys]{start}}%
+        \setcounter{tnslog@demo@tab@star@id}{\useKV[tnslog@demo@tab@star@keys]{start}}%
     }%
-    \booltrue{tnslog@start@demo@explain@star}
+    \booltrue{tnslog@start@demo@tab@star}
     \small
     \renewcommand{\arraystretch}{1.5}
     \begin{longtable}{c|p{0.29\linewidth}|p{0.29\linewidth}|p{0.29\linewidth}}

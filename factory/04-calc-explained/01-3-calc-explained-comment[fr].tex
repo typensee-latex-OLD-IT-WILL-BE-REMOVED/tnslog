@@ -3,7 +3,7 @@
 \makeatletter
     \input{../config/header[fr].sty}
 
-    \usepackage{01-calc-explained}
+    \usepackage{01-stepcalc}
 \makeatother
 
 
@@ -19,14 +19,14 @@
 Il est possible d'ajouter de petits commentaires via \macro{comthis} où \prefix{comthis} est pour \whyprefix{com}{ment} \prefix{this} soit \inenglish{commenter ceci}.
  
 \begin{latexex}
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
         \comthis{Forme facto.}
         \explnext*{Id.Rq. -- Dév.}%
                   {Id.Rq. -- Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -44,14 +44,14 @@ Il est possible d'ajouter de petits commentaires via \macro{comthis} où \prefix
 Il peut être utile d'aligner tous les commentaires. Ceci s'obtient via l'option \verb+com = al+ où \prefix{al} est pour \whyprefix{al}{igné} \emph{(par défaut \prefix{com = nal} avec le préfixe \prefix{n} pour \whyprefix{n}{on})}.
 
 \begin{latexex}
-\begin{explain}[com = al]
+\begin{stepcalc}[com = al]
     (a + b)^2
         \comthis{Forme facto.}
         \explnext*{Id.Rq - Dév.}%
                   {Id.Rq - Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -63,7 +63,7 @@ Il peut être utile d'aligner tous les commentaires. Ceci s'obtient via l'option
 Dans d'autres situations, utilisez les deux types d'alignement peut faire sens. Ceci s'obtient via l'option \verb+com = al+ et l'emploi de la macro étoilée \macro{comthis*} à chaque fois que l'on souhaite "coller" un commentaire le plus à gauche possible.
 
 \begin{latexex}
-\begin{explain}[com = al]
+\begin{stepcalc}[com = al]
     (a + b) (a + b)
         \comthis{Forme facto.}
         \explnext{Via $x^2 = x \cdot x$.}
@@ -73,7 +73,7 @@ Dans d'autres situations, utilisez les deux types d'alignement peut faire sens. 
                   {Id.Rq - Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -90,7 +90,7 @@ Dans d'autres situations, utilisez les deux types d'alignement peut faire sens. 
 Voici ce que donne le mode mixte lorsque des flèches sont utilisées pour les explications. Il semble moins pertinent ici de mixer les modes \og alignement \fg{} et \og non alignement \fg{} mais chacun pris séparément peut avoir son utilité.
 
 \begin{latexex-flat}
-\begin{explain}[style = ar, com = al]
+\begin{stepcalc}[style = ar, com = al]
     (a + b) (a + b)
         \comthis{Forme facto.}
         \explnext{Via $x^2 = x \cdot x$.}
@@ -100,7 +100,7 @@ Voici ce que donne le mode mixte lorsque des flèches sont utilisées pour les e
                   {Id.Rq - Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex-flat}
 
 
