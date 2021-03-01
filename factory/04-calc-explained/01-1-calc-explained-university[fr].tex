@@ -2,9 +2,9 @@
 
 \makeatletter
     \input{../config/header[fr].sty}
-    \input{../02-ope-symbol-deco/02-operators.sty}
+    \input{../02-ope-symbol-deco/01-special-ope.sty}
     
-    \usepackage{01-calc-explained}
+    \usepackage{01-stepcalc}
 \makeatother
 
 
@@ -13,11 +13,11 @@
 
 \section{Détailler un raisonnement simple}
 
-\subsection{Version pour le lycée et après} \label{tnslog-explain-proof}
+\subsection{Version pour le lycée et après} \label{tnslog-stepcalc-proof}
 
 \newparaexample{Avec les réglages par défaut}
 
-L'environnement \env{explain} permet de détailler les étapes principales d'un calcul ou d'un raisonnement simple en s'appuyant sur la macro \macro{explnext} dont le nom vient de \emph{\og \whyprefix{expl}{ain} \prefix{next} step \fg} soit \inenglish{expliquer la prochaine étape}
+L'environnement \env{stepcalc} permet de détailler les étapes principales d'un calcul ou d'un raisonnement simple en s'appuyant sur la macro \macro{explnext} dont le nom vient de \emph{\og \whyprefix{expl}{ain} \prefix{next} step \fg} soit \inenglish{expliquer la prochaine étape}
 \footnote{
     Cet environnement utilise aussi le package \texttt{witharrows} qui est très sympathique pour expliquer des étapes de calcul.
 }.
@@ -30,12 +30,12 @@ On dispose aussi de \macro{explnext*} pour des explications descendantes et/ou m
 
 
 Ci-dessous se trouve un exemple, très farfelu vers la fin, où l'on utilise les réglages par défaut.
-Notons au passage que ce type de présentation n'est sûrement pas bien adaptée à un jeune public pour lequel une 2\ieme{} façon de détailler des calculs et/ou un raisonnement simple est proposée plus bas dans la section \ref{tnslog-explain-proof-for-youngs}.
+Notons au passage que ce type de présentation n'est sûrement pas bien adaptée à un jeune public pour lequel une 2\ieme{} façon de détailler des calculs et/ou un raisonnement simple est proposée plus bas dans la section \ref{tnslog-stepcalc-proof-for-youngs}.
 
 \begin{latexex-flat}
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
-        \explnext{On utilise $x^2 = x \cdot x$.}
+		\explnext{On utilise $x^2 = x \cdot x$.}
     (a + b) (a + b)
         \explnext*{Double développement depuis la parenthèse gauche.}%
                   {Double factorisation pas facile.}
@@ -46,7 +46,7 @@ Notons au passage que ce type de présentation n'est sûrement pas bien adaptée
         \explnext*{Commutativité de l'addition.}%
                   {}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex-flat}
 
 
@@ -56,11 +56,11 @@ Notons au passage que ce type de présentation n'est sûrement pas bien adaptée
 \begin{latexex}
 Un calcul avec un placement pouvant être 
 utile :
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
         \explnext{Identité remarquable.}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 Avec un retour à la ligne, il faudra donc si besoin gérer l'espacement vertical.
@@ -69,11 +69,11 @@ Avec un retour à la ligne, il faudra donc si besoin gérer l'espacement vertica
 Mon calcul pas trop proche.
 
 \medskip
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
         \explnext{Identité remarquable.}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 \end{remark}
 
@@ -96,17 +96,17 @@ Mon calcul pas trop proche.
 
 \newparaexample{Utiliser un autre symbole globalement}
 
-L'environnement \env{explain} possède plusieurs options dont l'une est \verb+ope+ qui vaut \verb+{=}+ par défaut. Ceci permet de faire ce qui suit sans effort.
+L'environnement \env{stepcalc} possède plusieurs options dont l'une est \verb+ope+ qui vaut \verb+{=}+ par défaut. Ceci permet de faire ce qui suit sans effort.
 
 \begin{latexex}
-\begin{explain}[ope = \viff]
+\begin{stepcalc}[ope = \viff]
     x^2 + 10 x + 25 = 0
         \explnext{Identité remarquable.}
     (x + 5)^2 = 0
         \explnext{$P^2 = 0$ si et 
                   seulement si $P = 0$.}
     x = -5
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -118,11 +118,11 @@ L'environnement \env{explain} possède plusieurs options dont l'une est \verb+op
 Si l'argument obligatoire de la macro \macro{explnext} est vide alors seul le symbole est affiché \emph{(ne pas oublier les accolades vides)}. Voici un court exemple de ceci.
 
 \begin{latexex}
-\begin{explain}[ope = \viff]
+\begin{stepcalc}[ope = \viff]
     a^2 = b^2
         \explnext{}
     a = \pm b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -134,7 +134,7 @@ Si l'argument obligatoire de la macro \macro{explnext} est vide alors seul le sy
 La macro \macro{explnext} possède un argument optionnel qui utilise par défaut celui de l'environment. En utilisant cette option, on choisit alors localement le symbole à employer. Voici un exemple d'utilisation complètement farfelu bien que correct.
 
 \begin{latexex}
-\begin{explain}[ope = \viff]
+\begin{stepcalc}[ope = \viff]
     0 \leq a < b
         \explnext[\vimplies]%
                  {Croissance de $x^2$ 
@@ -146,7 +146,7 @@ La macro \macro{explnext} possède un argument optionnel qui utilise par défaut
     (a - b)(a + b) < 0
         \explnext[\vimplies]{}
     a \neq b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -222,14 +222,14 @@ Nous allons expliquer comment obtenir l'affreux exemple ci-dessous montrant que 
 
 
 \begin{latexex}
-\begin{explain}
+\begin{stepcalc}
     (a + b) (a + b)
         \explnext{Se souvenir de $P\cdot P = P^2$.}%
     (a + b)^2
         \explnext*{Id. Rm. - Dév.}%
                   {Id. Rm. - Facto.}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 \egroup

@@ -2,9 +2,7 @@
 
 \makeatletter
     \input{../config/header[fr].sty}
-	\usepackage{01-equal-signs-n-co}
-
-    \usepackage{02-operators}
+	\usepackage{01-special-ope}
 \makeatother
 
 
@@ -16,15 +14,15 @@
 
 \newparaexample{Implication réciproque}
 
-En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{liesimp}, où l'on a inversé les groupes syllabiques de \macro{implies}, un opérateur pour pour obtenir $\liesimp$
+En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{becauseof} un opérateur pour pour obtenir $\becauseof$
 \footnote{
 	Penser aussi aux preuves d'équivalence par double implication.
-},
-ainsi que des versions négatives. Voici un exemple d'utilisation.
+}
+ainsi que leurs versions négatives. Voici un exemple d'utilisation.
 
 \begin{latexex}
 $(A \implies B)
- \iff (B \liesimp A)$
+ \iff (B \becauseof A)$
 
 $(A \implies B)
  \niff (A \nimplies B)$
@@ -36,15 +34,14 @@ $(A \implies B)
 
 \newparaexample{Des opérateurs décorés}
 
-Tout comme pour les comparaisons, il existe des versions décorées de type test, hypothèse, condition \dots{} 
-Elles sont toutes présentes dans l'exemple suivant.
+Tout comme pour les comparaisons, pour décorer il suffit de passer via un argument optionnel.
 
 \begin{latexex}
-$A \iffappli B \niffchoice C$
+$A \iff[ssi] B \niff[i.e.] C$
 
-$A \impliescond B \nimpliescons C$
+$A \implies[donc] B \nimplies[donne] C$
 
-$A \liesimphyp B \nliesimptest C$
+$A \becauseof[car] B \nbecauseof[d'après] C$
 \end{latexex}
 
 
@@ -53,72 +50,18 @@ $A \liesimphyp B \nliesimptest C$
 
 \subsection{Fiches techniques}
 
-% == Decorated versions - START == %
-
 \begin{multicols}{4}
-    \foreach \k in {iff, iffappli, iffchoice, iffcond, iffcons, iffhyp, ifftest}{
-	   \IDope{\k}
-
-    }
+	\foreach \k in {iff, implies, becauseof}{
+	
+		\IDmacro[o]{\k{} }{1}
+		
+		\IDmacro[o]{n\k}{1}
+	}
 \end{multicols}
-    
-\separation
 
-\begin{multicols}{4}
-    \foreach \k in {niff, niffappli, niffchoice, niffcond, niffcons, niffhyp, nifftest}{
-	   \IDope{\k}
+\vspace{-.75em}
 
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {implies, impliesappli, implieschoice, impliescond, impliescons, implieshyp, impliestest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {nimplies, nimpliesappli, nimplieschoice, nimpliescond, nimpliescons, nimplieshyp, nimpliestest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {liesimp, liesimpappli, liesimpchoice, liesimpcond, liesimpcons, liesimphyp, liesimptest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {nliesimp, nliesimpappli, nliesimpchoice, nliesimpcond, nliesimpcons, nliesimphyp, nliesimptest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-% == Decorated versions - END == %
-
-
-% ---------------------- %
-
-
-\subsection{Une table récapitulative}
-
-La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} montre toutes les associations autorisées entre opérateurs logiques et décorations.
-
-
-% ---------------------- %
+\IDoption{} un texte de décoration éventuel.
 
 
 \subsection{Équivalences et implications verticales}
@@ -136,8 +79,8 @@ Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
   & $E$          & $F$
   \\
     $\viff$      & $\vimplies$   
-  & $\vliesimp$  & $\nviff$
-  & $\nvimplies$ & $\nvliesimp$
+  & $\vbecauseof$  & $\nviff$
+  & $\nvimplies$ & $\nvbecauseof$
   \\
     $A$          & $B$
   & $C$          & $D$
@@ -151,17 +94,13 @@ Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
 
 \subsection{Fiches techniques}
 
-% == Vertical versions - START == %
-
 \begin{multicols}{4}
-    \foreach \k in {viff, vimplies, vliesimp}{
+    \foreach \k in {viff, vimplies, vbecauseof}{
 
 	   \IDope{\k}
 
 	   \IDope{n\k}
     }
 \end{multicols}
-
-% == Vertical versions - END == %
 
 \end{document}

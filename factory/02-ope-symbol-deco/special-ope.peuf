@@ -1,0 +1,42 @@
+// Widest symbols.
+short::
+    eq   = =
+    less = <
+    gtr  = >
+
+
+// Operators that can be decorated.
+//
+// We only indicate customized versions of negation of operators
+// (the prefix * is used in this cases).
+operators::
+    eq         = =
+    less       = <
+    gtr        = >
+    leq        =
+    geq        =
+
+    iff        =
+    iff*       = \centernot\iff
+
+    implies    =
+    implies*   = \centernot\implies
+
+    becauseof  = \mathrel{\Longleftarrow}
+    becauseof* = \centernot\becauseof
+
+
+// Decorations that have a symbolic version.
+//
+// ``?* = \shortless\mkern1.5mu\shortgtr`` indicates an alternative
+// to the use of ``\centernot``.
+symbolic-eq::
+    ?     = \shorteq\mkern1.5mu\shorteq
+    ?*    = \shortless\mkern1.5mu\shortgtr
+
+    appli = \tnslog@leftleftharpoons
+    cons  = \tnslog@rightrightharpoons
+
+    def   = \coloneqq
+
+    id    = \tnslog@rightleftharpoons

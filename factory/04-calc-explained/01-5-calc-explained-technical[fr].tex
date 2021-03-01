@@ -3,7 +3,7 @@
 \makeatletter
     \input{../config/header[fr].sty}
 
-    \usepackage{01-calc-explained}
+    \usepackage{01-stepcalc}
 \makeatother
 
 
@@ -15,19 +15,21 @@
 
 \subsection{Détailler un raisonnement simple} 
 
-\IDenv[o]{explain}{1}
+\IDenv[o]{stepcalc}{1}
 
 \IDoption{} la valeur utilise une syntaxe de type clé-valeur. Voici les différentes clés disponibles.
 
 \begin{enumerate}
 	\item \verb+ope+ sert à définir l'opérateur utilisé dans tout l'environnement qui sera rédigé en mode mathématique. 
-	      La valeur par défaut est \verb+{=}+ \emph{(et non juste \texttt{=})}.
+	      La valeur par défaut est \verb+{=}+ \emph{(et non juste \texttt{=} attention)}.
 
 	\item \verb+style+ sert à définir le style de mise en forme. Voici les différentes valeurs possibles.
 	      \begin{enumerate}
 	      		\item \prefix{u}, la valeur par défaut, est pour \whyprefix{u}{niversity}.
 
 	      		\item \prefix{ar} est pour \whyprefix{ar}{row}.
+
+	      		\item \prefix{ar*} est similaire à \prefix{ar}  mais avec l'opérateur dans la marge.
 
 	      		\item \prefix{sar} est pour \whyprefix{s}{hort} \whyprefix{ar}{row}.
 	      \end{enumerate}
@@ -47,7 +49,7 @@
 
 \IDmacro{explnext}{1}{1}  \hfill \mwhyprefix{expl}{ain}
 
-\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
+\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{stepcalc} où \macro{explnext} est utilisé.
 
 \IDarg{} le texte de l'explication qui peut être vide si aucune explication n'est à afficher.
 
@@ -55,7 +57,7 @@
 
 \medskip
 
-\emph{\textbf{ATTENTION !} La macro \macro{explnext} est à utiliser sans argument ni option au tout début du contenu de l'environnement \env{explain} en cas d'utilisation du style \texttt{sar}.}
+\emph{\textbf{ATTENTION !} La macro \macro{explnext} est à utiliser sans argument ni option au tout début du contenu de l'environnement \env{stepcalc} en cas d'utilisation du style \texttt{sar}.}
 
 
 \separation
@@ -63,13 +65,13 @@
 
 \IDmacro{explnext*}{1}{2}
 
-\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
+\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{stepcalc} où \macro{explnext} est utilisé.
 
 \IDarg{1} le texte de l'explication pour la 1\iere{} ligne.
-          Ce texte peut être vide \emph{(voir l'environnement \env{aexplain} pour la raison de ceci)}.
+          Ce texte peut être vide \emph{(voir l'environnement \env{astepcalc} pour la raison de ceci)}.
 
 \IDarg{2} le texte de l'explication pour la 2\ieme{} ligne.
-          Ce texte peut être vide \emph{(voir l'environnement \env{aexplain} pour la raison de ceci)}.
+          Ce texte peut être vide \emph{(voir l'environnement \env{astepcalc} pour la raison de ceci)}.
 
 
 \separation
@@ -88,7 +90,7 @@
 
 \subsection{Détailler un raisonnement simple -- Mise en forme du texte}
 
-Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
+Les macros suivantes sont juste utilisées par l'environnement \env{stepcalc}.
 
 
 \separation

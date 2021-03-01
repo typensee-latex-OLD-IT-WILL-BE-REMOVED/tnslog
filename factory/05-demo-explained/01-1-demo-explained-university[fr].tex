@@ -3,7 +3,7 @@
 \makeatletter
     \input{../config/header[fr].sty}
 
-    \usepackage{01-demo-explained}
+    \usepackage{01-demotab}
 \makeatother
 
 
@@ -16,7 +16,7 @@
 \newparaexample{Le minimum avec les réglages par défaut}
 
 Prenons un exemple utile à la logique formelle en informatique théorique mais qui a complètement sa place en mathématiques plus classiques \emph{(voir la section \ref{tnslog-explain-hard-proof-for-youngs} pour un autre type de présentation plus adapté à un public de collège ou de lycée)}.
-Ci-dessous l'environnement \env{demoexplain} facilite la mise en page
+Ci-dessous l'environnement \env{demotab} facilite la mise en page
 \footnote{
 	En coulisse est utilisé l'environnement \env{longtable} du package éponyme.
 }
@@ -27,7 +27,7 @@ et la macro étoilée \macro{explref*} permet d'indiquer une référence interne
 Dans cet exemple en deux morceaux, pour montrer au passage comment continuer la numérotation là où elle s'était arrêtée, on utilise \emph{\og m.p. \fg} comme abréviation de \emph{\og modus ponens \fg}.
 
 \begin{latexex}
-\begin{demoexplain}
+\begin{demotab}
     \demostep
         Hypothèse & $A$     
     \demostep
@@ -39,14 +39,14 @@ Dans cet exemple en deux morceaux, pour montrer au passage comment continuer la 
     \demostep
         \explref*{1} et \explref*{3}
       & $A \wedge B$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 
 Il est possible de couper sa démonstration en morceaux en indiquant à l'environnement la valeur du 1\ier{} numéro de justification via la clé \verb+start+ : la valeur spéciale \verb+last+ indique de continuer la numérotation à la suite.
 
 \begin{latexex}
-\begin{demoexplain}[start = last]
+\begin{demotab}[start = last]
     \demostep
         Axiome 3
       & $(A \wedge B) \implies C$
@@ -54,7 +54,7 @@ Il est possible de couper sa démonstration en morceaux en indiquant à l'enviro
         m.p. sur
         \explref*{4} et \explref*{5}
       & $C$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 
@@ -66,7 +66,7 @@ Il est possible de couper sa démonstration en morceaux en indiquant à l'enviro
 L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite facilitera le référencement d'une justification de façon pérenne via la macro non étoilée \macro{explref}.
 
 \begin{latexex}
-\begin{demoexplain}
+\begin{demotab}
     \demostep[demo-my-hyp]
         Hypothèse & $A$     
     \demostep[demo-use-axiom-1]
@@ -77,7 +77,7 @@ L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite
         et
         \explref{demo-use-axiom-1}
       & $B$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 
@@ -95,7 +95,7 @@ L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite
 Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour une seule hypothèse et \verb+ccl+ pour la conclusion permettent d'expliquer ce que l'on démontre et sous quel contexte.
 
 \begin{latexex}
-\begin{demoexplain}[hyp = $A$, ccl = $B$]
+\begin{demotab}[hyp = $A$, ccl = $B$]
     \demostep
         Hypothèse & $A$     
     \demostep
@@ -104,7 +104,7 @@ Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour u
         m.p. sur
         \explref*{1} et \explref*{2}
       & $B$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 

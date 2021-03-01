@@ -3,243 +3,111 @@
 \makeatletter
 	\input{../config/header[fr].sty}
 
-	\usepackage{01-equal-signs-n-co}
+	\usepackage{01-special-ope}
 \makeatother
 
 
 \begin{document}
 
-\section{Différents types de comparaisons \og standard \fg}
+\section{Personnaliser les opérateurs de comparaison}
 
-D'un point de vue pédagogique, il peut être intéressant de disposer de différentes façon d'écrire une égalité, une non égalité ou une inégalité.
-Bien entendu on tord les règles de typographie avec ce type de pratique mais c'est pour le bien de la communauté éducative.
+\subsection{Décorer avec du texte}
 
+D'un point de vue pédagogique il peut être intéressant de disposer de différentes façons d'écrire une égalité, une non égalité ou une inégalité en lui ajoutant un texte descriptif.
+Bien entendu on tord les règles de typographie avec ce type de pratique mais c'est pour le bien de la communauté éducative. Pour cela on utilisera l'une des macros suivantes ou leur version négative obtenue en préfixant le nom d'un \verb#n#.
 
-\subsection{Définir quelque chose}
+\begin{enumerate}
+	\item \macro{eq} donne $\eq$ 
+	      tandis que
+	      \macro{neq} donne $\neq$.
 
-L'exemple suivant montre deux façons de rédiger une égalité signifiant une définition \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \txtopdef \fg})}.
+	\item \macro{less} et \macro{gtr} donnent $\less$ et $\gtr$
+	      tandis que\macro{nless} et \macro{ngtr} donnent $\nless$ et $\ngtr$ .
 
-\begin{latexex}
-$f(x) \eqdef x^3 + 1$
-
-$f(x) \eqdef* x^3 + 1$
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Indiquer une identité}
-
-L'exemple suivant montre deux façons de rédiger des identités avec une notation symbolique non standard \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \txtopid \fg})}.
-
-\begin{latexex}
-$(a + b)^2 \eqid a^2 + b^2 + 2 a b$
-
-$(a + b)^2 \eqid* a^2 + b^2 + 2 a b$
-\end{latexex}
+	\item \macro{leq} et \macro{geq} donnent $\leq$ et $\geq$
+	      tandis que\macro{nleq} et \macro{ngeq} donnent $\nleq$ et $\ngeq$ .
+\end{enumerate}
 
 
-% ---------------------- %
+\medskip
 
 
-\subsection{Une égalité à vérifier ou non, une hypothèse, une condition}
-
-Se reporter à la section \ref{tnslog-texts-for-opes} pour savoir comment sont définis les textes \emph{\og \txtopcons \fg} , \emph{\og \txtopcond \fg} et \emph{\og \txtophyp \fg}.
+Voici un exemple où l'utilisation d'arguments optionnels permet de décorer des opérateurs.
 
 \begin{latexex}
-$(a + b)^3 \eqtest a^3 + b^3 + 3 a b$
+   $f(x) \eq[def]   x^3 + 1$
+si $x    \leq[cond] 2$
 
-$(a + b)^3 \neqid a^3 + b^3 + 3 a b$
-
-$x \neqhyp 0$  ou
-$x \neqcond 0$ ou
-$x \eqcons 0$
+    $f(x) \neq[cons] x^3 + 1$
+car $x    \nleq[hyp] 2$
 \end{latexex}
+
+\begin{remark}
+	La mise en forme du texte est faite par la macro \macro{txtdecoope} qui utilise \macro{coldecoope} pour la coloration \emph{(il est donc facile de changer la couleur du texte mais aussi la mise en forme du texte si besoin)}.
+\end{remark}
 
 
 % ---------------------- %
 
 
-\subsection{Une égalité indiquant le choix d'une valeur ou l'application d'une relation}
+\subsection{Quelques écritures symboliques nouvelles}
 
-La section \ref{tnslog-texts-for-opes} permet de savoir comment les textes \emph{\og \txtopchoice \fg} et \emph{\og \txtopappli \fg} sont définis.
+Certaines décorations fournissent une écriture symbolique obtenue via la version étoilée de la macro d'un opérateur.
+Si une telle écriture n'existe pas, le package utilisera silencieusement la version non étoilée.
+Pour le moment, seule la macro \macro{equ} propose ceci ainsi que sa version négative. Voici tous les cas possibles.
 
 \begin{latexex}
-$x \geqcond 4$ implique
-$x^2 \geqcons 16$.
+$a \eq*[def]   1$ ou $a \neq*[def]   1$
 
-Donc $x \eqchoice 123$ donne
-$123^2 \geqappli 16$.
+$b \eq*[id]    2$ ou $b \neq*[id]    2$
+
+$c \eq*[appli] 3$ ou $c \neq*[appli] 3$
+
+$d \eq*[cons]  4$ ou $d \neq*[cons]  4$
+
+$e \eq*[?]     5$ ou $e \neq*[?]     5$
 \end{latexex}
 
-
-% ---------------------- %
-
-
-\subsection{Une égalité indiquant l'équation d'une courbe}
-
-La section \ref{tnslog-texts-for-opes} permet de savoir comment les texte \emph{\og \txtopplot \fg} est défini.
-
-\begin{latexex}
-$M \in C: y \eqplot x^2 + 3$
-donne
-$y_M \eqappli x_M^2 + 3$.
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Différents types d'inéquations}
-
-Le principe reste le même pour les symboles d'équations excepté qu'il n'y a ici aucune écriture purement symbolique. Voici un code \og fourre-tout \fg{} montrant quelques exemples.
-
-\begin{latexex}
-$x \leqtest x^2$ ou $x \lesscons x^2$ ou
-$x \geqhyp 1$    ou $x \gtrcond 2$.
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Des formes négatives aussi pour les inéquations}
-
-Tous les opérateurs de comparaison ont une forme négative qui s'obtient en préfixant le nom de l'opérateur par \verb+n+.
-Voici quelques exemples d'utilisation.
-
-\begin{latexex}
-$x \nlesshyp 3$ ou
-$y \nleqtest 4$ ou
-$z \ngeqcons 5$
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Une table récapitulative}
-
-La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} fournit toutes les associations autorisées entre opérateurs de comparaison et décorations.
-
-
-% ---------------------- %
-
-
-\subsection{Textes utilisés} \label{tnslog-texts-for-opes}
-
-Voici les macros définissant les textes utilisés qui tiennent compte de l'utilisation ou non de l'option \verb+french+ de \verb+babel+. Nous ne donnons que les versions françaises.
-
-\vspace{-.5em}
-
-\begin{center}
-	\begin{tabular}{l@{\kern1ex}l@{\kern2cm}l@{\kern1ex}l}
-% == All texts - START == %
-        \macro{txtopappli\{\}} & donne \emph{\og \txtopappli \fg}
-        & \macro{txtopchoice\{\}} & donne \emph{\og \txtopchoice \fg} \\
-        \macro{txtopcond\{\}} & donne \emph{\og \txtopcond \fg}
-        & \macro{txtopcons\{\}} & donne \emph{\og \txtopcons \fg} \\
-        \macro{txtopdef\{\}} & donne \emph{\og \txtopdef \fg}
-        & \macro{txtophyp\{\}} & donne \emph{\og \txtophyp \fg} \\
-        \macro{txtopid\{\}} & donne \emph{\og \txtopid \fg}
-        & \macro{txtopplot\{\}} & donne \emph{\og \txtopplot \fg} \\
-        \macro{txtoptest\{\}} & donne \emph{\og \txtoptest \fg}
-        & & \\
-% == All texts - END == %
-	\end{tabular}
-\end{center}
 
 % ---------------------- %
 
 
 \section{Fiches techniques}
 
-\subsection{Opérateurs décorés -- Les textes}
+\IDmacro[o]{eq }{1}
+
+\IDmacro[o]{neq}{1}
+
+\IDoption{} un texte de décoration éventuel. On obtient des versions symboliques si l'on utilise l'un des textes suivants.
+\begin{multicols}{5}
+    \begin{enumerate}
+    	\item \verb#?#
+    
+    	\item \verb#appli#
+    
+    	\item \verb#cons#
+    
+    	\item \verb#def#
+    
+    	\item \verb#id#
+    \end{enumerate}
+\end{multicols}
+
+
+\separation
+
 
 \begin{multicols}{4}
-% == Technical infos - Texts - START == %
-
-\foreach \k in {txtopappli, txtopchoice, txtopcond, txtopcons, txtopdef, txtophyp, txtopid, txtopplot, txtoptest}{
-
-	\IDmacro[n]{\k}
-
-}
-
-% == Technical infos - Texts - END == %
-
+	\foreach \k in {less, leq, gtr, geq}{
+	
+		\IDmacro[o]{\k{} }{1}
+		
+		\IDmacro[o]{n\k}{1}
+	}
 \end{multicols}
 
-% ---------------------- %
+\vspace{-.75em}
 
-
-\subsection{Opérateurs de comparaison supplémentaires}
-
-% == Technical infos - Operators - START == %
-
-\begin{multicols}{6}
-    \foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-% == Technical infos - Operators - END == %
+\IDoption{} un texte de décoration éventuel.
 
 \end{document}
-

@@ -33,6 +33,7 @@
 
 \usepackage{enumitem}
 \usepackage{multicol}
+\usepackage{longtable}
 \usepackage{makecell}
 
 \setlength{\parindent}{0cm}
@@ -88,6 +89,7 @@
 \usepackage{ifplatform}
 \usepackage{ifthen}
 \usepackage{macroenvsign}
+\usepackage{pgffor}
 
 
 
@@ -289,10 +291,10 @@
 	Le package \texttt{tnslog}:\\%
 	rédiger de la logique simple\\%
 	{\footnotesize Code source disponible sur \url{https://github.com/typensee-latex/tnslog.git}.}\\%
-{\footnotesize Version \texttt{0.1.0-beta} développée et testée sur \macosxname{}.}%
+{\footnotesize Version \texttt{1.0.0-beta} développée et testée sur \macosxname{}.}%
 }
 \author{Christophe BAL}
-\date{2020-08-08}
+\date{2021-03-01}
 
 \maketitle
 
@@ -322,7 +324,7 @@ Le package \verb+tnslog+ facilite la rédaction de preuves formelles basiques vi
 % List of packages - START
 \section{Packages utilisés}
 
-La roue ayant déjà été inventée, le package \verb#tnslog# réutilise les packages suivants sans aucun scrupule.
+La roue ayant déjà été inventée, le package \verb#tnslog# utilise les packages suivants sans aucun scrupule.
 
 \begin{multicols}{4}
     \begin{itemize}
@@ -351,146 +353,65 @@ $\neg\neg A = \stdneg \stdneg A$
 
 
 % ---------------------- %
-\section{Différents types de comparaisons \og standard \fg}
+\section{Personnaliser les opérateurs de comparaison}
 
-D'un point de vue pédagogique, il peut être intéressant de disposer de différentes façon d'écrire une égalité, une non égalité ou une inégalité.
-Bien entendu on tord les règles de typographie avec ce type de pratique mais c'est pour le bien de la communauté éducative.
+\subsection{Décorer avec du texte}
 
+D'un point de vue pédagogique il peut être intéressant de disposer de différentes façons d'écrire une égalité, une non égalité ou une inégalité en lui ajoutant un texte descriptif.
+Bien entendu on tord les règles de typographie avec ce type de pratique mais c'est pour le bien de la communauté éducative. Pour cela on utilisera l'une des macros suivantes ou leur version négative obtenue en préfixant le nom d'un \verb#n#.
 
-\subsection{Définir quelque chose}
+\begin{enumerate}
+	\item \macro{eq} donne $\eq$ 
+	      tandis que
+	      \macro{neq} donne $\neq$.
 
-L'exemple suivant montre deux façons de rédiger une égalité signifiant une définition \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \txtopdef \fg})}.
+	\item \macro{less} et \macro{gtr} donnent $\less$ et $\gtr$
+	      tandis que\macro{nless} et \macro{ngtr} donnent $\nless$ et $\ngtr$ .
 
-\begin{latexex}
-$f(x) \eqdef x^3 + 1$
-
-$f(x) \eqdef* x^3 + 1$
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Indiquer une identité}
-
-L'exemple suivant montre deux façons de rédiger des identités avec une notation symbolique non standard \emph{(la section \ref{tnslog-texts-for-opes} explique comment est défini le texte \emph{\og \txtopid \fg})}.
-
-\begin{latexex}
-$(a + b)^2 \eqid a^2 + b^2 + 2 a b$
-
-$(a + b)^2 \eqid* a^2 + b^2 + 2 a b$
-\end{latexex}
+	\item \macro{leq} et \macro{geq} donnent $\leq$ et $\geq$
+	      tandis que\macro{nleq} et \macro{ngeq} donnent $\nleq$ et $\ngeq$ .
+\end{enumerate}
 
 
-% ---------------------- %
+\medskip
 
 
-\subsection{Une égalité à vérifier ou non, une hypothèse, une condition}
-
-Se reporter à la section \ref{tnslog-texts-for-opes} pour savoir comment sont définis les textes \emph{\og \txtopcons \fg} , \emph{\og \txtopcond \fg} et \emph{\og \txtophyp \fg}.
+Voici un exemple où l'utilisation d'arguments optionnels permet de décorer des opérateurs.
 
 \begin{latexex}
-$(a + b)^3 \eqtest a^3 + b^3 + 3 a b$
+   $f(x) \eq[def]   x^3 + 1$
+si $x    \leq[cond] 2$
 
-$(a + b)^3 \neqid a^3 + b^3 + 3 a b$
-
-$x \neqhyp 0$  ou
-$x \neqcond 0$ ou
-$x \eqcons 0$
+    $f(x) \neq[cons] x^3 + 1$
+car $x    \nleq[hyp] 2$
 \end{latexex}
+
+\begin{remark}
+	La mise en forme du texte est faite par la macro \macro{txtdecoope} qui utilise \macro{coldecoope} pour la coloration \emph{(il est donc facile de changer la couleur du texte mais aussi la mise en forme du texte si besoin)}.
+\end{remark}
 
 
 % ---------------------- %
 
 
-\subsection{Une égalité indiquant le choix d'une valeur ou l'application d'une relation}
+\subsection{Quelques écritures symboliques nouvelles}
 
-La section \ref{tnslog-texts-for-opes} permet de savoir comment les textes \emph{\og \txtopchoice \fg} et \emph{\og \txtopappli \fg} sont définis.
+Certaines décorations fournissent une écriture symbolique obtenue via la version étoilée de la macro d'un opérateur.
+Si une telle écriture n'existe pas, le package utilisera silencieusement la version non étoilée.
+Pour le moment, seule la macro \macro{equ} propose ceci ainsi que sa version négative. Voici tous les cas possibles.
 
 \begin{latexex}
-$x \geqcond 4$ implique
-$x^2 \geqcons 16$.
+$a \eq*[def]   1$ ou $a \neq*[def]   1$
 
-Donc $x \eqchoice 123$ donne
-$123^2 \geqappli 16$.
+$b \eq*[id]    2$ ou $b \neq*[id]    2$
+
+$c \eq*[appli] 3$ ou $c \neq*[appli] 3$
+
+$d \eq*[cons]  4$ ou $d \neq*[cons]  4$
+
+$e \eq*[?]     5$ ou $e \neq*[?]     5$
 \end{latexex}
 
-
-% ---------------------- %
-
-
-\subsection{Une égalité indiquant l'équation d'une courbe}
-
-La section \ref{tnslog-texts-for-opes} permet de savoir comment les texte \emph{\og \txtopplot \fg} est défini.
-
-\begin{latexex}
-$M \in C: y \eqplot x^2 + 3$
-donne
-$y_M \eqappli x_M^2 + 3$.
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Différents types d'inéquations}
-
-Le principe reste le même pour les symboles d'équations excepté qu'il n'y a ici aucune écriture purement symbolique. Voici un code \og fourre-tout \fg{} montrant quelques exemples.
-
-\begin{latexex}
-$x \leqtest x^2$ ou $x \lesscons x^2$ ou
-$x \geqhyp 1$    ou $x \gtrcond 2$.
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Des formes négatives aussi pour les inéquations}
-
-Tous les opérateurs de comparaison ont une forme négative qui s'obtient en préfixant le nom de l'opérateur par \verb+n+.
-Voici quelques exemples d'utilisation.
-
-\begin{latexex}
-$x \nlesshyp 3$ ou
-$y \nleqtest 4$ ou
-$z \ngeqcons 5$
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Une table récapitulative}
-
-La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} fournit toutes les associations autorisées entre opérateurs de comparaison et décorations.
-
-
-% ---------------------- %
-
-
-\subsection{Textes utilisés} \label{tnslog-texts-for-opes}
-
-Voici les macros définissant les textes utilisés qui tiennent compte de l'utilisation ou non de l'option \verb+french+ de \verb+babel+. Nous ne donnons que les versions françaises.
-
-\vspace{-.5em}
-
-\begin{center}
-	\begin{tabular}{l@{\kern1ex}l@{\kern2cm}l@{\kern1ex}l}
-% == All texts - START == %
-        \macro{txtopappli\{\}} & donne \emph{\og \txtopappli \fg}
-        & \macro{txtopchoice\{\}} & donne \emph{\og \txtopchoice \fg} \\
-        \macro{txtopcond\{\}} & donne \emph{\og \txtopcond \fg}
-        & \macro{txtopcons\{\}} & donne \emph{\og \txtopcons \fg} \\
-        \macro{txtopdef\{\}} & donne \emph{\og \txtopdef \fg}
-        & \macro{txtophyp\{\}} & donne \emph{\og \txtophyp \fg} \\
-        \macro{txtopid\{\}} & donne \emph{\og \txtopid \fg}
-        & \macro{txtopplot\{\}} & donne \emph{\og \txtopplot \fg} \\
-        \macro{txtoptest\{\}} & donne \emph{\og \txtoptest \fg}
-        & & \\
-% == All texts - END == %
-	\end{tabular}
-\end{center}
 
 % ---------------------- %
 \section{Équivalences et implications}
@@ -499,15 +420,15 @@ Voici les macros définissant les textes utilisés qui tiennent compte de l'util
 
 \newparaexample{Implication réciproque}
 
-En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{liesimp}, où l'on a inversé les groupes syllabiques de \macro{implies}, un opérateur pour pour obtenir $\liesimp$
+En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{becauseof} un opérateur pour pour obtenir $\becauseof$
 \footnote{
 	Penser aussi aux preuves d'équivalence par double implication.
-},
-ainsi que des versions négatives. Voici un exemple d'utilisation.
+}
+ainsi que leurs versions négatives. Voici un exemple d'utilisation.
 
 \begin{latexex}
 $(A \implies B)
- \iff (B \liesimp A)$
+ \iff (B \becauseof A)$
 
 $(A \implies B)
  \niff (A \nimplies B)$
@@ -519,24 +440,15 @@ $(A \implies B)
 
 \newparaexample{Des opérateurs décorés}
 
-Tout comme pour les comparaisons, il existe des versions décorées de type test, hypothèse, condition \dots{} 
-Elles sont toutes présentes dans l'exemple suivant.
+Tout comme pour les comparaisons, pour décorer il suffit de passer via un argument optionnel.
 
 \begin{latexex}
-$A \iffappli B \niffchoice C$
+$A \iff[ssi] B \niff[i.e.] C$
 
-$A \impliescond B \nimpliescons C$
+$A \implies[donc] B \nimplies[donne] C$
 
-$A \liesimphyp B \nliesimptest C$
+$A \becauseof[car] B \nbecauseof[d'après] C$
 \end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Une table récapitulative}
-
-La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} montre toutes les associations autorisées entre opérateurs logiques et décorations.
 
 
 % ---------------------- %
@@ -557,8 +469,8 @@ Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
   & $E$          & $F$
   \\
     $\viff$      & $\vimplies$   
-  & $\vliesimp$  & $\nviff$
-  & $\nvimplies$ & $\nvliesimp$
+  & $\vbecauseof$  & $\nviff$
+  & $\nvimplies$ & $\nvbecauseof$
   \\
     $A$          & $B$
   & $C$          & $D$
@@ -568,31 +480,6 @@ Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
 
 
 % ---------------------- %
-%\section{Logique et fondements}
-
-\subsection{Tables des décorations possibles des opérateurs}
-
-La table \ref{tnslog-table:deco-opes} \vpageref{tnslog-table:deco-opes} donne toutes les associations autorisées entre opérateurs et décorations.
-Il faut retenir que les versions étoilées produisent des écritures symboliques. 
-
-
-% == Table - START == %
-
-\begin{table}[h]
-    \caption{Décorations}
-    \begin{center}
-        \begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c}
-             Préfixe & \verb+appli+ & \verb+choice+ & \verb+cond+ & \verb+cons+ & \verb+def+ & \verb+def*+ & \verb+hyp+ & \verb+id+ & \verb+id*+ & \verb+plot+ & \verb+test+ \\
-            \hline \makecell{\macro{eq}} & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ \\
-            \hline \makecell{\macro{neq}} & $\times$ & $\times$ & $\times$ & $\times$ &          &          & $\times$ & $\times$ &          & $\times$ & $\times$ \\
-            \hline \makecell{\macro{less}\\\macro{nless}\\\macro{leq}\\\macro{nleq}\\\macro{gtr}\\\macro{ngtr}\\\macro{geq}\\\macro{ngeq}} & $\times$ & $\times$ & $\times$ & $\times$ &          &          & $\times$ &          &          & $\times$ & $\times$ \\
-            \hline \makecell{\macro{iff}\\\macro{niff}\\\macro{implies}\\\macro{nimplies}\\\macro{liesimp}\\\macro{nliesimp}} & $\times$ & $\times$ & $\times$ & $\times$ &          &          & $\times$ &          &          &          & $\times$ \\
-        \end{tabular}
-    \end{center}
-    \label{tnslog-table:deco-opes}
-\end{table}
-
-% == Table - END == %
 \section{Des versions alternatives du quantificateur existentiel}
 
 \subsection{Quantifier l'existence}
@@ -606,7 +493,7 @@ $\existsone x \in E$ pour
 $\existmulti{\leq 1} y \in F$ pour
 \og il existe au plus un $y$ \fg.
 
-$\existmulti{=1} \eqdef* \existsone$
+$\existmulti{=1} \eq*[def] \existsone$
 \end{latexex}
 
 
@@ -619,7 +506,7 @@ $\existmulti{=1} \eqdef* \existsone$
 $\nexistsone$ pour
 \og il n'existe pas un unique \fg.
 
-$\existmulti{\neq1} \eqdef* \nexistsone$
+$\existmulti{\neq1} \eq*[def] \nexistsone$
 
 $\nexistmulti{>4}$ pour
 \og il n'existe pas plus de quatre \fg.
@@ -631,11 +518,11 @@ $\nexists$ vient de \verb+amssymb+.
 % ---------------------- %
 \section{Détailler un raisonnement simple}
 
-\subsection{Version pour le lycée et après} \label{tnslog-explain-proof}
+\subsection{Version pour le lycée et après} \label{tnslog-stepcalc-proof}
 
 \newparaexample{Avec les réglages par défaut}
 
-L'environnement \env{explain} permet de détailler les étapes principales d'un calcul ou d'un raisonnement simple en s'appuyant sur la macro \macro{explnext} dont le nom vient de \emph{\og \whyprefix{expl}{ain} \prefix{next} step \fg} soit \inenglish{expliquer la prochaine étape}
+L'environnement \env{stepcalc} permet de détailler les étapes principales d'un calcul ou d'un raisonnement simple en s'appuyant sur la macro \macro{explnext} dont le nom vient de \emph{\og \whyprefix{expl}{ain} \prefix{next} step \fg} soit \inenglish{expliquer la prochaine étape}
 \footnote{
     Cet environnement utilise aussi le package \texttt{witharrows} qui est très sympathique pour expliquer des étapes de calcul.
 }.
@@ -648,12 +535,12 @@ On dispose aussi de \macro{explnext*} pour des explications descendantes et/ou m
 
 
 Ci-dessous se trouve un exemple, très farfelu vers la fin, où l'on utilise les réglages par défaut.
-Notons au passage que ce type de présentation n'est sûrement pas bien adaptée à un jeune public pour lequel une 2\ieme{} façon de détailler des calculs et/ou un raisonnement simple est proposée plus bas dans la section \ref{tnslog-explain-proof-for-youngs}.
+Notons au passage que ce type de présentation n'est sûrement pas bien adaptée à un jeune public pour lequel une 2\ieme{} façon de détailler des calculs et/ou un raisonnement simple est proposée plus bas dans la section \ref{tnslog-stepcalc-proof-for-youngs}.
 
 \begin{latexex-flat}
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
-        \explnext{On utilise $x^2 = x \cdot x$.}
+		\explnext{On utilise $x^2 = x \cdot x$.}
     (a + b) (a + b)
         \explnext*{Double développement depuis la parenthèse gauche.}%
                   {Double factorisation pas facile.}
@@ -664,7 +551,7 @@ Notons au passage que ce type de présentation n'est sûrement pas bien adaptée
         \explnext*{Commutativité de l'addition.}%
                   {}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex-flat}
 
 
@@ -674,11 +561,11 @@ Notons au passage que ce type de présentation n'est sûrement pas bien adaptée
 \begin{latexex}
 Un calcul avec un placement pouvant être 
 utile :
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
         \explnext{Identité remarquable.}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 Avec un retour à la ligne, il faudra donc si besoin gérer l'espacement vertical.
@@ -687,11 +574,11 @@ Avec un retour à la ligne, il faudra donc si besoin gérer l'espacement vertica
 Mon calcul pas trop proche.
 
 \medskip
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
         \explnext{Identité remarquable.}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 \end{remark}
 
@@ -714,17 +601,17 @@ Mon calcul pas trop proche.
 
 \newparaexample{Utiliser un autre symbole globalement}
 
-L'environnement \env{explain} possède plusieurs options dont l'une est \verb+ope+ qui vaut \verb+{=}+ par défaut. Ceci permet de faire ce qui suit sans effort.
+L'environnement \env{stepcalc} possède plusieurs options dont l'une est \verb+ope+ qui vaut \verb+{=}+ par défaut. Ceci permet de faire ce qui suit sans effort.
 
 \begin{latexex}
-\begin{explain}[ope = \viff]
+\begin{stepcalc}[ope = \viff]
     x^2 + 10 x + 25 = 0
         \explnext{Identité remarquable.}
     (x + 5)^2 = 0
         \explnext{$P^2 = 0$ si et 
                   seulement si $P = 0$.}
     x = -5
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -736,11 +623,11 @@ L'environnement \env{explain} possède plusieurs options dont l'une est \verb+op
 Si l'argument obligatoire de la macro \macro{explnext} est vide alors seul le symbole est affiché \emph{(ne pas oublier les accolades vides)}. Voici un court exemple de ceci.
 
 \begin{latexex}
-\begin{explain}[ope = \viff]
+\begin{stepcalc}[ope = \viff]
     a^2 = b^2
         \explnext{}
     a = \pm b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -752,7 +639,7 @@ Si l'argument obligatoire de la macro \macro{explnext} est vide alors seul le sy
 La macro \macro{explnext} possède un argument optionnel qui utilise par défaut celui de l'environment. En utilisant cette option, on choisit alors localement le symbole à employer. Voici un exemple d'utilisation complètement farfelu bien que correct.
 
 \begin{latexex}
-\begin{explain}[ope = \viff]
+\begin{stepcalc}[ope = \viff]
     0 \leq a < b
         \explnext[\vimplies]%
                  {Croissance de $x^2$ 
@@ -764,7 +651,7 @@ La macro \macro{explnext} possède un argument optionnel qui utilise par défaut
     (a - b)(a + b) < 0
         \explnext[\vimplies]{}
     a \neq b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -840,14 +727,14 @@ Nous allons expliquer comment obtenir l'affreux exemple ci-dessous montrant que 
 
 
 \begin{latexex}
-\begin{explain}
+\begin{stepcalc}
     (a + b) (a + b)
         \explnext{Se souvenir de $P\cdot P = P^2$.}%
     (a + b)^2
         \explnext*{Id. Rm. - Dév.}%
                   {Id. Rm. - Facto.}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 \egroup
@@ -886,13 +773,13 @@ La mise en forme a été obtenue en utilisant le code \LaTeX{} suivant où la ma
 % ==================== %
 %\section{Détailler un raisonnement simple}
 
-\subsection{Version pour les collégiens} \label{tnslog-explain-proof-for-youngs}
+\subsection{Version pour les collégiens} \label{tnslog-stepcalc-proof-for-youngs}
 
-L'environnement \env{explain} avec l'option \verb+style = ar+
+L'environnement \env{stepcalc}
 \footnote{
     Cet environnement utilise aussi le package \texttt{witharrows}.
 }
-utilise des flèches pour indiquer les explications
+avec les options \verb+style = ar+ et \verb+style = ar*+ imprime une rédaction plus classique tout en utilisant des flèches pour indiquer les explications
 \emph{(\prefix{ar} est pour \whyprefix{ar}{row} soit \inenglish{flèche})}.
 Dans ce cas d'utilisation, la macro \macro{explnext*} permet d'avoir une flèche unidirectionnelle, vers le haut ou le bas au choix, ou bien d'écrire deux indications dont l'une est montante et l'autre descendante.
 
@@ -900,8 +787,51 @@ Dans ce cas d'utilisation, la macro \macro{explnext*} permet d'avoir une flèche
 
 Il existe aussi l'option \verb+style = sar+ lorsque la toute 1\iere{} étape n'est pas expliquée
 \emph{(\prefix{s} est pour \whyprefix{s}{hort} soit \inenglish{court})}.
-Attention car forcément ceci nécessite au tout début de l'environnement l'usage de la macro \macro{explnext} sans aucun contenu !
+Voir l'exemple \ref{tnslog:stepcalc-style:sar} page \pageref{tnslog:stepcalc-style:sar}.
 
+
+% ---------------------- %
+
+
+\newparaexample{L'opérateur dans la marge... ou pas}
+
+Considérons le code suivant qui utilise \verb+style = ar+.
+
+\begin{latexex-alone}
+\begin{stepcalc}[style = ar]
+    (a + b)^2
+        \explnext{}
+    a^2 + 2 a b + b^2
+\end{stepcalc}
+\end{latexex-alone}
+
+Intégré dans un paragraphe, on obtient le rendu suivant qui vaut ce qu'il vaut ici.
+
+\medskip
+
+\begin{stepcalc}[style = ar]
+    (a + b)^2
+        \explnext{}
+    a^2 + 2 a b + b^2
+\end{stepcalc}
+
+
+\bigskip
+
+En utilisant \verb+style = ar*+ au lieu de \verb+style = ar+, on aboutit à ce qui suit qui semble mieux.
+
+\medskip
+
+\begin{stepcalc}[style = ar*]
+    (a + b)^2
+        \explnext{}
+    a^2 + 2 a b + b^2
+\end{stepcalc}
+
+
+\bigskip
+
+Dans la suite, on va se concentrer sur le style \verb+ar+ mais tout ce qui est dit pour ce style s'applique aussi à \verb+ar*+.
 
 % ---------------------- %
 
@@ -909,13 +839,13 @@ Attention car forcément ceci nécessite au tout début de l'environnement l'usa
 \newparaexample{Des flèches à double sens}
 
 \begin{latexex}
-\begin{explain}[style = ar]
+\begin{stepcalc}[style = ar]
     (a + b)^2
         \explnext{Identité remarquable}
     a^2 + 2 a b + b^2
         \explnext{}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -927,7 +857,7 @@ Attention car forcément ceci nécessite au tout début de l'environnement l'usa
 Ce qui suit est juste là comme démo. car les explications y sont un peu farfelues.
 
 \begin{latexex-flat}
-\begin{explain}[style = ar]
+\begin{stepcalc}[style = ar]
     (a + b)^2
         \explnext*{Via $P^2 = P \cdot P$.}
                   {Via $P \cdot P = P^2$.}
@@ -941,26 +871,26 @@ Ce qui suit est juste là comme démo. car les explications y sont un peu farfel
         \explnext*{}%
                   {Commutativité de l'addition.}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex-flat}
 
 
 % ---------------------- %
 
 
-\newparaexample{Ne pas expliquer le tout début}
+\newparaexample{Ne pas expliquer le tout début}\label{tnslog:stepcalc-style:sar}
 
-L'environnement étoilé \env{explain} avec l'option \verb+style = sar+ débute différemment la mise en forme.
+L'environnement \env{stepcalc} avec l'option \verb+style = sar+ débute différemment la mise en forme.
 Bien entendu ici le tout premier \macro{explnext} doit avoir un argument vide !
 
 \begin{latexex-flat}
-\begin{explain}[style = sar]
+\begin{stepcalc}[style = sar]
     (a + b) (a + b)
         \explnext{}
     (a + b)^2
         \explnext{Identité remarquable.}
     a^2 + b^2 + 2 a b
-\end{explain}
+\end{stepcalc}
 \end{latexex-flat}
 
 
@@ -972,28 +902,28 @@ Bien entendu ici le tout premier \macro{explnext} doit avoir un argument vide !
 Voici comment faire où l'implication finale est juste là pour la démonstration \emph{(on notera une petite bidouille un peu sale à faire pour avoir un alignement à peu près correct)}.
 
 \begin{latexex}
-\begin{explain}[style = ar, ope = \iff]
+\begin{stepcalc}[style = ar, ope = \iff]
     a^2 + 2 a b + b^2 = 0
         \explnext{}
     (a + b)^2 = 0
         \explnext[\:\implies]%
                  {$P^2 = 0$ ssi $P = 0$.}
     a + b = 0
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
 Avec la version courte, on obtient ce qui suit.
 
 \begin{latexex-flat}
-\begin{explain}[style = sar, ope = \iff]
+\begin{stepcalc}[style = sar, ope = \iff]
     a^2 + 2 a b + b^2 = 0
         \explnext{}
     (a + b)^2 = 0
         \explnext[\:\implies]%
                  {$P^2 = 0$ ssi $P = 0$.}
     a + b = 0
-\end{explain}
+\end{stepcalc}
 \end{latexex-flat}
 %\section{Détailler un raisonnement simple}
 
@@ -1004,14 +934,14 @@ Avec la version courte, on obtient ce qui suit.
 Il est possible d'ajouter de petits commentaires via \macro{comthis} où \prefix{comthis} est pour \whyprefix{com}{ment} \prefix{this} soit \inenglish{commenter ceci}.
  
 \begin{latexex}
-\begin{explain}
+\begin{stepcalc}
     (a + b)^2
         \comthis{Forme facto.}
         \explnext*{Id.Rq. -- Dév.}%
                   {Id.Rq. -- Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -1029,14 +959,14 @@ Il est possible d'ajouter de petits commentaires via \macro{comthis} où \prefix
 Il peut être utile d'aligner tous les commentaires. Ceci s'obtient via l'option \verb+com = al+ où \prefix{al} est pour \whyprefix{al}{igné} \emph{(par défaut \prefix{com = nal} avec le préfixe \prefix{n} pour \whyprefix{n}{on})}.
 
 \begin{latexex}
-\begin{explain}[com = al]
+\begin{stepcalc}[com = al]
     (a + b)^2
         \comthis{Forme facto.}
         \explnext*{Id.Rq - Dév.}%
                   {Id.Rq - Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -1048,7 +978,7 @@ Il peut être utile d'aligner tous les commentaires. Ceci s'obtient via l'option
 Dans d'autres situations, utilisez les deux types d'alignement peut faire sens. Ceci s'obtient via l'option \verb+com = al+ et l'emploi de la macro étoilée \macro{comthis*} à chaque fois que l'on souhaite "coller" un commentaire le plus à gauche possible.
 
 \begin{latexex}
-\begin{explain}[com = al]
+\begin{stepcalc}[com = al]
     (a + b) (a + b)
         \comthis{Forme facto.}
         \explnext{Via $x^2 = x \cdot x$.}
@@ -1058,7 +988,7 @@ Dans d'autres situations, utilisez les deux types d'alignement peut faire sens. 
                   {Id.Rq - Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -1075,7 +1005,7 @@ Dans d'autres situations, utilisez les deux types d'alignement peut faire sens. 
 Voici ce que donne le mode mixte lorsque des flèches sont utilisées pour les explications. Il semble moins pertinent ici de mixer les modes \og alignement \fg{} et \og non alignement \fg{} mais chacun pris séparément peut avoir son utilité.
 
 \begin{latexex-flat}
-\begin{explain}[style = ar, com = al]
+\begin{stepcalc}[style = ar, com = al]
     (a + b) (a + b)
         \comthis{Forme facto.}
         \explnext{Via $x^2 = x \cdot x$.}
@@ -1085,7 +1015,7 @@ Voici ce que donne le mode mixte lorsque des flèches sont utilisées pour les e
                   {Id.Rq - Facto.}
     a^2 + 2 a b + b^2
         \comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex-flat}
 
 
@@ -1099,7 +1029,7 @@ Voici ce que donne le mode mixte lorsque des flèches sont utilisées pour les e
 Vous pouvez écrire très facilement des calculs ou raisonnement simples alignés comme suit sans trop vous fatiguez.
 
 \begin{latexex}
-\begin{explain}[style = sar]
+\begin{stepcalc}[style = sar]
     (a + b) (a + b)
         \explnext{}
     (a + b)^2
@@ -1108,13 +1038,13 @@ Vous pouvez écrire très facilement des calculs ou raisonnement simples aligné
         \comthis{Pourquoi ?}
         \explnext{}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 On a accès à une autre mise en forme \emph{(ceci peut rendre aussi service)}. 
 
 \begin{latexex}
-\begin{explain}[style = ar]
+\begin{stepcalc}[style = ar]
     (a + b) (a + b)
         \explnext{}
     (a + b)^2
@@ -1122,7 +1052,7 @@ On a accès à une autre mise en forme \emph{(ceci peut rendre aussi service)}.
     a^2 + b^2 + 2 a b
         \explnext{}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 Enfin dans le cadre de calculs à faire expliquer par des élèves, ce qui suit peut être utile.
@@ -1131,7 +1061,7 @@ Enfin dans le cadre de calculs à faire expliquer par des élèves, ce qui suit 
 Donner les justifications J1, J2 et J3.
 
 \medskip
-\begin{explain}
+\begin{stepcalc}
     (a + b) (a + b)
         \explnext{J1}
     (a + b)^2
@@ -1139,7 +1069,7 @@ Donner les justifications J1, J2 et J3.
     a^2 + b^2 + 2 a b
         \explnext{J3}
     a^2 + 2 a b + b^2
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 
 
@@ -1151,7 +1081,7 @@ Donner les justifications J1, J2 et J3.
 Voici un style de codage que nous trouvons très facile à relire et maintenir.
 
 \begin{latexex}
-\begin{explain}[com = al]
+\begin{stepcalc}[com = al]
     (a + b) (a + b)
     	\comthis{Forme facto.}
     	\explnext{Via $x^2 = x \cdot x$.}
@@ -1163,7 +1093,7 @@ Voici un style de codage que nous trouvons très facile à relire et maintenir.
     %
     a^2 + 2 a b + b^2
     	\comthis{Forme dév.}
-\end{explain}
+\end{stepcalc}
 \end{latexex}
 %\section{Logique et fondements}
 \section{Détailler un \og vrai \fg{} raisonnement}
@@ -1173,7 +1103,7 @@ Voici un style de codage que nous trouvons très facile à relire et maintenir.
 \newparaexample{Le minimum avec les réglages par défaut}
 
 Prenons un exemple utile à la logique formelle en informatique théorique mais qui a complètement sa place en mathématiques plus classiques \emph{(voir la section \ref{tnslog-explain-hard-proof-for-youngs} pour un autre type de présentation plus adapté à un public de collège ou de lycée)}.
-Ci-dessous l'environnement \env{demoexplain} facilite la mise en page
+Ci-dessous l'environnement \env{demotab} facilite la mise en page
 \footnote{
 	En coulisse est utilisé l'environnement \env{longtable} du package éponyme.
 }
@@ -1184,7 +1114,7 @@ et la macro étoilée \macro{explref*} permet d'indiquer une référence interne
 Dans cet exemple en deux morceaux, pour montrer au passage comment continuer la numérotation là où elle s'était arrêtée, on utilise \emph{\og m.p. \fg} comme abréviation de \emph{\og modus ponens \fg}.
 
 \begin{latexex}
-\begin{demoexplain}
+\begin{demotab}
     \demostep
         Hypothèse & $A$     
     \demostep
@@ -1196,14 +1126,14 @@ Dans cet exemple en deux morceaux, pour montrer au passage comment continuer la 
     \demostep
         \explref*{1} et \explref*{3}
       & $A \wedge B$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 
 Il est possible de couper sa démonstration en morceaux en indiquant à l'environnement la valeur du 1\ier{} numéro de justification via la clé \verb+start+ : la valeur spéciale \verb+last+ indique de continuer la numérotation à la suite.
 
 \begin{latexex}
-\begin{demoexplain}[start = last]
+\begin{demotab}[start = last]
     \demostep
         Axiome 3
       & $(A \wedge B) \implies C$
@@ -1211,7 +1141,7 @@ Il est possible de couper sa démonstration en morceaux en indiquant à l'enviro
         m.p. sur
         \explref*{4} et \explref*{5}
       & $C$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 
@@ -1223,7 +1153,7 @@ Il est possible de couper sa démonstration en morceaux en indiquant à l'enviro
 L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite facilitera le référencement d'une justification de façon pérenne via la macro non étoilée \macro{explref}.
 
 \begin{latexex}
-\begin{demoexplain}
+\begin{demotab}
     \demostep[demo-my-hyp]
         Hypothèse & $A$     
     \demostep[demo-use-axiom-1]
@@ -1234,7 +1164,7 @@ L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite
         et
         \explref{demo-use-axiom-1}
       & $B$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 
@@ -1252,7 +1182,7 @@ L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite
 Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour une seule hypothèse et \verb+ccl+ pour la conclusion permettent d'expliquer ce que l'on démontre et sous quel contexte.
 
 \begin{latexex}
-\begin{demoexplain}[hyp = $A$, ccl = $B$]
+\begin{demotab}[hyp = $A$, ccl = $B$]
     \demostep
         Hypothèse & $A$     
     \demostep
@@ -1261,7 +1191,7 @@ Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour u
         m.p. sur
         \explref*{1} et \explref*{2}
       & $B$
-\end{demoexplain}
+\end{demotab}
 \end{latexex}
 
 
@@ -1287,12 +1217,12 @@ Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans pe
 \end{figure}
 %\section{Détailler un \og vrai \fg{} raisonnement}
 
-\subsection{Un tableau pour le collège et le lycée} \label{tnslog-explain-hard-proof-for-youngs}
+\subsection{Un tableau pour le collège et le lycée} \label{tnslog-tab-hard-proof-for-youngs}
 
 
 \newparaexample{Avec les réglages par défaut}
 
-L'environnement étoilé \env{demoexplain*} est différent de l'environnement \env{demoexplain} puisqu'il sert à indiquer trois choses et non juste deux comme le montre l'exemple suivant
+L'environnement étoilé \env{demotab*} est différent de l'environnement \env{demotab} puisqu'il sert à indiquer trois choses et non juste deux comme le montre l'exemple suivant
 \footnote{
 	C'est pour cela qu'est proposé une version étoilée de l'environnement et non l'utilisation d'une option de l'environnement non étoilé. 
 }.
@@ -1300,7 +1230,7 @@ Par contre, la syntaxe est très similaire.
 Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retour à la ligne dans une cellule et aussi la nécessité d'écrire les accolades de la macro sans argument \macro{demostep} lorsque la 1\iere{} case est vide \emph{(ceci est inutile lorsque l'argument optionnel est renseigné comme nous allons le vérifier dans l'exemple juste après)}.
 
 \begin{latexex-flat}
-\begin{demoexplain*}
+\begin{demotab*}
     \demostep
         $ABC$ est un triangle \newline équilatéral 
       & Définition d'un triangle \newline équilatéral. 
@@ -1312,7 +1242,7 @@ Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retou
         Voir les conséquences \newline \explref*{1} et \explref*{2} .
       & Simple calcul.
       & $ABC$ a pour périmètre $30 \, cm$.
-\end{demoexplain*}
+\end{demotab*}
 \end{latexex-flat}
 
 
@@ -1322,10 +1252,10 @@ Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retou
 \newparaexample{Avec toutes les options}
 
 Le système de référence marche ici aussi.
-Par contre \env{demoexplain*} ne propose que \verb+start+ comme clé optionnelle avec le même fonctionnement que pour \env{demoexplain}.
+Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle avec le même fonctionnement que pour \env{demotab}.
 
 \begin{latexex-flat}
-\begin{demoexplain*}[start = last]
+\begin{demotab*}[start = last]
     \demostep[demo-first-geo-fact]
         $ABC$ est un triangle \newline équilatéral 
       & Définition d'un triangle \newline équilatéral. 
@@ -1338,7 +1268,7 @@ Par contre \env{demoexplain*} ne propose que \verb+start+ comme clé optionnelle
         \explref{demo-first-geo-fact} et \explref{known-data} .
       & Simple calcul.
       & $ABC$ a pour périmètre $30 \, cm$.
-\end{demoexplain*}
+\end{demotab*}
 \end{latexex-flat}
 
 
@@ -1354,7 +1284,7 @@ Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans pe
 
 \begin{figure}[hbt!]
 	\centering
-	\frame{\includegraphics[scale = .5]{images/demo-explained-middleschool-broken[fr].png}}
+	\frame{\includegraphics[scale = .5]{images/demotab-middleschool-broken[fr].png}}
 \end{figure}
 %\section{Détailler un raisonnement}
 \newpage
@@ -1370,6 +1300,36 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \begin{description}
 % Changes shown - START
+
+    \medskip
+    \item[2021-03-01] Nouvelle version majeure \verb+1.0.0-beta+.
+    
+    \begin{itemize}[itemsep=.5em]
+        \item \topic{Calculs et démonstrations pas à pas}
+        \begin{itemize}[itemsep=.5em]
+            \item L'environnement \env{demoexplain} a été renommé \env{demotab}.
+    
+            \item L'environnement \env{explain} a été renommé \env{stepcalc}.
+    
+            \item Le nouvel environnement \env{stepcalc} dispose d'un nouveau style \verb#ar*# pour placer les opérateurs dans la marge.
+        \end{itemize}
+    
+    % ------------------------ %
+    
+        \item \topic{Logique}
+        \begin{itemize}[itemsep=.5em]
+            \item \macro{liesimp} a été renommée \macro{becauseof}.
+    
+            \item La façon de décorer les opérateurs de comparaison ou de logique a changé et est plus généraliste.
+    
+            \item Les macros \macro{eq*} et \macro{neq*} proposent des versions symboliques pour certains textes de décoration.
+        \end{itemize}
+    \end{itemize}
+    
+    
+    \separation
+
+% ------------------------ %
 
     \medskip
     \item[2020-08-08] Nouvelle version mineure \verb+0.1.0-beta+.
@@ -1411,95 +1371,45 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \IDope{stdneg} (pour retrouver le symbole par défaut)
 
 
-\subsection{Différents types de comparaisons \og standard \fg}
+\subsection{Personnaliser les opérateurs de comparaison}
 
 
 
-\subsubsection{Opérateurs décorés -- Les textes}
+\IDmacro[o]{eq }{1}
+
+\IDmacro[o]{neq}{1}
+
+\IDoption{} un texte de décoration éventuel. On obtient des versions symboliques si l'on utilise l'un des textes suivants.
+\begin{multicols}{5}
+    \begin{enumerate}
+    	\item \verb#?#
+    
+    	\item \verb#appli#
+    
+    	\item \verb#cons#
+    
+    	\item \verb#def#
+    
+    	\item \verb#id#
+    \end{enumerate}
+\end{multicols}
+
+
+\separation
+
 
 \begin{multicols}{4}
-% == Technical infos - Texts - START == %
-
-\foreach \k in {txtopappli, txtopchoice, txtopcond, txtopcons, txtopdef, txtophyp, txtopid, txtopplot, txtoptest}{
-
-	\IDmacro[n]{\k}
-
-}
-
-% == Technical infos - Texts - END == %
-
+	\foreach \k in {less, leq, gtr, geq}{
+	
+		\IDmacro[o]{\k{} }{1}
+		
+		\IDmacro[o]{n\k}{1}
+	}
 \end{multicols}
 
-% ---------------------- %
+\vspace{-.75em}
 
-
-\subsubsection{Opérateurs de comparaison supplémentaires}
-
-% == Technical infos - Operators - START == %
-
-\begin{multicols}{6}
-    \foreach \k in {eqdef, eqdef*, eqid, eqid*, eqplot, eqappli, eqchoice, eqcond, eqcons, eqhyp, eqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {neqid, neqplot, neqappli, neqchoice, neqcond, neqcons, neqhyp, neqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {lessplot, lessappli, lesschoice, lesscond, lesscons, lesshyp, lesstest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {nlessplot, nlessappli, nlesschoice, nlesscond, nlesscons, nlesshyp, nlesstest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {leqplot, leqappli, leqchoice, leqcond, leqcons, leqhyp, leqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {nleqplot, nleqappli, nleqchoice, nleqcond, nleqcons, nleqhyp, nleqtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-
-\begin{multicols}{6}
-    \foreach \k in {gtrplot, gtrappli, gtrchoice, gtrcond, gtrcons, gtrhyp, gtrtest}{
-        \IDope{\k}
-
-    }
-\end{multicols}
-
-\separation
-% == Technical infos - Operators - END == %
+\IDoption{} un texte de décoration éventuel.
 
 
 \subsection{Équivalences et implications}
@@ -1508,85 +1418,32 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 
 
-% == Decorated versions - START == %
-
 \begin{multicols}{4}
-    \foreach \k in {iff, iffappli, iffchoice, iffcond, iffcons, iffhyp, ifftest}{
-	   \IDope{\k}
-
-    }
+	\foreach \k in {iff, implies, becauseof}{
+	
+		\IDmacro[o]{\k{} }{1}
+		
+		\IDmacro[o]{n\k}{1}
+	}
 \end{multicols}
-    
-\separation
 
-\begin{multicols}{4}
-    \foreach \k in {niff, niffappli, niffchoice, niffcond, niffcons, niffhyp, nifftest}{
-	   \IDope{\k}
+\vspace{-.75em}
 
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {implies, impliesappli, implieschoice, impliescond, impliescons, implieshyp, impliestest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {nimplies, nimpliesappli, nimplieschoice, nimpliescond, nimpliescons, nimplieshyp, nimpliestest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {liesimp, liesimpappli, liesimpchoice, liesimpcond, liesimpcons, liesimphyp, liesimptest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-\separation
-
-\begin{multicols}{4}
-    \foreach \k in {nliesimp, nliesimpappli, nliesimpchoice, nliesimpcond, nliesimpcons, nliesimphyp, nliesimptest}{
-	   \IDope{\k}
-
-    }
-\end{multicols}
-    
-% == Decorated versions - END == %
-
-
-% ---------------------- %
+\IDoption{} un texte de décoration éventuel.
 
 
 \subsubsection{Équivalences et implications verticales}
 
 
 
-% == Vertical versions - START == %
-
 \begin{multicols}{4}
-    \foreach \k in {viff, vimplies, vliesimp}{
+    \foreach \k in {viff, vimplies, vbecauseof}{
 
 	   \IDope{\k}
 
 	   \IDope{n\k}
     }
 \end{multicols}
-
-% == Vertical versions - END == %
-
-
-
 
 
 \subsection{Des versions alternatives du quantificateur existentiel}
@@ -1626,19 +1483,21 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \subsubsection{Détailler un raisonnement simple} 
 
-\IDenv[o]{explain}{1}
+\IDenv[o]{stepcalc}{1}
 
 \IDoption{} la valeur utilise une syntaxe de type clé-valeur. Voici les différentes clés disponibles.
 
 \begin{enumerate}
 	\item \verb+ope+ sert à définir l'opérateur utilisé dans tout l'environnement qui sera rédigé en mode mathématique. 
-	      La valeur par défaut est \verb+{=}+ \emph{(et non juste \texttt{=})}.
+	      La valeur par défaut est \verb+{=}+ \emph{(et non juste \texttt{=} attention)}.
 
 	\item \verb+style+ sert à définir le style de mise en forme. Voici les différentes valeurs possibles.
 	      \begin{enumerate}
 	      		\item \prefix{u}, la valeur par défaut, est pour \whyprefix{u}{niversity}.
 
 	      		\item \prefix{ar} est pour \whyprefix{ar}{row}.
+
+	      		\item \prefix{ar*} est similaire à \prefix{ar}  mais avec l'opérateur dans la marge.
 
 	      		\item \prefix{sar} est pour \whyprefix{s}{hort} \whyprefix{ar}{row}.
 	      \end{enumerate}
@@ -1658,7 +1517,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \IDmacro{explnext}{1}{1}  \hfill \mwhyprefix{expl}{ain}
 
-\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
+\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{stepcalc} où \macro{explnext} est utilisé.
 
 \IDarg{} le texte de l'explication qui peut être vide si aucune explication n'est à afficher.
 
@@ -1666,7 +1525,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \medskip
 
-\emph{\textbf{ATTENTION !} La macro \macro{explnext} est à utiliser sans argument ni option au tout début du contenu de l'environnement \env{explain} en cas d'utilisation du style \texttt{sar}.}
+\emph{\textbf{ATTENTION !} La macro \macro{explnext} est à utiliser sans argument ni option au tout début du contenu de l'environnement \env{stepcalc} en cas d'utilisation du style \texttt{sar}.}
 
 
 \separation
@@ -1674,13 +1533,13 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \IDmacro{explnext*}{1}{2}
 
-\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{explain} où \macro{explnext} est utilisé.
+\IDoption{} le symbole à utiliser pour une explication, la valeur par défaut étant celle du symbole de l'environnement \env{stepcalc} où \macro{explnext} est utilisé.
 
 \IDarg{1} le texte de l'explication pour la 1\iere{} ligne.
-          Ce texte peut être vide \emph{(voir l'environnement \env{aexplain} pour la raison de ceci)}.
+          Ce texte peut être vide \emph{(voir l'environnement \env{astepcalc} pour la raison de ceci)}.
 
 \IDarg{2} le texte de l'explication pour la 2\ieme{} ligne.
-          Ce texte peut être vide \emph{(voir l'environnement \env{aexplain} pour la raison de ceci)}.
+          Ce texte peut être vide \emph{(voir l'environnement \env{astepcalc} pour la raison de ceci)}.
 
 
 \separation
@@ -1699,7 +1558,7 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \subsubsection{Détailler un raisonnement simple -- Mise en forme du texte}
 
-Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
+Les macros suivantes sont juste utilisées par l'environnement \env{stepcalc}.
 
 
 \separation
@@ -1762,10 +1621,10 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 
 \subsubsection{Détailler un \og vrai \fg{} raisonnement via un tableau}
 
-\IDenv[o]{demoexplain}{4}
+\IDenv[o]{demotab}{4}
 
 \IDkey{start} le début de la numérotation des identifiants des justifications.
-              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demoexplain} ou \env{demoexplain*} utilisé.
+              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
 
 \IDkey{hyps } les hypothèses, au format texte, vérifiées au départ.
               Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
@@ -1780,10 +1639,10 @@ Les macros suivantes sont juste utilisées par l'environnement \env{explain}.
 \separation
 
 
-\IDenv[o]{demoexplain*}{1}
+\IDenv[o]{demotab*}{1}
 
 \IDkey{start} le début de la numérotation des identifiants des justifications.
-              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demoexplain} ou \env{demoexplain*} utilisé.
+              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
 
 
 \separation
