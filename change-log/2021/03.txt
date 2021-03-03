@@ -1,4 +1,15 @@
 ==========
+2021-03-04
+==========
+
+**New minor version version::``1.1.0-beta``:** see the changes below with some backward incompatibilities.
+
+
+**Logic:** there is only two symbolic symbols for the macros ``\eq*`` and ``\neq*`` (definition and identitity).
+
+
+
+==========
 2021-03-01
 ==========
 
