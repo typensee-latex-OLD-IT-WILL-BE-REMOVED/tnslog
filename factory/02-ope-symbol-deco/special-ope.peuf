@@ -31,12 +31,6 @@ operators::
 // ``?* = \shortless\mkern1.5mu\shortgtr`` indicates an alternative
 // to the use of ``\centernot``.
 symbolic-eq::
-    ?     = \shorteq\mkern1.5mu\shorteq
-    ?*    = \shortless\mkern1.5mu\shortgtr
-
-    appli = \tnslog@leftleftharpoons
-    cons  = \tnslog@rightrightharpoons
-
     def   = \coloneqq
 
-    id    = \tnslog@rightleftharpoons
+    id    = \rightleftharpoons

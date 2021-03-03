@@ -291,10 +291,10 @@
 	Le package \texttt{tnslog}:\\%
 	rédiger de la logique simple\\%
 	{\footnotesize Code source disponible sur \url{https://github.com/typensee-latex/tnslog.git}.}\\%
-{\footnotesize Version \texttt{1.0.0-beta} développée et testée sur \macosxname{}.}%
+{\footnotesize Version \texttt{1.1.0-beta} développée et testée sur \macosxname{}.}%
 }
 \author{Christophe BAL}
-\date{2021-03-01}
+\date{2021-03-04}
 
 \maketitle
 
@@ -404,12 +404,6 @@ Pour le moment, seule la macro \macro{equ} propose ceci ainsi que sa version né
 $a \eq*[def]   1$ ou $a \neq*[def]   1$
 
 $b \eq*[id]    2$ ou $b \neq*[id]    2$
-
-$c \eq*[appli] 3$ ou $c \neq*[appli] 3$
-
-$d \eq*[cons]  4$ ou $d \neq*[cons]  4$
-
-$e \eq*[?]     5$ ou $e \neq*[?]     5$
 \end{latexex}
 
 
@@ -797,13 +791,13 @@ Voir l'exemple \ref{tnslog:stepcalc-style:sar} page \pageref{tnslog:stepcalc-sty
 
 Considérons le code suivant qui utilise \verb+style = ar+.
 
-\begin{latexex-alone}
+\begin{latexex}
 \begin{stepcalc}[style = ar]
     (a + b)^2
         \explnext{}
     a^2 + 2 a b + b^2
 \end{stepcalc}
-\end{latexex-alone}
+\end{latexex}
 
 Intégré dans un paragraphe, on obtient le rendu suivant qui vaut ce qu'il vaut ici.
 
@@ -1022,79 +1016,6 @@ Voici ce que donne le mode mixte lorsque des flèches sont utilisées pour les e
 \begin{remark}
 	Bien entendu il est impossible de commenter le tout début en mode fléché court.
 \end{remark}
-%\section{Détailler un raisonnement simple}
-
-\subsection{Un mini hack très utile pour des \emph{\og étapes alignées \fg}}
-
-Vous pouvez écrire très facilement des calculs ou raisonnement simples alignés comme suit sans trop vous fatiguez.
-
-\begin{latexex}
-\begin{stepcalc}[style = sar]
-    (a + b) (a + b)
-        \explnext{}
-    (a + b)^2
-        \explnext{}
-    a^2 + b^2 + 2 a b
-        \comthis{Pourquoi ?}
-        \explnext{}
-    a^2 + 2 a b + b^2
-\end{stepcalc}
-\end{latexex}
-
-On a accès à une autre mise en forme \emph{(ceci peut rendre aussi service)}. 
-
-\begin{latexex}
-\begin{stepcalc}[style = ar]
-    (a + b) (a + b)
-        \explnext{}
-    (a + b)^2
-        \explnext{Pourquoi ?}
-    a^2 + b^2 + 2 a b
-        \explnext{}
-    a^2 + 2 a b + b^2
-\end{stepcalc}
-\end{latexex}
-
-Enfin dans le cadre de calculs à faire expliquer par des élèves, ce qui suit peut être utile.
-
-\begin{latexex}
-Donner les justifications J1, J2 et J3.
-
-\medskip
-\begin{stepcalc}
-    (a + b) (a + b)
-        \explnext{J1}
-    (a + b)^2
-        \explnext{J2}
-    a^2 + b^2 + 2 a b
-        \explnext{J3}
-    a^2 + 2 a b + b^2
-\end{stepcalc}
-\end{latexex}
-
-
-% ---------------------- %
-
-
-\subsection{Un conseil de mise en forme}
-
-Voici un style de codage que nous trouvons très facile à relire et maintenir.
-
-\begin{latexex}
-\begin{stepcalc}[com = al]
-    (a + b) (a + b)
-    	\comthis{Forme facto.}
-    	\explnext{Via $x^2 = x \cdot x$.}
-    %
-    (a + b)^2
-    	\comthis*{Au passage...}
-    	\explnext*{Id.Rq - Dév.}%
-                  {Id.Rq - Facto.}
-    %
-    a^2 + 2 a b + b^2
-    	\comthis{Forme dév.}
-\end{stepcalc}
-\end{latexex}
 %\section{Logique et fondements}
 \section{Détailler un \og vrai \fg{} raisonnement}
 
@@ -1302,6 +1223,19 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 % Changes shown - START
 
     \medskip
+    \item[2021-03-04] Nouvelle version mineure \verb+1.1.0-beta+.
+    
+    \begin{itemize}[itemsep=.5em]
+        \item \topic*{Logique}
+              pour les macros \macro{eq*} et \macro{neq*}, on a juste gardé les versions symboliques pour la définition et l'identité.
+    \end{itemize}
+    
+    
+    \separation
+
+% ------------------------ %
+
+    \medskip
     \item[2021-03-01] Nouvelle version majeure \verb+1.0.0-beta+.
     
     \begin{itemize}[itemsep=.5em]
@@ -1463,9 +1397,6 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \IDope{existsone}
 
 \IDope{nexistsone}
-
-
-
 
 
 

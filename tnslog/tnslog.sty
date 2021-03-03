@@ -36,46 +36,7 @@
 % -- SPECIAL OPE -- %
 % ----------------- %
 
-% == Specific characters from mathabx == %
-
-% Source:
-%    * https://tex.stackexchange.com/a/585285/6880
-
-\DeclareFontFamily{U}{mathb}{}
-\DeclareFontShape{U}{mathb}{m}{n}{
-  <-5.5> mathb5
-  <5.5-6.5> mathb6
-  <6.5-7.5> mathb7
-  <7.5-8.5> mathb8
-  <8.5-9.5> mathb9
-  <9.5-11> mathb10
-  <11-> mathb12
-}{}
-\DeclareSymbolFont{mathb}{U}{mathb}{m}{n}
-\DeclareFontSubstitution{U}{mathb}{m}{n}
-
-\DeclareMathSymbol{\tnslog@leftleftharpoons}  {3}{mathb}{"D8}
-\DeclareMathSymbol{\tnslog@rightrightharpoons}{3}{mathb}{"D9}
-
-
-\DeclareFontFamily{U}{matha}{}
-\DeclareFontShape{U}{matha}{m}{n}{
-  <-5.5> matha5
-  <5.5-6.5> matha6
-  <6.5-7.5> matha7
-  <7.5-8.5> matha8
-  <8.5-9.5> matha9
-  <9.5-11> matha10
-  <11-> matha12
-}{}
-\DeclareSymbolFont{matha}{U}{matha}{m}{n}
-\DeclareFontSubstitution{U}{matha}{m}{n}
-
-\DeclareMathSymbol{\tnslog@rightleftharpoons}{\mathrel}{matha}{"E9}
-
-
 % == Vertical versions == %
-
 
 \newcommand\viff{\mathrel{\Updownarrow}}
 \newcommand\vimplies{\mathrel{\Downarrow}}
@@ -129,11 +90,8 @@
     	=%
     \else%
         \IfEqCase{#1}{%
-            {?}{\shorteq\mkern1.5mu\shorteq}%
-            {appli}{\tnslog@leftleftharpoons}%
-            {cons}{\tnslog@rightrightharpoons}%
             {def}{\coloneqq}%
-            {id}{\tnslog@rightleftharpoons}%
+            {id}{\rightleftharpoons}%
         }[%
             \tns@over@math@symbol{\txtdecoope{#1}}{=}%
         ]%
@@ -156,11 +114,8 @@
     	\oldneq%
     \else%
         \IfEqCase{#1}{%
-            {?}{\shortless\mkern1.5mu\shortgtr}%
-            {appli}{\centernot\tnslog@leftleftharpoons}%
-            {cons}{\centernot\tnslog@rightrightharpoons}%
             {def}{\centernot\coloneqq}%
-            {id}{\centernot\tnslog@rightleftharpoons}%
+            {id}{\centernot\rightleftharpoons}%
         }[%
             \tns@over@math@symbol{\txtdecoope{#1}}{\oldneq}%
         ]%
