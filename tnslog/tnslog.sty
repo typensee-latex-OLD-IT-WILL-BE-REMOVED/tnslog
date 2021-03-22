@@ -12,6 +12,8 @@
 \RequirePackage{longtable}
 % M
 \RequirePackage{mathtools}
+% R
+\RequirePackage{relsize}
 % S
 \RequirePackage{simplekv}
 % T
@@ -49,30 +51,12 @@
 
 % == Decorations - START == %
 
-% Source for the short sysmbols.
-%    * https://tex.stackexchange.com/a/585267/6880
-
-\newcommand\shorteq{\mathrel{\mathpalette\shorteq@{.55}}}
-\newcommand{\shorteq@}[2]{%
-  \resizebox{#2\width}{\height}{$\m@th#1=$}%
-}
-
-\newcommand\shortless{\mathrel{\mathpalette\shortless@{.55}}}
-\newcommand{\shortless@}[2]{%
-  \resizebox{#2\width}{\height}{$\m@th#1<$}%
-}
-
-\newcommand\shortgtr{\mathrel{\mathpalette\shortgtr@{.55}}}
-\newcommand{\shortgtr@}[2]{%
-  \resizebox{#2\width}{\height}{$\m@th#1>$}%
-}
-
 % Decorable operators.
 
 \newcommand\coldecoope{blue}
 
 \newcommand\txtdecoope[1]{%
-	\text{\tiny\color{\coldecoope}#1}%
+	\textscale{.75}{\text{\color{\coldecoope}#1}}%
 }
 
 \newcommand\eq{\@ifstar{\tnslog@eq@star}{\tnslog@eq@no@star}}

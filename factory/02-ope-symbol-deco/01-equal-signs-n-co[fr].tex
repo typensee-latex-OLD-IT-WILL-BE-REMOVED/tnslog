@@ -50,16 +50,16 @@ car $x    \nleq[hyp] 2$
 % ---------------------- %
 
 
-\subsection{Quelques écritures symboliques nouvelles}
+\subsection{Quelques nouvelles écritures symboliques}
 
 Certaines décorations fournissent une écriture symbolique obtenue via la version étoilée de la macro d'un opérateur.
 Si une telle écriture n'existe pas, le package utilisera silencieusement la version non étoilée.
-Pour le moment, seule la macro \macro{equ} propose ceci ainsi que sa version négative. Voici tous les cas possibles.
+Pour le moment, seule la macro \macro{equ} et sa version négative proposent ceci. Voici ce que cela donne.
 
 \begin{latexex}
-$a \eq*[def]   1$ ou $a \neq*[def]   1$
+$a \eq*[def] 1$  ou  $a \neq*[def] 1$
 
-$b \eq*[id]    2$ ou $b \neq*[id]    2$
+$b \eq*[id]  2$  ou  $b \neq*[id]  2$
 \end{latexex}
 
 
@@ -72,20 +72,26 @@ $b \eq*[id]    2$ ou $b \neq*[id]    2$
 
 \IDmacro[o]{neq}{1}
 
-\IDoption{} un texte de décoration éventuel. On obtient des versions symboliques si l'on utilise l'un des textes suivants.
-\begin{multicols}{5}
+\IDoption{} un texte de décoration.
+
+
+\separation
+
+
+
+
+\IDmacro[o]{eq* }{1}
+
+\IDmacro[o]{neq*}{1}
+
+\IDoption{} un texte de décoration ou une version symbolique si l'on utilise l'un des textes suivants.
+%\begin{multicols}{5}
     \begin{enumerate}
-    	\item \verb#?#
-    
-    	\item \verb#appli#
-    
-    	\item \verb#cons#
-    
     	\item \verb#def#
     
     	\item \verb#id#
     \end{enumerate}
-\end{multicols}
+%\end{multicols}
 
 
 \separation
@@ -94,14 +100,20 @@ $b \eq*[id]    2$ ou $b \neq*[id]    2$
 \begin{multicols}{4}
 	\foreach \k in {less, leq, gtr, geq}{
 	
-		\IDmacro[o]{\k{} }{1}
+		\IDmacro[o]{\k{}  }{1}
 		
-		\IDmacro[o]{n\k}{1}
+		\IDmacro[o]{\k{}* }{1}
+		
+		\smallskip
+		
+		\IDmacro[o]{n\k }{1}
+		
+		\IDmacro[o]{n\k*}{1}
 	}
 \end{multicols}
 
 \vspace{-.75em}
 
-\IDoption{} un texte de décoration éventuel.
+\IDoption{} un texte de décoration.
 
 \end{document}

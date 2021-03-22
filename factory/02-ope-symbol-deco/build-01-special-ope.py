@@ -41,27 +41,28 @@ with ReadBlock(
 # -- SHORT SYMBOLS -- #
 # ------------------- #
 
-STY_CONTENT.append("""
-% Source for the short sysmbols.
-%    * https://tex.stackexchange.com/a/585267/6880
-""".strip())
+if 'short' in INFOS:
+    STY_CONTENT.append("""
+    % Source for the short sysmbols.
+    %    * https://tex.stackexchange.com/a/585267/6880
+    """.strip())
 
-template_sty = """
-\\newcommand\short{macroname}{{\mathrel{{\mathpalette\short{macroname}@{{.55}}}}}}
-\\newcommand{{\short{macroname}@}}[2]{{%
-  \\resizebox{{#2\width}}{{\height}}{{$\m@th#1{latexsymbol}$}}%
-}}
-""".strip()
+    template_sty = """
+    \\newcommand\short{macroname}{{\mathrel{{\mathpalette\short{macroname}@{{.55}}}}}}
+    \\newcommand{{\short{macroname}@}}[2]{{%
+    \\resizebox{{#2\width}}{{\height}}{{$\m@th#1{latexsymbol}$}}%
+    }}
+    """.strip()
 
-for macroname, latexsymbol in INFOS['short'].items():
-    STY_CONTENT.append(
-        template_sty.format(
-            macroname = macroname,
-            latexsymbol = latexsymbol
+    for macroname, latexsymbol in INFOS['short'].items():
+        STY_CONTENT.append(
+            template_sty.format(
+                macroname = macroname,
+                latexsymbol = latexsymbol
+            )
         )
-    )
 
-del INFOS['short']
+    del INFOS['short']
 
 
 # ------------------------------------ #
@@ -159,7 +160,7 @@ STY_CONTENT.append("""
 \\newcommand\\coldecoope{blue}
 
 \\newcommand\\txtdecoope[1]{%
-	\\text{\\tiny\\color{\\coldecoope}#1}%
+	\\textscale{.75}{\\text{\\color{\\coldecoope}#1}}%
 }
 """.strip())
 
