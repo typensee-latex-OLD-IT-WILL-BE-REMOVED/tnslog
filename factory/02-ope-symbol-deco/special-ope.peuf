@@ -1,8 +1,8 @@
 // Widest symbols.
-short::
-    eq   = =
-    less = <
-    gtr  = >
+// short::
+//    eq   = =
+//    less = <
+//    gtr  = >
 
 
 // Operators that can be decorated.
