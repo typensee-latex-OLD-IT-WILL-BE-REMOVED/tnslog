@@ -14,18 +14,17 @@
 
 \newparaexample{Implication réciproque}
 
-En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{becauseof} un opérateur pour pour obtenir $\becauseof$
+En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{becauseof} pour obtenir $\becauseof$
 \footnote{
 	Penser aussi aux preuves d'équivalence par double implication.
-}
-ainsi que leurs versions négatives. Voici un exemple d'utilisation.
+}.
+Des versions négatives de ces opérateurs sont aussi disponibles.
+Voici un exemple d'utilisation.
 
 \begin{latexex}
-$(A \implies B)
- \iff (B \becauseof A)$
+$(A \implies B) \iff  (B \becauseof A)$
 
-$(A \implies B)
- \niff (A \nimplies B)$
+$(A \implies B) \niff (A \nimplies B)$
 \end{latexex}
 
 
@@ -37,11 +36,11 @@ $(A \implies B)
 Tout comme pour les comparaisons, pour décorer il suffit de passer via un argument optionnel.
 
 \begin{latexex}
-$A \iff[ssi] B \niff[i.e.] C$
+$A \iff[ssi]       B \niff[i.e.]      C$
 
-$A \implies[donc] B \nimplies[donne] C$
+$A \implies[donc]  B \nimplies[donne] C$
 
-$A \becauseof[car] B \nbecauseof[d'après] C$
+$A \becauseof[car] B \nbecauseof[via] C$
 \end{latexex}
 
 
@@ -73,18 +72,18 @@ Avec ces outils il devient utile d'avoir des versions verticales non décorées 
 Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
 
 \begin{latexex}
-\begin{tabular}{cccccc}
-    $A$          & $B$
-  & $C$          & $D$
-  & $E$          & $F$
+\begin{tabular}{*{6}{c}}
+    $A$           & $B$
+  & $C$           & $D$
+  & $E$           & $F$
   \\
-    $\viff$      & $\vimplies$   
-  & $\vbecauseof$  & $\nviff$
-  & $\nvimplies$ & $\nvbecauseof$
+    $\viff$       & $\vimplies$   
+  & $\vbecauseof$ & $\nviff$
+  & $\nvimplies$  & $\nvbecauseof$
   \\
-    $A$          & $B$
-  & $C$          & $D$
-  & $E$          & $F$
+    $A$           & $B$
+  & $C$           & $D$
+  & $E$           & $F$
 \end{tabular}
 \end{latexex}
 

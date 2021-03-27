@@ -35,10 +35,11 @@ Dans cet exemple en deux morceaux, pour montrer au passage comment continuer la 
     \demostep
         m.p. sur
         \explref*{1} et \explref*{2}
-      & $B$
+                  & $B$
     \demostep
         \explref*{1} et \explref*{3}
-      & $A \wedge B$
+                  & $A \wedge B$
+                  
 \end{demotab}
 \end{latexex}
 
@@ -49,11 +50,11 @@ Il est possible de couper sa démonstration en morceaux en indiquant à l'enviro
 \begin{demotab}[start = last]
     \demostep
         Axiome 3
-      & $(A \wedge B) \implies C$
+            & $(A \wedge B) \implies C$
     \demostep
-        m.p. sur
-        \explref*{4} et \explref*{5}
-      & $C$
+        m.p. sur \explref*{4} 
+              et \explref*{5}
+            & $C$
 \end{demotab}
 \end{latexex}
 
@@ -69,14 +70,12 @@ L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite
 \begin{demotab}
     \demostep[demo-my-hyp]
         Hypothèse & $A$     
-    \demostep[demo-use-axiom-1]
+    \demostep[demo-axiom-1]
         Axiome 1  & $A \implies B$
     \demostep
-        m.p. sur
-        \explref{demo-my-hyp}
-        et
-        \explref{demo-use-axiom-1}
-      & $B$
+        m.p. sur \explref{demo-my-hyp}
+              et \explref{demo-axiom-1}
+                  & $B$
 \end{demotab}
 \end{latexex}
 
@@ -101,9 +100,9 @@ Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour u
     \demostep
         Axiome 1  & $A \implies B$
     \demostep
-        m.p. sur
-        \explref*{1} et \explref*{2}
-      & $B$
+        m.p. sur \explref*{1} 
+              et \explref*{2}
+                  & $B$
 \end{demotab}
 \end{latexex}
 
@@ -117,16 +116,101 @@ Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour u
 % ---------------------- %
 
 
+\newparaexample{Un tableau incomplet à remplir}
+
+On peut proposer un tableau incomplet comme suit en utilisant obligatoirement \verb#\demostep{}# pour une étape non référencée dont la 1\iere{} cellule est vide
+\footnote{
+	Ceci est dû au mécanisme permetant de taper au choix \texttt{\textbackslash{}demostep[une-ref]} ou \texttt{\textbackslash{}demostep}. 
+}.
+
+\begin{latexex}
+\begin{demotab}
+    \demostep
+        Hypothèse &     
+    \demostep{} % --> Ne pas oublier !
+                  & $A \implies B$
+    \demostep{} % --> Ne pas oublier !
+                  &
+\end{demotab}
+\end{latexex}
+
+
+\begin{remark}
+   Dans la section \ref{tnslog-tab-hard-proof-for-youngs} est présentée la macro \macro{explnothing} pour montrer qu'il n'y a rien à indiquer dans une cellule (son usage semble peu pertinent ici mais on ne sait jamais).
+\end{remark}
+
+
+
+% ---------------------- %
+
+
+\newparaexample{Gérer les hauteurs des lignes}
+
+Si l'exemple précédent est donné comme exercice demandant de remplir directement sur un énoncé les cases vides, il faut pouvoir modifier les hauteurs des lignes ponctuellement. L'exemple suivant montre comment faire ceci via la macro \macro{demoxspace} où le \prefix{x} est pour \prefix{extra}.
+Cette macro a un argument optionnel permettant d'augmenter l'espacement vertical.
+
+\begin{latexex}
+A remplir...
+
+\begin{demotab}
+    \demostep
+        Hypothèse &
+    \demoxspace   
+    \demostep{} % --> Ne pas oublier !
+                  & $A \implies B$
+    \demoxspace[1cm]
+    \demostep{} % --> Ne pas oublier !
+                  &
+    \demoxspace[1cm]
+\end{demotab}
+
+Est-ce rempli ?
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Gérer la largeur de la colonne centrale}
+
+On constate que dans l'exemple précédent nous avons aussi besoin d'augmenter la largeur de la colonne centrale
+\footnote{
+   Il ne semble pas pertinent de proposer la possibilité de modifier les largeurs des colonnes non centrales.
+}
+pour laisser de la place à une rédaction manuscrite. Ceci se fait via l'option \verb#cwidth# de l'environnement. Voici une version améliorée du tableau précédent.
+
+\begin{latexex-flat}
+A remplir...
+
+\begin{demotab}[cwidth = 7cm]
+    \demostep
+        Hypothèse &
+    \demoxspace   
+    \demostep{} % --> Ne pas oublier !
+                  & $A \implies B$
+    \demoxspace[1cm]
+    \demostep{} % --> Ne pas oublier !
+                  &
+    \demoxspace[1cm]
+\end{demotab}
+
+Est-ce rempli ?
+\end{latexex-flat}
+
+
+% ---------------------- %
+
+
 \subsection{Un tableau sur plusieurs pages}
 
-Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans perte d'information
+Un tableau devant utiliser plusieurs pages sera scindé comme dans l'image page \pageref{tnslog:demotab-splitted} sans perte d'information
 \footnote{
 	Tout le travail est fait par l'environnement \env{longtable} du package éponyme.
 }.
 
-\begin{figure}[hbt!]
+\begin{figure}[hbt!]\label{tnslog:demotab-splitted}
 	\centering
-	\frame{\includegraphics[scale = .5]{images/demo-explained-univ-broken[fr].png}}
+	\frame{\includegraphics[scale = .5]{images/demotab-univ-broken[fr].png}}
 \end{figure}
 
 \end{document}

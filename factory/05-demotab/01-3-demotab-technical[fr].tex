@@ -19,17 +19,22 @@
 
 \IDenv[o]{demotab}{4}
 
-\IDkey{start} le début de la numérotation des identifiants des justifications.
-              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
+\IDkey{hyps}   les hypothèses, au format texte, vérifiées au départ.
+               Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
 
-\IDkey{hyps } les hypothèses, au format texte, vérifiées au départ.
-              Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
+\IDkey{hyp}    une unique hypothèse, au format texte, vérifiée au départ.
+               Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyps+.
 
-\IDkey{hyp  } une unique hypothèse, au format texte, vérifiée au départ.
-              Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyps+.
+\IDkey{ccl}    la conclusion, au format texte, du raisonnement détaillé.
+               Cet argument peut être vide.
 
-\IDkey{ccl  } la conclusion, au format texte, du raisonnement détaillé.
-              Cet argument peut être vide.
+\extraspace
+
+\IDkey{start}  le début de la numérotation des identifiants des justifications.
+               La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
+
+\IDkey{cwidth} la largeur souhaitée pour la colonne centrale.
+
 
 
 \separation
@@ -39,6 +44,14 @@
 
 \IDkey{start} le début de la numérotation des identifiants des justifications.
               La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
+
+
+\separation
+
+
+\IDmacro[o]{demoxspace}{1}
+
+\IDoption{} une dimension \LaTeX{} pour modifier l'espacement vertical.
 
 
 \separation
@@ -65,7 +78,22 @@
 \IDarg{} un texte correspondant à un label global référençant le numéro d'une justification.
 
 
+\separation
+
+
+\IDope{explnothing}
+
+
+% ------------------- %
+
+
 \subsection{Détailler un \og vrai \fg{} raisonnement via un tableau - Textes utilisés}
+
+\IDmacro[n]{txtdemoNOTHING}   \hfill \prefix{NOTHING to indicate}
+
+
+\separation
+
 
 \IDmacro[n]{txtdemoID}     \hfill \mwhyprefix{ID}{entifier}
 
@@ -75,7 +103,9 @@
 
 \IDmacro[n]{txtdemoCONS}   \hfill \mwhyprefix{CONS}{equence}
 
-\extraspace
+
+\separation
+
 
 \IDmacro[n]{txtdemoHYPS}   \hfill \prefix{HYPS = HYP-othesis (S-everal ones)} 
 

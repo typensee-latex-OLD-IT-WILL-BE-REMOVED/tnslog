@@ -1,8 +1,26 @@
 ==========
+2021-03-27
+==========
+
+**New subminor version version::``1.0.3-beta``:** see the small useful new fetaures below.
+
+
+**Tables for proofs.**
+
+    1) The environnement ``demotab`` has a new option ``cwidth`` to indicate the width of the central column.
+
+    1) The environnements ``demotab`` and ``demotab*`` propose a new macro ``demoxspace`` that allows to modify locally the height of a line (no global setting for the moment).
+
+    1) The macro ``\explnothing`` allows to indicate explicitly that nothing is needed in a cell.
+
+    1) The documentation has been updated with examples emphasing the different ways to indicate empty cells.
+
+
+==========
 2021-03-22
 ==========
 
-**New minor version version::``1.2.0-beta``:** see the changes below with some backward incompatibilities.
+**New sub minor version version::``1.0.2-beta``:** see the small big change below.
 
 
 **Logic:** the decoration of the symbols is a little bigger now.
@@ -12,7 +30,7 @@
 2021-03-04
 ==========
 
-**New minor version version::``1.1.0-beta``:** see the changes below with some backward incompatibilities.
+**New sub minor version version::``1.0.1-beta``:** see the changes below with some backward incompatibilities.
 
 
 **Logic:** there is only two symbolic symbols for the macros ``\eq*`` and ``\neq*`` (definition and identitity).

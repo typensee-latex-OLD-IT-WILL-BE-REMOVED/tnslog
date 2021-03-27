@@ -1,6 +1,5 @@
 % == PACKAGES USED == %
 
-
 \RequirePackage{amsmath}
 \RequirePackage{witharrows}
 
@@ -13,6 +12,8 @@
 % == DEFINITIONS == %
 
 %    * Texts used
+
+\newcommand\txtdemoNOTHING{R.à.S.}
 
 \newcommand\txtdemoID{Réf.}
 \newcommand\txtdemoKNOWN{Je sais que...}
@@ -28,6 +29,8 @@
 
 %    * Common tools
 
+\newcommand\explnothing{\textcolor{blue}{\txtdemoNOTHING}}
+
 \newcommand\explref{\@ifstar{\tnslog@expl@ref@star}{\tnslog@expl@ref@no@star}}
 
 \newcommand\tnslog@expl@ref@star[1]{%
@@ -39,6 +42,8 @@
 }
 
 \newcommand\demostep{}
+
+\newcommand\demoxspace{}
 
 
 %    * University version 
@@ -70,16 +75,24 @@
 }
 
 
+\newcommand\@demoxspace@no@star[1][0pt]{%
+	\\[#1]%
+}
+
+
+
 \setKVdefault[tnslog@demo@tab@keys]{%
-    start = 1,
-    hyps  = {},
-    hyp   = {},
-    ccl   = {}
+    cwidth = {},
+    start  = 1,
+    hyps   = {},
+    hyp    = {},
+    ccl    = {}
 }
 
 
 \newenvironment{demotab}[1][]{
     \renewcommand\demostep\@demostep@no@star
+    \renewcommand\demoxspace\@demoxspace@no@star
     \useKVdefault[tnslog@demo@tab@keys]
     \setKV[tnslog@demo@tab@keys]{#1}
     %
@@ -94,6 +107,8 @@
     \def\hyps{\useKV[tnslog@demo@tab@keys]{hyps}}
     \def\hyp{\useKV[tnslog@demo@tab@keys]{hyp}}
     \edef\ccl{\useKV[tnslog@demo@tab@keys]{ccl}}
+    %
+    \def\cwidth{\useKV[tnslog@demo@tab@keys]{cwidth}}
     %
     \if\relax\hyps\relax\else%
         \if\relax\hyp\relax\else%
@@ -110,8 +125,16 @@
         \underline{\txtdemoHYP\vphantom{p\txtdemoCCL}} : \hyp
         \vspace{-.25em}
     \fi
+    %
     \booltrue{tnslog@start@demo@tab}
-    \begin{longtable}{lll}
+    %
+    \if\relax\cwidth\relax
+    	\begin{longtable}{lll}
+    %
+    \else%
+    	\begin{longtable}{lp{\cwidth}l}
+    \fi
+    %
         \multicolumn{3}{c}{}
         \\[-.5em]
         \multicolumn{3}{c}{%
@@ -162,6 +185,11 @@
 }
 
 
+\newcommand\@demoxspace@star[1][0pt]{%
+	\\[#1]&&%
+}
+
+
 \setKVdefault[tnslog@demo@tab@star@keys]{%
     start = 1
 }
@@ -169,6 +197,7 @@
 
 \newenvironment{demotab*}[1][]{
     \renewcommand\demostep\tnslog@demostep@star
+    \renewcommand\demoxspace\@demoxspace@star
     \useKVdefault[tnslog@demo@tab@star@keys]
     \setKV[tnslog@demo@tab@star@keys]{#1}
     %

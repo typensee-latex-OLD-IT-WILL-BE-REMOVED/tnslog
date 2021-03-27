@@ -29,7 +29,8 @@ Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retou
         $ABC$ est un triangle \newline équilatéral 
       & Définition d'un triangle \newline équilatéral. 
       & $AB = BC = AC$
-    \demostep{} % --> Ne pas oublier ici !
+    \demostep{} % --> Ne pas oublier {} ici !
+                %     On commence par une cellule vide...
       & Voir l'énoncé.
       & $AB = 10 \, cm$
     \demostep
@@ -45,7 +46,7 @@ Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retou
 
 \newparaexample{Avec toutes les options}
 
-Le système de référence marche ici aussi.
+Tout comme les preuves logiques de niveau universitaire, nous avons un système de référence.
 Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle avec le même fonctionnement que pour \env{demotab}.
 
 \begin{latexex-flat}
@@ -54,7 +55,8 @@ Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle ave
         $ABC$ est un triangle \newline équilatéral 
       & Définition d'un triangle \newline équilatéral. 
       & $AB = BC = AC$
-    \demostep[known-data]
+    \demostep[known-data] % --> Pas besoin d'utiliser {} ici
+                          %     car on utilise l'argument optionnel.
       & Voir l'énoncé.
       & $AB = 10 \, cm$
     \demostep
@@ -62,6 +64,28 @@ Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle ave
         \explref{demo-first-geo-fact} et \explref{known-data} .
       & Simple calcul.
       & $ABC$ a pour périmètre $30 \, cm$.
+\end{demotab*}x
+\end{latexex-flat}
+
+
+% ---------------------- %
+
+
+\newparaexample{Indiquer qu'une case n'a pas besoin d'être remplie} 
+
+Dans les exemples précédents, nous n'avons rien à indiquer dans la case \emph{\og Je sais que... \fg} de la 2\ieme{} ligne.
+On peut indiquer ceci explicitement et de façon symbolique avec le texte \txtdemoNOTHING{} mis en forme via  par la macro \macro{explnothing}
+\footnote{
+	Le texte \txtdemoNOTHING{} est défini dans la macro \texttt{\textbackslash{}txtdemoNOTHING}.
+}.
+Ceci est notamment utile pour un tableau devant être complété par des étudiants (voir les exemples suivants).
+
+\begin{latexex-flat}
+\begin{demotab*}[start = 2]
+    \demostep
+        \explnothing{}
+      & Voir l'énoncé.
+      & $AB = 10 \, cm$
 \end{demotab*}
 \end{latexex-flat}
 
@@ -69,14 +93,44 @@ Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle ave
 % ---------------------- %
 
 
+\newparaexample{Gérer les hauteurs des lignes}
+
+La macro \macro{demoxspace} est aussi proposée par l'environnement \env{demotab*}. Voici un exemple.
+
+\begin{latexex-flat}
+\begin{demotab*}
+    \demostep
+        $ABC$ est un triangle \newline équilatéral 
+      &  
+      & $AB = BC = AC$
+    \demoxspace
+    \demostep
+        \explnothing{}
+      &
+      & $AB = 10 \, cm$
+    \demoxspace[3cm]
+    \demostep
+        Voir les conséquences \newline \explref*{1} et \explref*{2} .
+      & 
+      &
+    \demoxspace
+\end{demotab*}
+\end{latexex-flat}
+
+
+
+% ---------------------- %
+
+
 \subsection{Un tableau sur plusieurs pages}
 
-Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans perte d'information
+
+Un tableau devant utiliser plusieurs pages sera scindé comme dans l'image page \pageref{tnslog:demotab*-splitted} sans perte d'information
 \footnote{
-	Tout le travail est fait par l'environnement \env{longtable} du package éponyme.
+	Ici aussi tout le travail est fait par l'environnement \env{longtable} du package éponyme.
 }.
 
-\begin{figure}[hbt!]
+\begin{figure}[hbt!]\label{tnslog:demotab*-splitted}
 	\centering
 	\frame{\includegraphics[scale = .5]{images/demotab-middleschool-broken[fr].png}}
 \end{figure}

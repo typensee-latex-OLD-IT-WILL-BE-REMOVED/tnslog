@@ -35,8 +35,8 @@ Bien entendu on tord les règles de typographie avec ce type de pratique mais c'
 Voici un exemple où l'utilisation d'arguments optionnels permet de décorer des opérateurs.
 
 \begin{latexex}
-   $f(x) \eq[def]   x^3 + 1$
-si $x    \leq[cond] 2$
+    $f(x) \eq[def]   x^3 + 1$
+si  $x    \leq[cond] 2$
 
     $f(x) \neq[cons] x^3 + 1$
 car $x    \nleq[hyp] 2$
@@ -100,13 +100,13 @@ $b \eq*[id]  2$  ou  $b \neq*[id]  2$
 \begin{multicols}{4}
 	\foreach \k in {less, leq, gtr, geq}{
 	
-		\IDmacro[o]{\k{}  }{1}
+		\IDmacro[o]{\k{} }{1}
 		
-		\IDmacro[o]{\k{}* }{1}
+		\IDmacro[o]{\k{}*}{1}
 		
 		\smallskip
 		
-		\IDmacro[o]{n\k }{1}
+		\IDmacro[o]{n\k{} }{1}
 		
 		\IDmacro[o]{n\k*}{1}
 	}

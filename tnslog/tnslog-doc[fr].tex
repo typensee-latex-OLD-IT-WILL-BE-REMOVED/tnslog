@@ -291,10 +291,10 @@
 	Le package \texttt{tnslog}:\\%
 	rédiger de la logique simple\\%
 	{\footnotesize Code source disponible sur \url{https://github.com/typensee-latex/tnslog.git}.}\\%
-{\footnotesize Version \texttt{1.2.0-beta} développée et testée sur \macosxname{}.}%
+{\footnotesize Version \texttt{1.2.1-beta} développée et testée sur \macosxname{}.}%
 }
 \author{Christophe BAL}
-\date{2021-03-22}
+\date{2021-03-27}
 
 \maketitle
 
@@ -380,8 +380,8 @@ Bien entendu on tord les règles de typographie avec ce type de pratique mais c'
 Voici un exemple où l'utilisation d'arguments optionnels permet de décorer des opérateurs.
 
 \begin{latexex}
-   $f(x) \eq[def]   x^3 + 1$
-si $x    \leq[cond] 2$
+    $f(x) \eq[def]   x^3 + 1$
+si  $x    \leq[cond] 2$
 
     $f(x) \neq[cons] x^3 + 1$
 car $x    \nleq[hyp] 2$
@@ -415,18 +415,17 @@ $b \eq*[id]  2$  ou  $b \neq*[id]  2$
 
 \newparaexample{Implication réciproque}
 
-En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{becauseof} un opérateur pour pour obtenir $\becauseof$
+En plus des opérateurs \macro{iff} et \macro{implies} proposés par \LaTeX{}, il a été ajouté l'opérateur \macro{becauseof} pour obtenir $\becauseof$
 \footnote{
 	Penser aussi aux preuves d'équivalence par double implication.
-}
-ainsi que leurs versions négatives. Voici un exemple d'utilisation.
+}.
+Des versions négatives de ces opérateurs sont aussi disponibles.
+Voici un exemple d'utilisation.
 
 \begin{latexex}
-$(A \implies B)
- \iff (B \becauseof A)$
+$(A \implies B) \iff  (B \becauseof A)$
 
-$(A \implies B)
- \niff (A \nimplies B)$
+$(A \implies B) \niff (A \nimplies B)$
 \end{latexex}
 
 
@@ -438,11 +437,11 @@ $(A \implies B)
 Tout comme pour les comparaisons, pour décorer il suffit de passer via un argument optionnel.
 
 \begin{latexex}
-$A \iff[ssi] B \niff[i.e.] C$
+$A \iff[ssi]       B \niff[i.e.]      C$
 
-$A \implies[donc] B \nimplies[donne] C$
+$A \implies[donc]  B \nimplies[donne] C$
 
-$A \becauseof[car] B \nbecauseof[d'après] C$
+$A \becauseof[car] B \nbecauseof[via] C$
 \end{latexex}
 
 
@@ -458,18 +457,18 @@ Avec ces outils il devient utile d'avoir des versions verticales non décorées 
 Bien entendu le préfixe \prefix{v} est pour \whyprefix{v}{ertical}.
 
 \begin{latexex}
-\begin{tabular}{cccccc}
-    $A$          & $B$
-  & $C$          & $D$
-  & $E$          & $F$
+\begin{tabular}{*{6}{c}}
+    $A$           & $B$
+  & $C$           & $D$
+  & $E$           & $F$
   \\
-    $\viff$      & $\vimplies$   
-  & $\vbecauseof$  & $\nviff$
-  & $\nvimplies$ & $\nvbecauseof$
+    $\viff$       & $\vimplies$   
+  & $\vbecauseof$ & $\nviff$
+  & $\nvimplies$  & $\nvbecauseof$
   \\
-    $A$          & $B$
-  & $C$          & $D$
-  & $E$          & $F$
+    $A$           & $B$
+  & $C$           & $D$
+  & $E$           & $F$
 \end{tabular}
 \end{latexex}
 
@@ -513,13 +512,13 @@ $\nexists$ vient de \verb+amssymb+.
 % ---------------------- %
 \section{Détailler un raisonnement simple}
 
-\subsection{Version pour le lycée et après} \label{tnslog-stepcalc-proof}
+\subsection{Version pour le lycée et après} \label{tnslog-explain-proof}
 
 \newparaexample{Avec les réglages par défaut}
 
 L'environnement \env{stepcalc} permet de détailler les étapes principales d'un calcul ou d'un raisonnement simple en s'appuyant sur la macro \macro{explnext} dont le nom vient de \emph{\og \whyprefix{expl}{ain} \prefix{next} step \fg} soit \inenglish{expliquer la prochaine étape}
 \footnote{
-    Cet environnement utilise aussi le package \texttt{witharrows} qui est très sympathique pour expliquer des étapes de calcul.
+    Cet environnement utilise le package \texttt{witharrows} qui est très sympathique pour expliquer des étapes de calcul.
 }.
 On dispose aussi de \macro{explnext*} pour des explications descendantes et/ou montantes 
 \footnote{
@@ -768,13 +767,9 @@ La mise en forme a été obtenue en utilisant le code \LaTeX{} suivant où la ma
 % ==================== %
 %\section{Détailler un raisonnement simple}
 
-\subsection{Version pour les collégiens} \label{tnslog-stepcalc-proof-for-youngs}
+\subsection{Version pour les collégiens} \label{tnslog-explain-proof-for-youngs}
 
-L'environnement \env{stepcalc}
-\footnote{
-    Cet environnement utilise aussi le package \texttt{witharrows}.
-}
-avec les options \verb+style = ar+ et \verb+style = ar*+ imprime une rédaction plus classique tout en utilisant des flèches pour indiquer les explications
+L'environnement \env{stepcalc} avec les options \verb+style = ar+ et \verb+style = ar*+ imprime une rédaction plus classique tout en utilisant des flèches pour indiquer les explications
 \emph{(\prefix{ar} est pour \whyprefix{ar}{row} soit \inenglish{flèche})}.
 Dans ce cas d'utilisation, la macro \macro{explnext*} permet d'avoir une flèche unidirectionnelle, vers le haut ou le bas au choix, ou bien d'écrire deux indications dont l'une est montante et l'autre descendante.
 
@@ -1044,10 +1039,11 @@ Dans cet exemple en deux morceaux, pour montrer au passage comment continuer la 
     \demostep
         m.p. sur
         \explref*{1} et \explref*{2}
-      & $B$
+                  & $B$
     \demostep
         \explref*{1} et \explref*{3}
-      & $A \wedge B$
+                  & $A \wedge B$
+                  
 \end{demotab}
 \end{latexex}
 
@@ -1058,11 +1054,11 @@ Il est possible de couper sa démonstration en morceaux en indiquant à l'enviro
 \begin{demotab}[start = last]
     \demostep
         Axiome 3
-      & $(A \wedge B) \implies C$
+            & $(A \wedge B) \implies C$
     \demostep
-        m.p. sur
-        \explref*{4} et \explref*{5}
-      & $C$
+        m.p. sur \explref*{4} 
+              et \explref*{5}
+            & $C$
 \end{demotab}
 \end{latexex}
 
@@ -1078,14 +1074,12 @@ L'argument optionnel de \macro{demostep} permet de définir un label qui ensuite
 \begin{demotab}
     \demostep[demo-my-hyp]
         Hypothèse & $A$     
-    \demostep[demo-use-axiom-1]
+    \demostep[demo-axiom-1]
         Axiome 1  & $A \implies B$
     \demostep
-        m.p. sur
-        \explref{demo-my-hyp}
-        et
-        \explref{demo-use-axiom-1}
-      & $B$
+        m.p. sur \explref{demo-my-hyp}
+              et \explref{demo-axiom-1}
+                  & $B$
 \end{demotab}
 \end{latexex}
 
@@ -1110,9 +1104,9 @@ Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour u
     \demostep
         Axiome 1  & $A \implies B$
     \demostep
-        m.p. sur
-        \explref*{1} et \explref*{2}
-      & $B$
+        m.p. sur \explref*{1} 
+              et \explref*{2}
+                  & $B$
 \end{demotab}
 \end{latexex}
 
@@ -1126,16 +1120,101 @@ Les clés optionnelles \verb+hyps+ pour plusieurs hypothèses, \verb+hyp+ pour u
 % ---------------------- %
 
 
+\newparaexample{Un tableau incomplet à remplir}
+
+On peut proposer un tableau incomplet comme suit en utilisant obligatoirement \verb#\demostep{}# pour une étape non référencée dont la 1\iere{} cellule est vide
+\footnote{
+	Ceci est dû au mécanisme permetant de taper au choix \texttt{\textbackslash{}demostep[une-ref]} ou \texttt{\textbackslash{}demostep}. 
+}.
+
+\begin{latexex}
+\begin{demotab}
+    \demostep
+        Hypothèse &     
+    \demostep{} % --> Ne pas oublier !
+                  & $A \implies B$
+    \demostep{} % --> Ne pas oublier !
+                  &
+\end{demotab}
+\end{latexex}
+
+
+\begin{remark}
+   Dans la section \ref{tnslog-tab-hard-proof-for-youngs} est présentée la macro \macro{explnothing} pour montrer qu'il n'y a rien à indiquer dans une cellule (son usage semble peu pertinent ici mais on ne sait jamais).
+\end{remark}
+
+
+
+% ---------------------- %
+
+
+\newparaexample{Gérer les hauteurs des lignes}
+
+Si l'exemple précédent est donné comme exercice demandant de remplir directement sur un énoncé les cases vides, il faut pouvoir modifier les hauteurs des lignes ponctuellement. L'exemple suivant montre comment faire ceci via la macro \macro{demoxspace} où le \prefix{x} est pour \prefix{extra}.
+Cette macro a un argument optionnel permettant d'augmenter l'espacement vertical.
+
+\begin{latexex}
+A remplir...
+
+\begin{demotab}
+    \demostep
+        Hypothèse &
+    \demoxspace   
+    \demostep{} % --> Ne pas oublier !
+                  & $A \implies B$
+    \demoxspace[1cm]
+    \demostep{} % --> Ne pas oublier !
+                  &
+    \demoxspace[1cm]
+\end{demotab}
+
+Est-ce rempli ?
+\end{latexex}
+
+
+% ---------------------- %
+
+
+\newparaexample{Gérer la largeur de la colonne centrale}
+
+On constate que dans l'exemple précédent nous avons aussi besoin d'augmenter la largeur de la colonne centrale
+\footnote{
+   Il ne semble pas pertinent de proposer la possibilité de modifier les largeurs des colonnes non centrales.
+}
+pour laisser de la place à une rédaction manuscrite. Ceci se fait via l'option \verb#cwidth# de l'environnement. Voici une version améliorée du tableau précédent.
+
+\begin{latexex-flat}
+A remplir...
+
+\begin{demotab}[cwidth = 7cm]
+    \demostep
+        Hypothèse &
+    \demoxspace   
+    \demostep{} % --> Ne pas oublier !
+                  & $A \implies B$
+    \demoxspace[1cm]
+    \demostep{} % --> Ne pas oublier !
+                  &
+    \demoxspace[1cm]
+\end{demotab}
+
+Est-ce rempli ?
+\end{latexex-flat}
+
+
+% ---------------------- %
+
+
 \subsection{Un tableau sur plusieurs pages}
 
-Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans perte d'information
+Un tableau devant utiliser plusieurs pages sera scindé comme dans l'image page \pageref{tnslog:demotab-splitted} sans perte d'information
 \footnote{
 	Tout le travail est fait par l'environnement \env{longtable} du package éponyme.
 }.
 
-\begin{figure}[hbt!]
+\begin{figure}[hbt!]\label{tnslog:demotab-splitted}
 	\centering
-	\frame{\includegraphics[scale = .5]{images/demo-explained-univ-broken[fr].png}}
+	\frame{\includegraphics[scale = .5]{images/demotab-univ-broken[fr].png}}
 \end{figure}
 %\section{Détailler un \og vrai \fg{} raisonnement}
 
@@ -1157,7 +1236,8 @@ Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retou
         $ABC$ est un triangle \newline équilatéral 
       & Définition d'un triangle \newline équilatéral. 
       & $AB = BC = AC$
-    \demostep{} % --> Ne pas oublier ici !
+    \demostep{} % --> Ne pas oublier {} ici !
+                %     On commence par une cellule vide...
       & Voir l'énoncé.
       & $AB = 10 \, cm$
     \demostep
@@ -1173,7 +1253,7 @@ Notez au passage la possibilité d'utiliser \macro{newline} pour forcer un retou
 
 \newparaexample{Avec toutes les options}
 
-Le système de référence marche ici aussi.
+Tout comme les preuves logiques de niveau universitaire, nous avons un système de référence.
 Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle avec le même fonctionnement que pour \env{demotab}.
 
 \begin{latexex-flat}
@@ -1182,7 +1262,8 @@ Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle ave
         $ABC$ est un triangle \newline équilatéral 
       & Définition d'un triangle \newline équilatéral. 
       & $AB = BC = AC$
-    \demostep[known-data]
+    \demostep[known-data] % --> Pas besoin d'utiliser {} ici
+                          %     car on utilise l'argument optionnel.
       & Voir l'énoncé.
       & $AB = 10 \, cm$
     \demostep
@@ -1190,6 +1271,28 @@ Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle ave
         \explref{demo-first-geo-fact} et \explref{known-data} .
       & Simple calcul.
       & $ABC$ a pour périmètre $30 \, cm$.
+\end{demotab*}x
+\end{latexex-flat}
+
+
+% ---------------------- %
+
+
+\newparaexample{Indiquer qu'une case n'a pas besoin d'être remplie} 
+
+Dans les exemples précédents, nous n'avons rien à indiquer dans la case \emph{\og Je sais que... \fg} de la 2\ieme{} ligne.
+On peut indiquer ceci explicitement et de façon symbolique avec le texte \txtdemoNOTHING{} mis en forme via  par la macro \macro{explnothing}
+\footnote{
+	Le texte \txtdemoNOTHING{} est défini dans la macro \texttt{\textbackslash{}txtdemoNOTHING}.
+}.
+Ceci est notamment utile pour un tableau devant être complété par des étudiants (voir les exemples suivants).
+
+\begin{latexex-flat}
+\begin{demotab*}[start = 2]
+    \demostep
+        \explnothing{}
+      & Voir l'énoncé.
+      & $AB = 10 \, cm$
 \end{demotab*}
 \end{latexex-flat}
 
@@ -1197,14 +1300,44 @@ Par contre \env{demotab*} ne propose que \verb+start+ comme clé optionnelle ave
 % ---------------------- %
 
 
+\newparaexample{Gérer les hauteurs des lignes}
+
+La macro \macro{demoxspace} est aussi proposée par l'environnement \env{demotab*}. Voici un exemple.
+
+\begin{latexex-flat}
+\begin{demotab*}
+    \demostep
+        $ABC$ est un triangle \newline équilatéral 
+      &  
+      & $AB = BC = AC$
+    \demoxspace
+    \demostep
+        \explnothing{}
+      &
+      & $AB = 10 \, cm$
+    \demoxspace[3cm]
+    \demostep
+        Voir les conséquences \newline \explref*{1} et \explref*{2} .
+      & 
+      &
+    \demoxspace
+\end{demotab*}
+\end{latexex-flat}
+
+
+
+% ---------------------- %
+
+
 \subsection{Un tableau sur plusieurs pages}
 
-Un tableau devant utiliser plusieurs pages sera scindé comme ci-dessous sans perte d'information
+
+Un tableau devant utiliser plusieurs pages sera scindé comme dans l'image page \pageref{tnslog:demotab*-splitted} sans perte d'information
 \footnote{
-	Tout le travail est fait par l'environnement \env{longtable} du package éponyme.
+	Ici aussi tout le travail est fait par l'environnement \env{longtable} du package éponyme.
 }.
 
-\begin{figure}[hbt!]
+\begin{figure}[hbt!]\label{tnslog:demotab*-splitted}
 	\centering
 	\frame{\includegraphics[scale = .5]{images/demotab-middleschool-broken[fr].png}}
 \end{figure}
@@ -1222,6 +1355,25 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 
 \begin{description}
 % Changes shown - START
+
+    \medskip
+    \item[2021-03-27] Nouvelle version sous-mineure \verb+1.2.1-beta+.
+    
+    \begin{itemize}[itemsep=.5em]
+        \item \topic{Démonstrations pas à pas}
+        \begin{itemize}[itemsep=.5em]
+            \item L'environnement \env{demotab} possède une nouvelle option \verb#cwidth# pour changer la largeur de la colonne centrale.
+    
+            \item Les environnements \env{demotab} et \env{demotab*} proposent une nouvelle macro \macro{demoxspace} pour modifier localement la hauteur d'une ligne \emph{(pas de réglage global pour le moment)}.
+            
+            \item La macro \macro{explnothing} affiche \explnothing{} afin d'expliciter qu'une cellule n'a pas besoin d'être complétée.
+        \end{itemize}
+    \end{itemize}
+    
+    
+    \separation
+
+% ------------------------ %
 
     \medskip
     \item[2021-03-22] Nouvelle version mineure \verb+1.2.0-beta+.
@@ -1355,13 +1507,13 @@ Tous les changements sont disponibles uniquement en anglais dans le dossier \ver
 \begin{multicols}{4}
 	\foreach \k in {less, leq, gtr, geq}{
 	
-		\IDmacro[o]{\k{}  }{1}
+		\IDmacro[o]{\k{} }{1}
 		
-		\IDmacro[o]{\k{}* }{1}
+		\IDmacro[o]{\k{}*}{1}
 		
 		\smallskip
 		
-		\IDmacro[o]{n\k }{1}
+		\IDmacro[o]{n\k{} }{1}
 		
 		\IDmacro[o]{n\k*}{1}
 	}
@@ -1580,17 +1732,22 @@ Les macros suivantes sont juste utilisées par l'environnement \env{stepcalc}.
 
 \IDenv[o]{demotab}{4}
 
-\IDkey{start} le début de la numérotation des identifiants des justifications.
-              La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
+\IDkey{hyps}   les hypothèses, au format texte, vérifiées au départ.
+               Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
 
-\IDkey{hyps } les hypothèses, au format texte, vérifiées au départ.
-              Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyp+.
+\IDkey{hyp}    une unique hypothèse, au format texte, vérifiée au départ.
+               Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyps+.
 
-\IDkey{hyp  } une unique hypothèse, au format texte, vérifiée au départ.
-              Cet argument peut être vide et ne doit pas rentrer en conflit avec l'option \verb+hyps+.
+\IDkey{ccl}    la conclusion, au format texte, du raisonnement détaillé.
+               Cet argument peut être vide.
 
-\IDkey{ccl  } la conclusion, au format texte, du raisonnement détaillé.
-              Cet argument peut être vide.
+\extraspace
+
+\IDkey{start}  le début de la numérotation des identifiants des justifications.
+               La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
+
+\IDkey{cwidth} la largeur souhaitée pour la colonne centrale.
+
 
 
 \separation
@@ -1600,6 +1757,14 @@ Les macros suivantes sont juste utilisées par l'environnement \env{stepcalc}.
 
 \IDkey{start} le début de la numérotation des identifiants des justifications.
               La valeur par défaut est \verb+1+ et la valeur spéciale \verb+last+ permet de reprendre la numérotation là où elle s'était arrêtée le dernier environnement \env{demotab} ou \env{demotab*} utilisé.
+
+
+\separation
+
+
+\IDmacro[o]{demoxspace}{1}
+
+\IDoption{} une dimension \LaTeX{} pour modifier l'espacement vertical.
 
 
 \separation
@@ -1626,7 +1791,22 @@ Les macros suivantes sont juste utilisées par l'environnement \env{stepcalc}.
 \IDarg{} un texte correspondant à un label global référençant le numéro d'une justification.
 
 
+\separation
+
+
+\IDope{explnothing}
+
+
+% ------------------- %
+
+
 \subsubsection{Détailler un \og vrai \fg{} raisonnement via un tableau - Textes utilisés}
+
+\IDmacro[n]{txtdemoNOTHING}   \hfill \prefix{NOTHING to indicate}
+
+
+\separation
+
 
 \IDmacro[n]{txtdemoID}     \hfill \mwhyprefix{ID}{entifier}
 
@@ -1636,7 +1816,9 @@ Les macros suivantes sont juste utilisées par l'environnement \env{stepcalc}.
 
 \IDmacro[n]{txtdemoCONS}   \hfill \mwhyprefix{CONS}{equence}
 
-\extraspace
+
+\separation
+
 
 \IDmacro[n]{txtdemoHYPS}   \hfill \prefix{HYPS = HYP-othesis (S-everal ones)} 
 
