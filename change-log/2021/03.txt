@@ -2,7 +2,7 @@
 2021-03-27
 ==========
 
-**New subminor version version::``1.0.3-beta``:** see the small useful new fetaures below.
+**New subminor version version::``1.2.0-beta``:** see the small useful new fetaures below.
 
 
 **Tables for proofs.**
@@ -20,7 +20,7 @@
 2021-03-22
 ==========
 
-**New sub minor version version::``1.0.2-beta``:** see the small big change below.
+**New sub minor version version::``1.1.1-beta``:** see the small big change below.
 
 
 **Logic:** the decoration of the symbols is a little bigger now.
@@ -30,7 +30,7 @@
 2021-03-04
 ==========
 
-**New sub minor version version::``1.0.1-beta``:** see the changes below with some backward incompatibilities.
+**New sub minor version version::``1.1.0-beta``:** see the changes below with some backward incompatibilities.
 
 
 **Logic:** there is only two symbolic symbols for the macros ``\eq*`` and ``\neq*`` (definition and identitity).
